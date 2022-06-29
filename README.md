@@ -6,4 +6,5 @@ Website for PC games lovers
 
 ## Used frameworks/libraries
 
+laravel/sail
 laravel/breeze
