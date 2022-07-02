@@ -8,3 +8,6 @@ Website for PC games lovers
 
 laravel/sail
 laravel/breeze
+nunomaduro/larasta
+stechstudio/laravel-php-cs-fixer
+psalm/plugin-laravel

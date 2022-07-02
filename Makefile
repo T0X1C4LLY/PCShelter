@@ -37,7 +37,7 @@ phpcsfixer_fix:
 	$(sail) $(run) ./vendor/bin/php-cs-fixer --no-interaction --allow-risky=yes --ansi fix
 
 larastan:
-	$(sail) $(run) ./vendor/bin/phpstan analyse
+	$(sail) $(run) ./vendor/bin/phpstan analyse app --level=max
 
 psalm:
 	$(sail) $(run) ./vendor/bin/psalm
