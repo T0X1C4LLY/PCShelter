@@ -12,7 +12,7 @@
 
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     </head>
-    <body>
+    <body style="font-family: Open Sans, sans-serif; background-color: #1a202c" >
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
