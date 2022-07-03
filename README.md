@@ -25,9 +25,10 @@ TODO:
 
 <s>Zmienić wyglląd logowania/rejestracji</s> </br>
 Zmienić wygląd postów </br>
-Zmienić wygląd komentarzy </br>
+<s>Zmienić wygląd komentarzy</s> </br>
 <s>Naprawić logo w postach </s></br>
 Dodać favicon </br>
 Poprawić proces rejestracji - obecnie są złe pola </br>
 Stworzyć admina </br>
 Trzeba coś zrobić z ikonami postów bo na ten moment to fejki </br>
+Posegregować componenty </br>
