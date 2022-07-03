@@ -22,4 +22,4 @@ TODO:
 Zmienić wyglląd logowania/rejestracji </br>
 zmienić wygląd postów </br>
 zmienić wygląd komentarzy </br>
-Naprawić logo w postach </br>
+<s>Naprawić logo w postach </s></br>

@@ -30,7 +30,7 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/">
-                    <img src="storage/logo.png" alt="PCShelter Logo" width="165" height="16">
+                    <img src="../storage/logo.png" alt="PCShelter Logo" width="165" height="16">
                 </a>
             </div>
 
