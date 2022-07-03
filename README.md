@@ -12,6 +12,10 @@ nunomaduro/larasta </br>
 stechstudio/laravel-php-cs-fixer </br>
 psalm/plugin-laravel </br>
 itsgoingd/clockwork </br>
+mailchimp/marketing </br>
+
+Tailwind </br>
+AlpineJS
 
 Logo : https://www.freelogodesign.org/ </br>
 Fake Avatar: https://pravatar.cc/ </br>
@@ -20,6 +24,8 @@ Fake Thumbnails: https://picsum.photos/
 TODO:
 
 Zmienić wyglląd logowania/rejestracji </br>
-zmienić wygląd postów </br>
-zmienić wygląd komentarzy </br>
+Zmienić wygląd postów </br>
+Zmienić wygląd komentarzy </br>
 <s>Naprawić logo w postach </s></br>
+Dodać favicon </br>
+Poprawić proces rejestracji - obecnie są złe pola </br>
