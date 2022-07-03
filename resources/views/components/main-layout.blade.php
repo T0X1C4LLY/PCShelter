@@ -91,7 +91,7 @@
                                        placeholder="Your email address"
                                        class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                                 @error('email')
-                                <span class="text-xs text-red-500">{{ $message }}</span>
+                                    <span class="text-xs text-red-500">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -109,5 +109,6 @@
 {{--        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">--}}
 {{--            {{ $slot }}--}}
 {{--        </div>--}}
+    <x-flash/>
     </body>
 </html>
