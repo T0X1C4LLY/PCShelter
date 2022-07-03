@@ -11,3 +11,5 @@ laravel/breeze
 nunomaduro/larasta
 stechstudio/laravel-php-cs-fixer
 psalm/plugin-laravel
+
+Logo : https://www.freelogodesign.org/
