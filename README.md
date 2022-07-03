@@ -29,3 +29,4 @@ Zmienić wygląd komentarzy </br>
 <s>Naprawić logo w postach </s></br>
 Dodać favicon </br>
 Poprawić proces rejestracji - obecnie są złe pola </br>
+Stworzyć admina </br>

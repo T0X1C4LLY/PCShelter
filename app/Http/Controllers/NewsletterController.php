@@ -23,7 +23,7 @@ class NewsletterController extends Controller
             }
         } catch (\Exception $e) {
             throw ValidationException::withMessages([
-                'email' => 'This email could not be added to our mewsletter'
+                'email' => 'This email could not be added to our newsletter'
 //                'email' => $e->getMessage()
             ]);
         }

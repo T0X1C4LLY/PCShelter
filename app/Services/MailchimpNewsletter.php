@@ -13,7 +13,6 @@ class MailchimpNewsletter implements NewsletterInterface
     public function subscribe(string $email, string $list = null): mixed
     {
         $list ??= config('services.mailchimp.lists.subscribers');
-
         return $this->client->lists->addListMember($list, [
             'email_address' => $email,
             'status' => 'subscribed'
