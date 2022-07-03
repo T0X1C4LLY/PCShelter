@@ -1,5 +1,5 @@
 <header class="max-w-xl mx-auto mt-20 text-center">
-    <h1 class="text-4xl">
+    <h1 class="text-4xl text-white">
         Latest <span class="text-blue-500">Laravel From Scratch</span> News
     </h1>
 

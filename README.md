@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><img src="public/storage/logo.png" alt="PCShelter Logo"></p>
 
 ## About PCShelter
 
@@ -6,10 +6,12 @@ Website for PC games lovers
 
 ## Used frameworks/libraries
 
-laravel/sail
-laravel/breeze
-nunomaduro/larasta
-stechstudio/laravel-php-cs-fixer
-psalm/plugin-laravel
+laravel/sail </br>
+laravel/breeze </br>
+nunomaduro/larasta </br>
+stechstudio/laravel-php-cs-fixer </br>
+psalm/plugin-laravel </br>
 
-Logo : https://www.freelogodesign.org/
+Logo : https://www.freelogodesign.org/ </br>
+Fake Avatar: https://pravatar.cc/ </br>
+Fake Thumbnails: https://picsum.photos/

@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //TODO('zawartość będzie trzeba wyodrębnić do poszczególnych klas seedera')
+//        $this->call(KlasaSeedera::class);
         User::truncate();
         Category::truncate();
         Post::truncate();
