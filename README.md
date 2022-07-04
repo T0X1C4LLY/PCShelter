@@ -31,11 +31,12 @@ Fake Thumbnails: https://picsum.photos/
 <s>Zmienić wygląd komentarzy</s> </br>
 <s>Naprawić logo w postach </s></br>
 <s>Dodać favicon</s> </br>
-Poprawić proces rejestracji - obecnie są złe pola </br>
+<s>Poprawić proces rejestracji - obecnie są złe pola</s> </br>
 Stworzyć admina </br>
-Trzeba coś zrobić z ikonami postów bo na ten moment to fejki </br>
+<s>Trzeba coś zrobić z ikonami postów bo na ten moment to fejki</s> </br>
 Posegregować componenty </br>
-
+Naprawić wyświetlanie dostępnych opcji po zalogowaniu - wyświetla się @auth @endauth i są złe kolory </br>
+Zamienić logowanie z name na username </br>
 
 ## Pomysły: </br>
 
@@ -45,3 +46,4 @@ Dodać opcję kilku kategorii </br>
 Dodać design przycisków do rejestracji logowania/konta </br>
 Dodać podpowiedzi po najechaniu na przycisk (okienka z oopisem co to za przycisk) </br>
 Szukanie na podstawie nazwy autora </br>
+Dodać możliwość logowania przez username/email </br>
