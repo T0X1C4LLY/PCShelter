@@ -21,10 +21,10 @@ Logo : https://www.freelogodesign.org/ </br>
 Fake Avatar: https://pravatar.cc/ </br>
 Fake Thumbnails: https://picsum.photos/
 
-TODO:
+## TODO:
 
 <s>Zmienić wyglląd logowania/rejestracji</s> </br>
-Zmienić wygląd postów </br>
+<s>Zmienić wygląd postów </s></br>
 <s>Zmienić wygląd komentarzy</s> </br>
 <s>Naprawić logo w postach </s></br>
 Dodać favicon </br>
@@ -32,3 +32,13 @@ Poprawić proces rejestracji - obecnie są złe pola </br>
 Stworzyć admina </br>
 Trzeba coś zrobić z ikonami postów bo na ten moment to fejki </br>
 Posegregować componenty </br>
+
+
+## Pomysły: </br>
+
+Dodać opcję podejrzenia profilu po najechaniu na avatar/nazwę </br>
+Ustawić dane autora na dole postu a nie pod fragmentem artykułu </br>
+Dodać opcję kilku kategorii </br>
+Dodać design przycisków do rejestracji logowania/konta </br>
+Dodać podpowiedzi po najechaniu na przycisk (okienka z oopisem co to za przycisk) </br>
+Szukanie na podstawie nazwy autora </br>
