@@ -27,7 +27,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Zmienić wygląd postów </s></br>
 <s>Zmienić wygląd komentarzy</s> </br>
 <s>Naprawić logo w postach </s></br>
-Dodać favicon </br>
+<s>Dodać favicon</s> </br>
 Poprawić proces rejestracji - obecnie są złe pola </br>
 Stworzyć admina </br>
 Trzeba coś zrobić z ikonami postów bo na ten moment to fejki </br>
