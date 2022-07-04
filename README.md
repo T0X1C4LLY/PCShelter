@@ -15,7 +15,10 @@ itsgoingd/clockwork </br>
 mailchimp/marketing </br>
 
 Tailwind </br>
-AlpineJS
+AlpineJS </br>
+Mailhog </br>
+PGSQL </br>
+Mailchimp </br>
 
 Logo : https://www.freelogodesign.org/ </br>
 Fake Avatar: https://pravatar.cc/ </br>
