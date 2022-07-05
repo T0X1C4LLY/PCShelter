@@ -18,6 +18,6 @@ class GuestLayout extends Component
         if ($view instanceof View) {
             return $view;
         }
-        Throw new \RuntimeException;
+        throw new \RuntimeException();
     }
 }

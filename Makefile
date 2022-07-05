@@ -31,10 +31,10 @@ test:
 restart: down install
 
 phpcsfixer:
-	$(sail) $(run) ./vendor/bin/php-cs-fixer --no-interaction --allow-risky=yes --dry-run --diff fix
+	$(sail) $(run) php artisan fixer:fix --no-interaction --allow-risky=yes --dry-run --diff
 
 phpcsfixer_fix:
-	$(sail) $(run) ./vendor/bin/php-cs-fixer --no-interaction --allow-risky=yes --ansi fix
+	$(sail) $(run) php artisan fixer:fix --no-interaction --allow-risky=yes --ansi
 
 larastan:
 	$(sail) $(run) ./vendor/bin/phpstan analyse app --level=max
