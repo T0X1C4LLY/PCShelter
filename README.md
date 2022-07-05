@@ -34,12 +34,13 @@ Fake Thumbnails: https://picsum.photos/
 <s>Poprawić proces rejestracji - obecnie są złe pola</s> </br>
 Stworzyć admina </br>
 <s>Trzeba coś zrobić z ikonami postów bo na ten moment to fejki</s> </br>
-Posegregować componenty </br>
+<s>Posegregować componenty</s> </br>
 Naprawić wyświetlanie dostępnych opcji po zalogowaniu - wyświetla się @auth @endauth i są złe kolory </br>
 Zamienić logowanie z name na username </br>
 Zmienić wygląd przycisków/opisów do kontroli numeru strony </br>
 Naprawić wszystko co wykryje stan/psalm/csfixer i pamiętać by utrzymać czytsośc kodu </br>
-Wydzielić mniejsze komponenty z komponentów od breeze </br>
+<s>Wydzielić mniejsze komponenty z komponentów od breeze</s> </br>
+
 
 ## Pomysły: </br>
 
