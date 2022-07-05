@@ -17,7 +17,7 @@ mailchimp/marketing </br>
 Tailwind </br>
 AlpineJS </br>
 Mailhog </br>
-PGSQL </br>
+pgSQL </br>
 Mailchimp </br>
 
 Logo : https://www.freelogodesign.org/ </br>
@@ -37,6 +37,9 @@ Stworzyć admina </br>
 Posegregować componenty </br>
 Naprawić wyświetlanie dostępnych opcji po zalogowaniu - wyświetla się @auth @endauth i są złe kolory </br>
 Zamienić logowanie z name na username </br>
+Zmienić wygląd przycisków/opisów do kontroli numeru strony </br>
+Naprawić wszystko co wykryje stan/psalm/csfixer i pamiętać by utrzymać czytsośc kodu </br>
+Wydzielić mniejsze komponenty z komponentów od breeze </br>
 
 ## Pomysły: </br>
 

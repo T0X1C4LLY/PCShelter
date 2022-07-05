@@ -3,16 +3,21 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class AppLayout extends Component
 {
     /**
      * Get the view / contents that represents the component.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
-    public function render()
+    public function render(): View
     {
-        return view('layouts.app');
+        $view = view('layouts.app');
+        if ($view instanceof View) {
+            return $view;
+        }
+        throw new \RuntimeException();
     }
 }
