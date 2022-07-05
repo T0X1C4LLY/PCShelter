@@ -6,7 +6,7 @@
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
 {{--                    <img src="{{ asset('storage/'.$post->thumbnail) }}" alt="" class="rounded-xl">--}}
-                    <x-post-card-image :post="$post"/>
+                    <x-post.post-card-image :post="$post"/>
                     <p class="mt-4 block text-yellow-400 text-xs">
                         Published <time>
                             {{ $post->created_at->diffForHumans() }}
@@ -56,11 +56,10 @@
                 <section class="col-span-8 col-start-5 mt-10 space-y-6">
                     @include ('posts._add-comment-form')
                     @foreach ($post->comments as $comment)
-                        <x-post-comment :comment="$comment"/>
+                        <x-post.post-comment :comment="$comment"/>
                     @endforeach
                 </section>
             </article>
         </main>
-
     </section>
 </x-main-layout>

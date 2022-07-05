@@ -7,14 +7,19 @@
         </button>
     </x-slot>
 
-    <x-dropdown-item href="/?{{ http_build_query(request()->except('category', 'page')) }}" :active="request()->routeIs('home') && is_null(request()->getQueryString())">All</x-dropdown-item>
+    <x-dropdown-item href="/?{{ http_build_query(request()->except('category', 'page')) }}"
+                     :active="request()->routeIs('home') && is_null(request()->getQueryString())"
+    >
+        All
+    </x-dropdown-item>
 
     @php
         $categories = \App\Models\Category::all();
     @endphp
     @foreach ($categories as $category)
         <x-dropdown-item href="?category={{ $category->slug }} & {{ http_build_query(request()->except('category', 'page')) }}"
-                         :active='request()->fullUrlIs("*?category={$category->slug}*")'>
+                         :active='request()->fullUrlIs("*?category={$category->slug}*")'
+        >
             {{ ucwords($category->name) }}
         </x-dropdown-item>
     @endforeach
