@@ -52,10 +52,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return ucwords($username);
     }
 
-    public function setPasswordAttribute(string $password): void
-    { //Mutator: set + nazwa_atrybutu + Attribute()
-        $this->attributes['password'] = bcrypt($password);
-    }
+//    public function setPasswordAttribute(string $password): void
+//    { //Mutator: set + nazwa_atrybutu + Attribute()
+//        $this->attributes['password'] = bcrypt($password);
+//    }
 
     public function posts(): HasMany
     {
