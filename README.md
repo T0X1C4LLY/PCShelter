@@ -44,7 +44,7 @@ Naprawić dashboard bo na ten moment nic tam nie działa / alternatywnie wymieni
 <s>Narawić logowanie bo z jakiegoś powodu nie działa</s> </br>
 Zmienić tak by wpisanie emaila na newsletter był potrzebny dla niezalogowanych a dla zalogowanych był pod pojedynczym przyciskiem </br>
 Zmienić logikę logowania admina w AppServiceProvider bo ten obecny to mocna prowizorka </br>
-Naprawić wyświetlanie loga w /admin/posts/create oraz /reset/password </br>
+<s>Naprawić wyświetlanie loga w /admin/posts/create oraz /reset/password</s> </br>
 Zmienić wygląd w panelu administratora bo jest straszny </br>
 Naprawić edycję postów z poziomu panelu administratora bo rzuca 404 </br>
 

@@ -34,7 +34,8 @@
         <nav class="md:flex md:justify-between md:items-center">
             <div>
                 <a href="/">
-                    <img src="../storage/logo.png" alt="PCShelter Logo" width="165" height="16">
+                    <x-breeze.application-logo/>
+{{--                    <img src="../../storage/logo.png" alt="PCShelter Logo" width="165" height="16">--}}
                 </a>
             </div>
 
@@ -42,7 +43,9 @@
                 @auth
                     <x-dropdown>
                         <x-slot name="trigger">
-                            <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}</button>
+                            <button class="text-xs font-bold uppercase">
+                                Welcome, {{ auth()->user()->name }}
+                            </button>
                         </x-slot>
                         {{--                    @if (auth()->user()->can('admin'))--}}
                         {{--                    @can('admin')--}}
