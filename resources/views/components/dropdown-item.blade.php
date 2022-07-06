@@ -1,9 +1,13 @@
 @props(['active' => false])
 
 @php
-    $classes = 'block text-left px-3 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white';
+    $classes = 'block text-left px-3 text-sm leading-6 hover:bg-yellow-500 focus:bg-yellow-500 hover:text-white focus:text-white';
 
-	if ($active) $classes .= ' bg-blue-500 text-white';
+	if ($active) {
+        $classes .= ' bg-yellow-500 text-white';
+	} else {
+        $classes .= ' text-yellow-500';
+	}
 @endphp
 <a {{ $attributes(['class' => $classes]) }}>
     {{ $slot }}

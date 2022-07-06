@@ -35,13 +35,18 @@ Fake Thumbnails: https://picsum.photos/
 Stworzyć admina </br>
 <s>Trzeba coś zrobić z ikonami postów bo na ten moment to fejki</s> </br>
 <s>Posegregować componenty</s> </br>
-Naprawić wyświetlanie dostępnych opcji po zalogowaniu - wyświetla się @auth @endauth i są złe kolory </br>
+<s>Naprawić wyświetlanie dostępnych opcji po zalogowaniu - wyświetla się @auth @endauth i są złe kolory</s> </br>
 Zamienić logowanie z name na username </br>
 Zmienić wygląd przycisków/opisów do kontroli numeru strony </br>
 Naprawić wszystko co wykryje stan/psalm/csfixer i pamiętać by utrzymać czytsośc kodu </br>
 <s>Wydzielić mniejsze komponenty z komponentów od breeze</s> </br>
 Naprawić dashboard bo na ten moment nic tam nie działa / alternatywnie wymienić na coś innego </br>
 <s>Narawić logowanie bo z jakiegoś powodu nie działa</s> </br>
+Zmienić tak by wpisanie emaila na newsletter był potrzebny dla niezalogowanych a dla zalogowanych był pod pojedynczym przyciskiem </br>
+Zmienić logikę logowania admina w AppServiceProvider bo ten obecny to mocna prowizorka </br>
+Naprawić wyświetlanie loga w /admin/posts/create oraz /reset/password </br>
+Zmienić wygląd w panelu administratora bo jest straszny </br>
+Naprawić edycję postów z poziomu panelu administratora bo rzuca 404 </br>
 
 ## Pomysły: </br>
 

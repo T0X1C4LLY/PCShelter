@@ -69,7 +69,6 @@
                     </a>
             </div>
         </nav>
-
         {{ $slot }}
 
         <footer id="newsletter"
