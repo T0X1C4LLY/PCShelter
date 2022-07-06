@@ -46,7 +46,7 @@ Zmienić tak by wpisanie emaila na newsletter był potrzebny dla niezalogowanych
 Zmienić logikę logowania admina w AppServiceProvider bo ten obecny to mocna prowizorka </br>
 <s>Naprawić wyświetlanie loga w /admin/posts/create oraz /reset/password</s> </br>
 Zmienić wygląd w panelu administratora bo jest straszny </br>
-Naprawić edycję postów z poziomu panelu administratora bo rzuca 404 </br>
+<s>Naprawić edycję postów z poziomu panelu administratora bo rzuca 404 problem poega na tym, że slug to post a nie post:id</s> </br>
 
 ## Pomysły: </br>
 
@@ -57,3 +57,4 @@ Dodać design przycisków do rejestracji logowania/konta </br>
 Dodać podpowiedzi po najechaniu na przycisk (okienka z oopisem co to za przycisk) </br>
 Szukanie na podstawie nazwy autora </br>
 Dodać możliwość logowania przez username/email </br>
+Zamienić w web.php 6 routów na Route::resource ale tak, żeby działało z post zamiast post:id </br>

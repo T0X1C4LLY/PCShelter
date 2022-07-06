@@ -1,4 +1,4 @@
-<x-layout>
+<x-main-layout>
     <x-setting :heading="'Edit Post: ' . $post->title">
         <form method="POST" action="/admin/posts/{{ $post->id }}" enctype="multipart/form-data">
             @csrf
@@ -37,4 +37,4 @@
             <x-form.button>Update</x-form.button>
         </form>
     </x-setting>
-</x-layout>
+</x-main-layout>
