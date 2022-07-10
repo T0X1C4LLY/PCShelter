@@ -53,6 +53,9 @@ Przechowywać role/permisje jako stałe w pliku </br>
 Stworzyć logowanie dla admina </br>
 Naprawić seedowanie dla permisji </br>
 Trzeba zweryfikować całe seedowanie bo straszny się tam bałagan narobił </br>
+Trzeba się zastanowić czy nie da się zrobić jednej tabeli dla wszystkich użytkowników i wyznaczyć kto jaką ma role </br>
+
+
 ## Pomysły: </br>
 
 Dodać opcję podejrzenia profilu po najechaniu na avatar/nazwę </br>

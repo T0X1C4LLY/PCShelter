@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Creator;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -34,6 +35,11 @@ class DatabaseSeeder extends Seeder
         $superUser = Admin::factory()->create([
             'username' => 'admin',
             'password' => Hash::make('admin'),
+        ]);
+
+        Creator::factory()->create([
+            'username' => 'creator',
+            'password' => Hash::make('creator'),
         ]);
 
         Permission::create(['name' => 'create-post']);
