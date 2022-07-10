@@ -8,11 +8,12 @@ Website for PC games lovers
 
 laravel/sail </br>
 laravel/breeze </br>
-nunomaduro/larasta </br>
+nunomaduro/larastan </br>
 stechstudio/laravel-php-cs-fixer </br>
 psalm/plugin-laravel </br>
 itsgoingd/clockwork </br>
 mailchimp/marketing </br>
+spatie/laravel-permission </br>
 
 Tailwind </br>
 AlpineJS </br>
@@ -21,7 +22,7 @@ pgSQL </br>
 Mailchimp </br>
 
 Logo : https://www.freelogodesign.org/ </br>
-Fake Avatar: https://pravatar.cc/ </br>
+Fake Avatars: https://pravatar.cc/ </br>
 Fake Thumbnails: https://picsum.photos/
 
 ## TODO:
@@ -47,7 +48,11 @@ Zmienić logikę logowania admina w AppServiceProvider bo ten obecny to mocna pr
 <s>Naprawić wyświetlanie loga w /admin/posts/create oraz /reset/password</s> </br>
 Zmienić wygląd w panelu administratora bo jest straszny </br>
 <s>Naprawić edycję postów z poziomu panelu administratora bo rzuca 404 problem poega na tym, że slug to post a nie post:id</s> </br>
-
+Najprawdopodoniej będzie trzeba rozdzielić tworzenie użytkowników na tworzenie admina/twórców/użytkowników
+Przechowywać role/permisje jako stałe w pliku </br>
+Stworzyć logowanie dla admina </br>
+Naprawić seedowanie dla permisji </br>
+Trzeba zweryfikować całe seedowanie bo straszny się tam bałagan narobił </br>
 ## Pomysły: </br>
 
 Dodać opcję podejrzenia profilu po najechaniu na avatar/nazwę </br>

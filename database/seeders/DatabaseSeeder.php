@@ -2,13 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
-use Exception;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +27,33 @@ class DatabaseSeeder extends Seeder
         Category::truncate();
         Post::truncate();
         Comment::truncate();
+        Admin::truncate();
+        Permission::truncate();
+        Role::truncate();
+
+        $superUser = Admin::factory()->create([
+            'username' => 'admin',
+            'password' => Hash::make('admin'),
+        ]);
+
+        Permission::create(['name' => 'create-post']);
+        Permission::create(['name' => 'delete-post']);
+
+        $adminRole = Role::create(['name' => 'admin']);
+        $creatorRole = Role::create(['name' => 'creator']);
+        $commonUserRole = Role::create(['name' => 'user']);
+
+        $adminRole->givePermissionTo([
+            'create-post',
+            'delete-post',
+        ]);
+
+        $creatorRole->givePermissionTo([
+            'create-post',
+        ]);
+
+//        $superUser->assignRole('admin');
+
 
         //TODO('To jest bardzo słabe rozwiązanie, ale działa')
         $quantityOfUsers = 25;

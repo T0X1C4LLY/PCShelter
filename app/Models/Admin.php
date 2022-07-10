@@ -2,20 +2,26 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class Admin extends Model
 {
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
     use HasRoles;
+
+    protected $primaryKey = 'username';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +29,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'username',
         'email',
         'password',
@@ -46,21 +51,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     public function getUsernameAttribute(string $username): string
     { //Accessor
         return ucwords($username);
-    }
-
-//    public function setPasswordAttribute(string $password): void
-//    { //Mutator: set + nazwa_atrybutu + Attribute()
-//        $this->attributes['password'] = bcrypt($password);
-//    }
-
-    public function posts(): HasMany
-    {
-        return $this->hasMany(Post::class);
     }
 }
