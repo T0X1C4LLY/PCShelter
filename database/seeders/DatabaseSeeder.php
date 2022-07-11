@@ -28,19 +28,19 @@ class DatabaseSeeder extends Seeder
         Category::truncate();
         Post::truncate();
         Comment::truncate();
-        Admin::truncate();
+//        Admin::truncate();
         Permission::truncate();
         Role::truncate();
 
-        $superUser = Admin::factory()->create([
+        $superUser = User::factory()->create([
             'username' => 'admin',
             'password' => Hash::make('admin'),
         ]);
 
-        Creator::factory()->create([
-            'username' => 'creator',
-            'password' => Hash::make('creator'),
-        ]);
+//        Creator::factory()->create([
+//            'username' => 'creator',
+//            'password' => Hash::make('creator'),
+//        ]);
 
         Permission::create(['name' => 'create-post']);
         Permission::create(['name' => 'delete-post']);
@@ -58,8 +58,7 @@ class DatabaseSeeder extends Seeder
             'create-post',
         ]);
 
-//        $superUser->assignRole('admin');
-
+        $superUser->assignRole($adminRole);
 
         //TODO('To jest bardzo słabe rozwiązanie, ale działa')
         $quantityOfUsers = 25;
@@ -71,6 +70,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < $quantityOfUsers; $i++) {
             $user = User::factory()->create();
             $usersIds[] = $user->id;
+            $user->assignRole($commonUserRole);
         }
 
         $categoriesIds = [];
