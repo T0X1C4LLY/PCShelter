@@ -33,27 +33,30 @@ Fake Thumbnails: https://picsum.photos/
 <s>Naprawić logo w postach </s></br>
 <s>Dodać favicon</s> </br>
 <s>Poprawić proces rejestracji - obecnie są złe pola</s> </br>
-Stworzyć admina </br>
+<s>Stworzyć admina</s> </br>
 <s>Trzeba coś zrobić z ikonami postów bo na ten moment to fejki</s> </br>
 <s>Posegregować componenty</s> </br>
 <s>Naprawić wyświetlanie dostępnych opcji po zalogowaniu - wyświetla się @auth @endauth i są złe kolory</s> </br>
-Zamienić logowanie z name na username </br>
+Zamienić logowanie z email na username </br>
 Zmienić wygląd przycisków/opisów do kontroli numeru strony </br>
 Naprawić wszystko co wykryje stan/psalm/csfixer i pamiętać by utrzymać czytsośc kodu </br>
 <s>Wydzielić mniejsze komponenty z komponentów od breeze</s> </br>
 Naprawić dashboard bo na ten moment nic tam nie działa / alternatywnie wymienić na coś innego </br>
 <s>Narawić logowanie bo z jakiegoś powodu nie działa</s> </br>
 Zmienić tak by wpisanie emaila na newsletter był potrzebny dla niezalogowanych a dla zalogowanych był pod pojedynczym przyciskiem </br>
-Zmienić logikę logowania admina w AppServiceProvider bo ten obecny to mocna prowizorka </br>
+<s>Zmienić logikę logowania admina w AppServiceProvider bo ten obecny to mocna prowizorka</s> </br>
 <s>Naprawić wyświetlanie loga w /admin/posts/create oraz /reset/password</s> </br>
 Zmienić wygląd w panelu administratora bo jest straszny </br>
 <s>Naprawić edycję postów z poziomu panelu administratora bo rzuca 404 problem poega na tym, że slug to post a nie post:id</s> </br>
-Najprawdopodoniej będzie trzeba rozdzielić tworzenie użytkowników na tworzenie admina/twórców/użytkowników
+<s>Najprawdopodoniej będzie trzeba rozdzielić tworzenie użytkowników na tworzenie admina/twórców/użytkowników</s>
 Przechowywać role/permisje jako stałe w pliku </br>
-Stworzyć logowanie dla admina </br>
-Naprawić seedowanie dla permisji </br>
-Trzeba zweryfikować całe seedowanie bo straszny się tam bałagan narobił </br>
-Trzeba się zastanowić czy nie da się zrobić jednej tabeli dla wszystkich użytkowników i wyznaczyć kto jaką ma role </br>
+<s>Stworzyć logowanie dla admina</s> </br>
+<s>Naprawić seedowanie dla permisji</s> </br>
+<s>Trzeba zweryfikować całe seedowanie bo straszny się tam bałagan narobił</s> </br>
+<s>Trzeba się zastanowić czy nie da się zrobić jednej tabeli dla wszystkich użytkowników i wyznaczyć kto jaką ma role</s> </br>
+<s>Przejrzeć link związany z spatie/laravel-permission (zakładka w przeglądarce) - może uda się zdecydowac czy robić 3 tabele czy rozdzielić role</s> </br>
+Ujednolicić wygląd całej strony bo na ten moment jest trochę zbyt duża różnorodoność </br>
+Poprawić ponowne seedowanie gdyż obecnie trzeba skorzytać z  php artisan cache:forget spatie.permission.cache bo jest problem z istnieniem ról dla guarda "web" </br>
 
 
 ## Pomysły: </br>

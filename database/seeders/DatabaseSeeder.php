@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Comment;
-use App\Models\Creator;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -24,53 +22,60 @@ class DatabaseSeeder extends Seeder
     {
         //TODO('zawartość będzie trzeba wyodrębnić do poszczególnych klas seedera')
 //        $this->call(KlasaSeedera::class);
+
         User::truncate();
         Category::truncate();
         Post::truncate();
         Comment::truncate();
-//        Admin::truncate();
         Permission::truncate();
         Role::truncate();
 
         $superUser = User::factory()->create([
             'username' => 'admin',
             'password' => Hash::make('admin'),
+            'email' => 'admin@admin.com',
         ]);
 
-//        Creator::factory()->create([
-//            'username' => 'creator',
-//            'password' => Hash::make('creator'),
-//        ]);
-
-        Permission::create(['name' => 'create-post']);
-        Permission::create(['name' => 'delete-post']);
+        Permission::create(['name' => 'create_post']);
+        Permission::create(['name' => 'delete_post']);
+        Permission::create(['name' => 'edit_post']);
+        Permission::create(['name' => 'give_permission']);
 
         $adminRole = Role::create(['name' => 'admin']);
         $creatorRole = Role::create(['name' => 'creator']);
         $commonUserRole = Role::create(['name' => 'user']);
 
         $adminRole->givePermissionTo([
-            'create-post',
-            'delete-post',
+            'create_post',
+            'delete_post',
+            'edit_post',
+            'give_permission',
         ]);
 
         $creatorRole->givePermissionTo([
-            'create-post',
+            'create_post',
         ]);
 
         $superUser->assignRole($adminRole);
 
-        //TODO('To jest bardzo słabe rozwiązanie, ale działa')
-        $quantityOfUsers = 25;
+        $quantityOfCommonUsers = 34;
+        $quantityOfCreators = 15;
         $quantityOfCategories = 10;
         $quantityOfPosts = 50;
         $quantityOfComments = 250;
 
-        $usersIds = [];
-        for ($i = 0; $i < $quantityOfUsers; $i++) {
+        $commonUsersIds = [];
+        for ($i = 0; $i < $quantityOfCommonUsers; $i++) {
             $user = User::factory()->create();
-            $usersIds[] = $user->id;
+            $commonUsersIds[] = $user->id;
             $user->assignRole($commonUserRole);
+        }
+
+        $creatorsIds = [];
+        for ($i = 0; $i < $quantityOfCreators; $i++) {
+            $user = User::factory()->create();
+            $creatorsIds[] = $user->id;
+            $user->assignRole($creatorRole);
         }
 
         $categoriesIds = [];
@@ -82,7 +87,7 @@ class DatabaseSeeder extends Seeder
         $postsIds = [];
         for ($i = 0; $i < $quantityOfPosts; $i++) {
             $post = Post::factory()->create([
-                'user_id' => $usersIds[array_rand($usersIds)],
+                'user_id' => $creatorsIds[array_rand($creatorsIds)],
                 'category_id' => $categoriesIds[array_rand($categoriesIds)],
             ]);
             $postsIds[] = $post->id;
@@ -90,78 +95,9 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 0; $i < $quantityOfComments; $i++) {
             Comment::factory()->create([
-                'user_id' => $usersIds[array_rand($usersIds)],
+                'user_id' => $commonUsersIds[array_rand($commonUsersIds)],
                 'post_id' => $postsIds[array_rand($postsIds)],
             ]);
         }
-
-//        Comment::factory(150)->create();
-
-
-//        $categories[] = Category::factory($quantityOfCategories)->create();
-//        $users[] = User::factory($quantityOfUsers)->create();
-
-//        Post::factory()->count(50)->create();
-
-        //używać jeśli korzystamy inaczej niż php artisan migrate:fresh --seed
-//        User::truncate();
-//        Category::truncate();
-//        Post::truncate();
-
-        //Tworzy fałszywe dane ze sprecyzowanym imieniem
-//        $user = user::factory()->create([
-//            'name' => 'John Doe'
-//        ]);
-
-
-
-//        Post::factory(15)->create([
-//            'user_id' => $user->id,
-//            'category_id' => 1
-//        ]);
-
-//        try {
-//            Post::factory(1)->create();
-//        } catch (Exception $e) {
-//
-//        }
-
-//         $personal = Category::create([
-//             'name' => 'Personal',
-//             'slug' => 'personal'
-//         ]);
-//
-//        $family = Category::create([
-//            'name' => 'Family',
-//            'slug' => 'family'
-//        ]);
-//
-//        $work = Category::create([
-//            'name' => 'Work',
-//            'slug' => 'work'
-//        ]);
-//
-//        Post::create([
-//            'user_id' => $user->id,
-//            'category_id' => $family->id,
-//            'title' => 'My Family Post',
-//            'slug' => 'my-first-post',
-//            'excerpt' => '<p>Lorem ipsum</p>',
-//            'body' => '<p>lorem ipsum dolor sit amet</p>'
-//        ]);
-//
-//        Post::create([
-//            'user_id' => $user->id,
-//            'category_id' => $work->id,
-//            'title' => 'My Work Post',
-//            'slug' => 'my-second-post',
-//            'excerpt' => '<p>Lorem ipsum</p>',
-//            'body' => '<p>lorem ipsum dolor sit amet</p>'
-//        ]);
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
