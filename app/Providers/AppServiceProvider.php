@@ -42,7 +42,6 @@ class AppServiceProvider extends ServiceProvider
         Model::unguard();
 
         Gate::define('admin', function (User $user) {
-
             $roles = DB::table('model_has_roles')
                 ->where('model_id', $user->id)
                 ->where('role_id', 1)

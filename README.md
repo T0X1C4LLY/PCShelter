@@ -38,7 +38,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Posegregować componenty</s> </br>
 <s>Naprawić wyświetlanie dostępnych opcji po zalogowaniu - wyświetla się @auth @endauth i są złe kolory</s> </br>
 <s>Zamienić logowanie z email na username</s> </br>
-Zmienić wygląd przycisków/opisów do kontroli numeru strony </br>
+<s>Zmienić wygląd przycisków/opisów do kontroli numeru strony</s> </br>
 Naprawić wszystko co wykryje stan/psalm/csfixer i pamiętać by utrzymać czytsośc kodu </br>
 <s>Wydzielić mniejsze komponenty z komponentów od breeze</s> </br>
 Naprawić dashboard bo na ten moment nic tam nie działa / alternatywnie wymienić na coś innego </br>

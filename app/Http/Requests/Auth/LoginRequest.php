@@ -51,8 +51,7 @@ class LoginRequest extends FormRequest
         if (!Auth::attempt(
             $this->only($this->loginField, 'password'),
             $this->boolean('remember')
-        ))
-        {
+        )) {
             RateLimiter::hit($this->throttleKey());
             throw ValidationException::withMessages([
                 'login' => __('auth.failed')
@@ -105,7 +104,8 @@ class LoginRequest extends FormRequest
     {
         $this->loginField = filter_var(
             $this->input('login'),
-            FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+            FILTER_VALIDATE_EMAIL
+        ) ? 'email' : 'username';
         $this->loginValue = $this->input('login');
         $this->merge([$this->loginField => $this->loginValue]);
     }

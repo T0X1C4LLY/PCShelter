@@ -32,7 +32,9 @@ class PasswordResetLinkController extends Controller
     public function store(Request $request)
     {
         $loginField = filter_var(
-            $request->input('login'), FILTER_VALIDATE_EMAIL)
+            $request->input('login'),
+            FILTER_VALIDATE_EMAIL
+        )
             ? 'email'
             : 'username';
         $request->merge([$loginField => $request->input('login')]);

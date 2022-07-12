@@ -61,8 +61,8 @@ class DatabaseSeeder extends Seeder
         $quantityOfCommonUsers = 34;
         $quantityOfCreators = 15;
         $quantityOfCategories = 10;
-        $quantityOfPosts = 50;
-        $quantityOfComments = 250;
+        $quantityOfPosts = 150;
+        $quantityOfComments = 350;
 
         $commonUsersIds = [];
         for ($i = 0; $i < $quantityOfCommonUsers; $i++) {
