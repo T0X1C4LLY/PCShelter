@@ -14,9 +14,16 @@
 
         <!-- Email Address -->
         <div>
-            <x-breeze.label for="email" :value="__('Email')" />
+            <x-breeze.label for="login" :value="__('Email\Username')" />
 
-            <x-breeze.input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <x-breeze.input id="login"
+                            class="block mt-1 w-full"
+                            type="text"
+                            name="login"
+                            :value="old('login')"
+                            required
+                            autofocus
+            />
         </div>
 
         <div class="flex items-center justify-end mt-4">

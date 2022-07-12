@@ -37,7 +37,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Trzeba coś zrobić z ikonami postów bo na ten moment to fejki</s> </br>
 <s>Posegregować componenty</s> </br>
 <s>Naprawić wyświetlanie dostępnych opcji po zalogowaniu - wyświetla się @auth @endauth i są złe kolory</s> </br>
-Zamienić logowanie z email na username </br>
+<s>Zamienić logowanie z email na username</s> </br>
 Zmienić wygląd przycisków/opisów do kontroli numeru strony </br>
 Naprawić wszystko co wykryje stan/psalm/csfixer i pamiętać by utrzymać czytsośc kodu </br>
 <s>Wydzielić mniejsze komponenty z komponentów od breeze</s> </br>
@@ -57,7 +57,7 @@ Przechowywać role/permisje jako stałe w pliku </br>
 <s>Przejrzeć link związany z spatie/laravel-permission (zakładka w przeglądarce) - może uda się zdecydowac czy robić 3 tabele czy rozdzielić role</s> </br>
 Ujednolicić wygląd całej strony bo na ten moment jest trochę zbyt duża różnorodoność </br>
 Poprawić ponowne seedowanie gdyż obecnie trzeba skorzytać z  php artisan cache:forget spatie.permission.cache bo jest problem z istnieniem ról dla guarda "web" </br>
-
+Trzeba się zastanowić jak rozegrać resetowanie hasła - obecnie można restetowac tylko po przejściu z linku </br>
 
 ## Pomysły: </br>
 
