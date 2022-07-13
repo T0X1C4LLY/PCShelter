@@ -14,6 +14,7 @@ psalm/plugin-laravel </br>
 itsgoingd/clockwork </br>
 mailchimp/marketing </br>
 spatie/laravel-permission </br>
+vimeo/psalm </br>
 
 Tailwind </br>
 AlpineJS </br>
@@ -58,6 +59,8 @@ Przechowywać role/permisje jako stałe w pliku </br>
 Ujednolicić wygląd całej strony bo na ten moment jest trochę zbyt duża różnorodoność </br>
 Poprawić ponowne seedowanie gdyż obecnie trzeba skorzytać z  php artisan cache:forget spatie.permission.cache bo jest problem z istnieniem ról dla guarda "web" </br>
 Trzeba się zastanowić jak rozegrać resetowanie hasła - obecnie można restetowac tylko po przejściu z linku </br>
+Naprawić wygląd dodawania komentarzy </br>
+Dodac zabezpieczenie na ilość niepoprawnych logowań </br>
 
 ## Pomysły: </br>
 
