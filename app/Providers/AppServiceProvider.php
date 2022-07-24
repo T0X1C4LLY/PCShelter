@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Services\MailchimpNewsletter;
 use App\Services\NewsletterInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -50,7 +51,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('admin', function () {
-            return request()->user()?->can('admin');
+            /** @var Request $request */
+            $request = request();
+
+            return $request->user()?->can('admin');
         });
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
@@ -30,14 +31,20 @@ class AdminPostController extends Controller
 //        $attributes['user_id'] = auth()->id();
 //        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
-        $file = request()->file('thumbnail');
-        if ($file instanceof UploadedFile) {
+        /** @var Request|null $request */
+        $request = request();
+
+        if (!is_null($request)) {
+            /** @var UploadedFile $file */
+            $file = $request->file('thumbnail');
             $attributes = array_merge($this->validatePost(), [
                 'user_id' => auth()->id(),
-                'thumbnail' => $file->store('thumbnails')
+                'thumbnail' => $file->store('thumbnails'),
             ]);
             Post::create($attributes);
         }
+
+
 
         return redirect('/');
     }
@@ -50,11 +57,17 @@ class AdminPostController extends Controller
     public function update(Post $post): RedirectResponse
     {
         $attributes = $this->validatePost($post);
-        $file = request()->file('thumbnail');
-        if (isset($attributes['thumbnail']) && $file instanceof UploadedFile) {
-            $attributes['thumbnail'] = $file->store('thumbnails');
+
+        /** @var Request|null $request */
+        $request = request();
+
+        if (!is_null($request)) {
+            $file = $request->file('thumbnail');
+            if (isset($attributes['thumbnail']) && $file instanceof UploadedFile) {
+                $attributes['thumbnail'] = $file->store('thumbnails');
+            }
+            $post->update($attributes);
         }
-        $post->update($attributes);
 
         return back()->with('success', 'Post Updated');
     }
@@ -70,7 +83,10 @@ class AdminPostController extends Controller
     {
         $post ??= new Post();
 
-        return request()->validate([
+        /** @var Request $request */
+        $request = request();
+
+        return $request->validate([
             'title' => ['required'],
             'thumbnail' => $post->exists ? ['image'] : ['required', 'image'],
             'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],

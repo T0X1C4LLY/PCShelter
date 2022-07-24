@@ -14,3 +14,4 @@ parameters:
     excludePaths:
 
     checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false

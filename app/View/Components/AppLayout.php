@@ -14,10 +14,6 @@ class AppLayout extends Component
      */
     public function render(): View
     {
-        $view = view('layouts.app');
-        if ($view instanceof View) {
-            return $view;
-        }
-        throw new \RuntimeException();
+        return view('layouts.app');
     }
 }

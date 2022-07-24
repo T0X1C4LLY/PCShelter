@@ -21,6 +21,7 @@ class PasswordResetTest extends TestCase
 
     public function test_reset_password_link_can_be_requested()
     {
+        $this->withoutExceptionHandling();
         Notification::fake();
 
         $user = User::factory()->create();
@@ -32,6 +33,7 @@ class PasswordResetTest extends TestCase
 
     public function test_reset_password_screen_can_be_rendered()
     {
+        $this->withoutExceptionHandling();
         Notification::fake();
 
         $user = User::factory()->create();
@@ -49,6 +51,7 @@ class PasswordResetTest extends TestCase
 
     public function test_password_can_be_reset_with_valid_token()
     {
+        $this->withoutExceptionHandling();
         Notification::fake();
 
         $user = User::factory()->create();

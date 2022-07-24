@@ -21,7 +21,7 @@ class NewPasswordController extends Controller
      * @param Request $request
      * @return View
      */
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         return view('auth.reset-password', ['request' => $request]);
     }
@@ -34,7 +34,7 @@ class NewPasswordController extends Controller
      *
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'token' => ['required'],
@@ -42,11 +42,14 @@ class NewPasswordController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        /** @var string $password */
+        $password = $request->password;
+
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user) use ($request) {
+            function ($user) use ($password) {
                 $user->forceFill([
-                    'password' => Hash::make($request->password),
+                    'password' => Hash::make($password),
                     'remember_token' => Str::random(60),
                 ])->save();
 
@@ -54,6 +57,7 @@ class NewPasswordController extends Controller
             }
         );
 
+        /** @var string|null $status */
         return $status == Password::PASSWORD_RESET
                     ? redirect()->route('login')->with('status', __($status))
                     : back()->withInput($request->only('email'))

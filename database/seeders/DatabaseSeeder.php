@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         Permission::truncate();
         Role::truncate();
 
+        /** @var Model $superUser */
         $superUser = User::factory()->create([
             'username' => 'admin',
             'password' => Hash::make('admin'),
@@ -41,8 +43,11 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'edit_post']);
         Permission::create(['name' => 'give_permission']);
 
+        /** @var Model $adminRole */
         $adminRole = Role::create(['name' => 'admin']);
+        /** @var Model $creatorRole */
         $creatorRole = Role::create(['name' => 'creator']);
+         /** @var Model $commonUserRole */
         $commonUserRole = Role::create(['name' => 'user']);
 
         $adminRole->givePermissionTo([
@@ -66,6 +71,7 @@ class DatabaseSeeder extends Seeder
 
         $commonUsersIds = [];
         for ($i = 0; $i < $quantityOfCommonUsers; $i++) {
+            /** @var Model $user */
             $user = User::factory()->create();
             $commonUsersIds[] = $user->id;
             $user->assignRole($commonUserRole);
@@ -73,6 +79,7 @@ class DatabaseSeeder extends Seeder
 
         $creatorsIds = [];
         for ($i = 0; $i < $quantityOfCreators; $i++) {
+            /** @var Model $user */
             $user = User::factory()->create();
             $creatorsIds[] = $user->id;
             $user->assignRole($creatorRole);
@@ -80,12 +87,14 @@ class DatabaseSeeder extends Seeder
 
         $categoriesIds = [];
         for ($i = 0; $i < $quantityOfCategories; $i++) {
+            /** @var Model $category */
             $category = Category::factory()->create();
             $categoriesIds[] = $category->id;
         }
 
         $postsIds = [];
         for ($i = 0; $i < $quantityOfPosts; $i++) {
+            /** @var Model $post */
             $post = Post::factory()->create([
                 'user_id' => $creatorsIds[array_rand($creatorsIds)],
                 'category_id' => $categoriesIds[array_rand($categoriesIds)],

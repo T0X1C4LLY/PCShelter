@@ -14,10 +14,6 @@ class GuestLayout extends Component
      */
     public function render(): View
     {
-        $view = view('layouts.guest');
-        if ($view instanceof View) {
-            return $view;
-        }
-        throw new \RuntimeException();
+        return view('layouts.guest');
     }
 }

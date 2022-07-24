@@ -26,7 +26,8 @@ bash:
 	$(sail) $(run) bash
 
 test:
-	$(sail) $(run) vendor/bin/phpunit tests
+	$(sail) $(run) php artisan test
+
 
 restart: down install
 
@@ -44,6 +45,9 @@ psalm:
 
 preparedb:
 	$(sail) artisan migrate --seed
+
+preparedbtest:
+	$(sail) artisan migrate --env=testing
 
 wipe:
 	$(sail) $(run) php artisan db:wipe
