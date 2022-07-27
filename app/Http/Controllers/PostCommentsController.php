@@ -11,15 +11,18 @@ class PostCommentsController extends Controller
 {
     public function store(Post $post): RedirectResponse
     {
-        request()->validate([
+        /** @var Request $request */
+        $request = request();
+
+        $request->validate([
             'body' => ['required']
         ]);
 
-        $user = request()->user();
+        $user = $request->user();
         if ($user instanceof User) {
             $post->comments()->create([
                 'user_id' => $user->id,
-            'body' => request('body')
+                'body' => request('body')
         ]);
         }
 

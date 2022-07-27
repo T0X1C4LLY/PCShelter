@@ -33,17 +33,21 @@ class Post extends Model
 //        Post::newQuery()->filter()
         $query->when(
             $filters['search'] ?? false,
-            fn (Builder $query, string $search): Builder =>
+            fn (Builder $query, mixed $search): Builder =>
             $query->where(
-                fn (Builder $query): Builder =>
-                $query->where('title', 'like', '%' . $search . '%')
-                ->orWhere('body', 'like', '%' . $search . '%')
+                function (Builder $query) use ($search): Builder {
+                    /** @var string $searchAsString */
+                    $searchAsString = $search;
+
+                    return $query->where('title', 'like', '%' . $searchAsString . '%')
+                        ->orWhere('body', 'like', '%' . $searchAsString . '%');
+                }
             )
         );
 
         $query->when(
             $filters['category'] ?? false,
-            fn (Builder $query, string $category): Builder =>
+            fn (Builder $query, mixed $category): Builder =>
             $query->whereHas(
                 'category',
                 fn (Builder $query): Builder =>
@@ -53,10 +57,14 @@ class Post extends Model
 
         $query->when(
             $filters['author'] ?? false,
-            function (Builder $query, string $author): Builder {
+            function (Builder $query, mixed $author): Builder {
+
+                /** @var string $authorAsString */
+                $authorAsString = $author;
+
                 return $query->whereHas(
                     'author',
-                    fn (Builder $query): Builder => $query->where('username', strtolower($author)),
+                    fn (Builder $query): Builder => $query->where('username', strtolower($authorAsString)),
                 );
             }
         );

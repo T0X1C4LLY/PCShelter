@@ -51,3 +51,6 @@ preparedbtest:
 
 wipe:
 	$(sail) $(run) php artisan db:wipe
+
+clearcache:
+	$(sail) $(run) php artisan cache:forget spatie.permission.cache; $(sail) $(run) php artisan cache:clear

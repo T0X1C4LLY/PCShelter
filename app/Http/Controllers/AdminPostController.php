@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
+use Illuminate\Auth\AuthManager;
 
 class AdminPostController extends Controller
 {

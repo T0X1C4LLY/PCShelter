@@ -24,9 +24,7 @@ class NewsletterController extends Controller
             try {
                 /** @var string $requestKey */
                 $requestKey = request('email');
-                if (is_string($requestKey)) {
-                    $newsletter->subscribe($requestKey);
-                }
+                $newsletter->subscribe($requestKey);
             } catch (\Exception $e) {
                 throw ValidationException::withMessages([
                     'email' => 'This email could not be added to our newsletter'

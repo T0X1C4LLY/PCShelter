@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
         $adminRole = Role::create(['name' => 'admin']);
         /** @var Model $creatorRole */
         $creatorRole = Role::create(['name' => 'creator']);
-         /** @var Model $commonUserRole */
+        /** @var Model $commonUserRole */
         $commonUserRole = Role::create(['name' => 'user']);
 
         $adminRole->givePermissionTo([
@@ -69,29 +69,32 @@ class DatabaseSeeder extends Seeder
         $quantityOfPosts = 150;
         $quantityOfComments = 350;
 
+        /** @var array<int> $commonUsersIds */
         $commonUsersIds = [];
         for ($i = 0; $i < $quantityOfCommonUsers; $i++) {
             /** @var Model $user */
             $user = User::factory()->create();
-            $commonUsersIds[] = $user->id;
+            $commonUsersIds[] = (int) $user->id;
             $user->assignRole($commonUserRole);
         }
 
+        /** @var array<int> $creatorsIds */
         $creatorsIds = [];
         for ($i = 0; $i < $quantityOfCreators; $i++) {
             /** @var Model $user */
             $user = User::factory()->create();
-            $creatorsIds[] = $user->id;
+            $creatorsIds[] = (int) $user->id;
             $user->assignRole($creatorRole);
         }
-
+        /** @var array<int> $categoriesIds */
         $categoriesIds = [];
         for ($i = 0; $i < $quantityOfCategories; $i++) {
             /** @var Model $category */
             $category = Category::factory()->create();
-            $categoriesIds[] = $category->id;
+            $categoriesIds[] = (int) $category->id;
         }
 
+        /** @var array<int> $postsIds */
         $postsIds = [];
         for ($i = 0; $i < $quantityOfPosts; $i++) {
             /** @var Model $post */
@@ -99,7 +102,7 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $creatorsIds[array_rand($creatorsIds)],
                 'category_id' => $categoriesIds[array_rand($categoriesIds)],
             ]);
-            $postsIds[] = $post->id;
+            $postsIds[] = (int) $post->id;
         }
 
         for ($i = 0; $i < $quantityOfComments; $i++) {
