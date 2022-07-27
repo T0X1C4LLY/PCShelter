@@ -40,11 +40,11 @@ Fake Thumbnails: https://picsum.photos/
 <s>Naprawić wyświetlanie dostępnych opcji po zalogowaniu - wyświetla się @auth @endauth i są złe kolory</s> </br>
 <s>Zamienić logowanie z email na username</s> </br>
 <s>Zmienić wygląd przycisków/opisów do kontroli numeru strony</s> </br>
-Naprawić wszystko co wykryje stan/psalm/csfixer i pamiętać by utrzymać czytsośc kodu </br>
+<s>Naprawić wszystko co wykryje stan/psalm/csfixer i pamiętać by utrzymać czytsośc kodu</s> </br>
 <s>Wydzielić mniejsze komponenty z komponentów od breeze</s> </br>
 <s>Naprawić dashboard bo na ten moment nic tam nie działa / alternatywnie wymienić na coś innego</s> </br>
 <s>Narawić logowanie bo z jakiegoś powodu nie działa</s> </br>
-Zmienić tak by wpisanie emaila na newsletter był potrzebny dla niezalogowanych a dla zalogowanych był pod pojedynczym przyciskiem </br>
+<s>Zmienić tak by wpisanie emaila na newsletter był potrzebny dla niezalogowanych a dla zalogowanych był pod pojedynczym przyciskiem</s> </br>
 <s>Zmienić logikę logowania admina w AppServiceProvider bo ten obecny to mocna prowizorka</s> </br>
 <s>Naprawić wyświetlanie loga w /admin/posts/create oraz /reset/password</s> </br>
 Zmienić wygląd w panelu administratora bo jest straszny </br>
@@ -61,6 +61,8 @@ Poprawić ponowne seedowanie gdyż obecnie trzeba skorzytać z  php artisan cach
 Trzeba się zastanowić jak rozegrać resetowanie hasła - obecnie można restetowac tylko po przejściu z linku </br>
 Naprawić wygląd dodawania komentarzy </br>
 Dodac zabezpieczenie na ilość niepoprawnych logowań </br>
+dodać zabezpieczenie by można było zapisać się na newsletter tylko będąc zalogowanym </br>
+Zdecydowć co z psalmem bo stwarza za dużo problemów </br>
 
 ## Pomysły: </br>
 
