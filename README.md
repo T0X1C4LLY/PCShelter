@@ -47,7 +47,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Zmienić tak by wpisanie emaila na newsletter był potrzebny dla niezalogowanych a dla zalogowanych był pod pojedynczym przyciskiem</s> </br>
 <s>Zmienić logikę logowania admina w AppServiceProvider bo ten obecny to mocna prowizorka</s> </br>
 <s>Naprawić wyświetlanie loga w /admin/posts/create oraz /reset/password</s> </br>
-Zmienić wygląd w panelu administratora bo jest straszny </br>
+<s>Zmienić wygląd w panelu administratora bo jest straszny</s> </br>
 <s>Naprawić edycję postów z poziomu panelu administratora bo rzuca 404 problem poega na tym, że slug to post a nie post:id</s> </br>
 <s>Najprawdopodoniej będzie trzeba rozdzielić tworzenie użytkowników na tworzenie admina/twórców/użytkowników</s>
 Przechowywać role/permisje jako stałe w pliku </br>
@@ -63,6 +63,9 @@ Naprawić wygląd dodawania komentarzy </br>
 Dodac zabezpieczenie na ilość niepoprawnych logowań </br>
 dodać zabezpieczenie by można było zapisać się na newsletter tylko będąc zalogowanym </br>
 Zdecydowć co z psalmem bo stwarza za dużo problemów </br>
+Naprawić testy </br>
+Ograniczyć ilość wyświetlanych artykułów w sekcji edycji i dodac jakąś wyszukiwarkę </br>
+Zdecydować czy bawić się w ujednolicanie kolorystyki w formularzach w panelu administratora </br>
 
 ## Pomysły: </br>
 
@@ -74,3 +77,4 @@ Dodać podpowiedzi po najechaniu na przycisk (okienka z oopisem co to za przycis
 Szukanie na podstawie nazwy autora </br>
 Dodać możliwość logowania przez username/email </br>
 Zamienić w web.php 6 routów na Route::resource ale tak, żeby działało z post zamiast post:id </br>
+Może wyłączyć możliwość subskrybcji newslettera jeśli jesteśmy już zapisani? </br>

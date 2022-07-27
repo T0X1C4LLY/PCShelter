@@ -20,7 +20,7 @@
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="/admin/posts/{{ $post->id }}/edit"
-                                           class="text-blue-500 hover:text-blue-600"
+                                           class="text-yellow-500 hover:text-yellow-600"
                                         >
                                             Edit
                                         </a>
@@ -31,7 +31,7 @@
                                             @csrf
                                             @method('DELETE')
 
-                                            <button class="text-xs text-gray-400">Delete</button>
+                                            <button class="text-xs text-red-500 hover:text-red-600">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
