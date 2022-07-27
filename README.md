@@ -42,7 +42,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Zmienić wygląd przycisków/opisów do kontroli numeru strony</s> </br>
 Naprawić wszystko co wykryje stan/psalm/csfixer i pamiętać by utrzymać czytsośc kodu </br>
 <s>Wydzielić mniejsze komponenty z komponentów od breeze</s> </br>
-Naprawić dashboard bo na ten moment nic tam nie działa / alternatywnie wymienić na coś innego </br>
+<s>Naprawić dashboard bo na ten moment nic tam nie działa / alternatywnie wymienić na coś innego</s> </br>
 <s>Narawić logowanie bo z jakiegoś powodu nie działa</s> </br>
 Zmienić tak by wpisanie emaila na newsletter był potrzebny dla niezalogowanych a dla zalogowanych był pod pojedynczym przyciskiem </br>
 <s>Zmienić logikę logowania admina w AppServiceProvider bo ten obecny to mocna prowizorka</s> </br>
