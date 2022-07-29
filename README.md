@@ -66,6 +66,7 @@ Zdecydowć co z psalmem bo stwarza za dużo problemów </br>
 Naprawić testy </br>
 Ograniczyć ilość wyświetlanych artykułów w sekcji edycji i dodac jakąś wyszukiwarkę </br>
 Zdecydować czy bawić się w ujednolicanie kolorystyki w formularzach w panelu administratora </br>
+wywalić stopkę z zakładek administratora </br>
 
 ## Pomysły: </br>
 
@@ -78,3 +79,4 @@ Szukanie na podstawie nazwy autora </br>
 Dodać możliwość logowania przez username/email </br>
 Zamienić w web.php 6 routów na Route::resource ale tak, żeby działało z post zamiast post:id </br>
 Może wyłączyć możliwość subskrybcji newslettera jeśli jesteśmy już zapisani? </br>
+

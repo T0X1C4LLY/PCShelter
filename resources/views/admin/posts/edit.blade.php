@@ -18,7 +18,7 @@
 
             <x-form.field>
                 <x-form.label name="category"/>
-                <select name="category_id" id="category_id">
+                <select name="category_id" id="category_id" class="text-yellow-600">
                     @php
                         $categories = \App\Models\Category::all();
                     @endphp

@@ -10,7 +10,7 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+        <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

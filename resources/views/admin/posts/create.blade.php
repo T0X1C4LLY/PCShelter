@@ -1,5 +1,6 @@
 <x-main-layout>
     <x-setting heading="Publish New Post">
+        <script src="https://use.fontawesome.com/3a2eaf6206.js"></script>
         <form method="POST" action="/admin/posts" enctype="multipart/form-data">
             @csrf
             <x-form.input name="title"/>
@@ -10,7 +11,7 @@
 
             <x-form.field>
                 <x-form.label name="category"/>
-                <select name="category_id" id="category_id">
+                <select name="category_id" id="category_id" class="text-yellow-600">
                     @php
                         $categories = \App\Models\Category::all();
                     @endphp

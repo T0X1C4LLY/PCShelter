@@ -4,16 +4,16 @@
             @csrf
             <header class="flex items-center">
                 <img src="https://i.pravatar.cc/40?u={{ auth()->id() }}" alt="" width="40" height="40" class="rounded-full">
-                <h2 class="ml-4">Want to participate?</h2>
+                <h2 class="ml-4 text-yellow-500">Want to participate?</h2>
             </header>
 
             <div class="mt-6">
                 <textarea
                     name="body"
-                    class="w-full text-sm focus:outline-none focus:ring"
+                    class="w-full text-sm focus:outline-none focus:ring px-1 text-yellow-200 bg-gray-800 resize-none"
                     cols="30"
                     rows="10"
-                    placeholder="Quick,thing of something to say"
+                    placeholder="Quick, thing of something to say"
                     required></textarea>
                 @error('body')
                     <span class="text-xs text-red-500">{{ $message }}</span>

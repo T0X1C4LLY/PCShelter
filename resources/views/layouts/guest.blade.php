@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+        <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     </head>
     <body style="font-family: Open Sans, sans-serif; background-color: #1a202c" >
         <div class="font-sans text-gray-900 antialiased">
