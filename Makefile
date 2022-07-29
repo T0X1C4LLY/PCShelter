@@ -44,7 +44,7 @@ psalm:
 	$(sail) $(run) ./vendor/bin/psalm
 
 preparedb:
-	$(sail) artisan migrate --seed
+	$(sail) php artisan cache:forget spatie.permission.cache; $(sail) artisan migrate --seed
 
 preparedbtest:
 	$(sail) artisan migrate --env=testing

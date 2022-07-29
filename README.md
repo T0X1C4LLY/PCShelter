@@ -56,10 +56,10 @@ Fake Thumbnails: https://picsum.photos/
 <s>Trzeba zweryfikować całe seedowanie bo straszny się tam bałagan narobił</s> </br>
 <s>Trzeba się zastanowić czy nie da się zrobić jednej tabeli dla wszystkich użytkowników i wyznaczyć kto jaką ma role</s> </br>
 <s>Przejrzeć link związany z spatie/laravel-permission (zakładka w przeglądarce) - może uda się zdecydowac czy robić 3 tabele czy rozdzielić role</s> </br>
-Ujednolicić wygląd całej strony bo na ten moment jest trochę zbyt duża różnorodoność </br>
-Poprawić ponowne seedowanie gdyż obecnie trzeba skorzytać z  php artisan cache:forget spatie.permission.cache bo jest problem z istnieniem ról dla guarda "web" </br>
+<s>Ujednolicić wygląd całej strony bo na ten moment jest trochę zbyt duża różnorodoność</s> </br>
+<s>Poprawić ponowne seedowanie gdyż obecnie trzeba skorzytać z  php artisan cache:forget spatie.permission.cache bo jest problem z istnieniem ról dla guarda "web"</s> </br>
 Trzeba się zastanowić jak rozegrać resetowanie hasła - obecnie można restetowac tylko po przejściu z linku </br>
-Naprawić wygląd dodawania komentarzy </br>
+<s>Naprawić wygląd dodawania komentarzy</s> </br>
 Dodac zabezpieczenie na ilość niepoprawnych logowań </br>
 dodać zabezpieczenie by można było zapisać się na newsletter tylko będąc zalogowanym </br>
 Zdecydowć co z psalmem bo stwarza za dużo problemów </br>
