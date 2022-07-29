@@ -29,9 +29,9 @@ Fake Thumbnails: https://picsum.photos/
 ## TODO:
 
 <s>Zmienić wyglląd logowania/rejestracji</s> </br>
-<s>Zmienić wygląd postów </s></br>
+<s>Zmienić wygląd postów</s> </br>
 <s>Zmienić wygląd komentarzy</s> </br>
-<s>Naprawić logo w postach </s></br>
+<s>Naprawić logo w postach</s> </br>
 <s>Dodać favicon</s> </br>
 <s>Poprawić proces rejestracji - obecnie są złe pola</s> </br>
 <s>Stworzyć admina</s> </br>
@@ -49,8 +49,8 @@ Fake Thumbnails: https://picsum.photos/
 <s>Naprawić wyświetlanie loga w /admin/posts/create oraz /reset/password</s> </br>
 <s>Zmienić wygląd w panelu administratora bo jest straszny</s> </br>
 <s>Naprawić edycję postów z poziomu panelu administratora bo rzuca 404 problem poega na tym, że slug to post a nie post:id</s> </br>
-<s>Najprawdopodoniej będzie trzeba rozdzielić tworzenie użytkowników na tworzenie admina/twórców/użytkowników</s>
-Przechowywać role/permisje jako stałe w pliku </br>
+<s>Najprawdopodoniej będzie trzeba rozdzielić tworzenie użytkowników na tworzenie admina/twórców/użytkowników</s> </br>
+<s>Przechowywać role/permisje jako stałe w pliku</s> </br>
 <s>Stworzyć logowanie dla admina</s> </br>
 <s>Naprawić seedowanie dla permisji</s> </br>
 <s>Trzeba zweryfikować całe seedowanie bo straszny się tam bałagan narobił</s> </br>

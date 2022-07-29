@@ -1,0 +1,22 @@
+{
+    "roles": [
+        "admin",
+        "creator",
+        "user"
+    ],
+    "permissions": {
+        "create_post": [
+            "admin",
+            "creator"
+        ],
+        "delete_post": [
+            "admin"
+        ],
+        "edit_post": [
+            "admin"
+        ],
+        "give_permission": [
+            "admin"
+        ]
+    }
+}

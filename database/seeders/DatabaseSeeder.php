@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      *
      * @return void
+     * @throws \JsonException
      */
     public function run()
     {
@@ -38,30 +39,28 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
         ]);
 
-        Permission::create(['name' => 'create_post']);
-        Permission::create(['name' => 'delete_post']);
-        Permission::create(['name' => 'edit_post']);
-        Permission::create(['name' => 'give_permission']);
+        $file = file_get_contents("/var/www/html/database/assets/rolesAndPermissions.json", );
 
-        /** @var Model $adminRole */
-        $adminRole = Role::create(['name' => 'admin']);
-        /** @var Model $creatorRole */
-        $creatorRole = Role::create(['name' => 'creator']);
-        /** @var Model $commonUserRole */
-        $commonUserRole = Role::create(['name' => 'user']);
+        $rolesAndPermissions = json_decode($file, true, 512, JSON_THROW_ON_ERROR);
 
-        $adminRole->givePermissionTo([
-            'create_post',
-            'delete_post',
-            'edit_post',
-            'give_permission',
-        ]);
+        $permissions = $rolesAndPermissions['permissions'];
+        $roles = $rolesAndPermissions['roles'];
 
-        $creatorRole->givePermissionTo([
-            'create_post',
-        ]);
+        array_map(static function (string $permission): void {
+            Permission::create(['name' => $permission]);
+        }, array_keys($permissions));
 
-        $superUser->assignRole($adminRole);
+        array_map(static function (string $role) {
+            Role::create(['name' => $role]);
+        }, $roles);
+
+        array_map(static function (array $roles, string $permission) {
+            array_map(static function (string $role) use ($permission) {
+                (Role::findByName($role))->givePermissionTo($permission);
+            }, $roles);
+        }, $permissions, array_keys($permissions));
+
+        $superUser->assignRole(Role::findByName('admin'));
 
         $quantityOfCommonUsers = 34;
         $quantityOfCreators = 15;
@@ -75,7 +74,7 @@ class DatabaseSeeder extends Seeder
             /** @var Model $user */
             $user = User::factory()->create();
             $commonUsersIds[] = (int) $user->id;
-            $user->assignRole($commonUserRole);
+            $user->assignRole(Role::findByName('user'));
         }
 
         /** @var array<int> $creatorsIds */
@@ -84,7 +83,7 @@ class DatabaseSeeder extends Seeder
             /** @var Model $user */
             $user = User::factory()->create();
             $creatorsIds[] = (int) $user->id;
-            $user->assignRole($creatorRole);
+            $user->assignRole(Role::findByName('creator'));
         }
         /** @var array<int> $categoriesIds */
         $categoriesIds = [];
