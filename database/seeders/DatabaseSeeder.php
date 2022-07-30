@@ -39,6 +39,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
         ]);
 
+        /** @var Model $user */
+        $user = User::factory()->create([
+            'username' => 'user',
+            'password' => Hash::make('user'),
+            'email' => 'user@user.com',
+        ]);
+
         $file = file_get_contents("/var/www/html/database/assets/rolesAndPermissions.json", );
 
         $rolesAndPermissions = json_decode($file, true, 512, JSON_THROW_ON_ERROR);
@@ -61,6 +68,7 @@ class DatabaseSeeder extends Seeder
         }, $permissions, array_keys($permissions));
 
         $superUser->assignRole(Role::findByName('admin'));
+        $user->assignRole(Role::findByName('user'));
 
         $quantityOfCommonUsers = 34;
         $quantityOfCreators = 15;

@@ -99,8 +99,9 @@
                                        name="email"
                                        type="text"
                                        placeholder="Your email address"
-                                       class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none"
+                                       class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none text-yellow-600"
                                        value="{{ auth()->user()->email ?? ''}}"
+                                       {{ auth()->user() ? 'readonly="true"' : '' }}"
                                 >
                                 @error('email')
                                     <span class="text-xs text-red-500">

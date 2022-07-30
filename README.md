@@ -58,16 +58,17 @@ Fake Thumbnails: https://picsum.photos/
 <s>Przejrzeć link związany z spatie/laravel-permission (zakładka w przeglądarce) - może uda się zdecydowac czy robić 3 tabele czy rozdzielić role</s> </br>
 <s>Ujednolicić wygląd całej strony bo na ten moment jest trochę zbyt duża różnorodoność</s> </br>
 <s>Poprawić ponowne seedowanie gdyż obecnie trzeba skorzytać z  php artisan cache:forget spatie.permission.cache bo jest problem z istnieniem ról dla guarda "web"</s> </br>
-Trzeba się zastanowić jak rozegrać resetowanie hasła - obecnie można restetowac tylko po przejściu z linku </br>
+<s>Trzeba się zastanowić jak rozegrać resetowanie hasła - obecnie można restetowac tylko po przejściu z linku</s> </br>
 <s>Naprawić wygląd dodawania komentarzy</s> </br>
-Dodac zabezpieczenie na ilość niepoprawnych logowań </br>
-dodać zabezpieczenie by można było zapisać się na newsletter tylko będąc zalogowanym </br>
+<s>Dodac zabezpieczenie na ilość niepoprawnych logowań</s> </br>
+<s>dodać zabezpieczenie by można było zapisać się na newsletter tylko będąc zalogowanym</s> </br>
 Zdecydowć co z psalmem bo stwarza za dużo problemów </br>
 Naprawić testy </br>
 Ograniczyć ilość wyświetlanych artykułów w sekcji edycji i dodac jakąś wyszukiwarkę </br>
 Zdecydować czy bawić się w ujednolicanie kolorystyki w formularzach w panelu administratora </br>
 wywalić stopkę z zakładek administratora </br>
-
+Zmienić wygląd wysyłanych maili </br>
+Zamienić pole do wpisywania email w newsletterze na informację, że jesteś już zapisany na newsletter jeśli faktycznie tak jest </br>
 ## Pomysły: </br>
 
 Dodać opcję podejrzenia profilu po najechaniu na avatar/nazwę </br>
@@ -79,4 +80,4 @@ Szukanie na podstawie nazwy autora </br>
 Dodać możliwość logowania przez username/email </br>
 Zamienić w web.php 6 routów na Route::resource ale tak, żeby działało z post zamiast post:id </br>
 Może wyłączyć możliwość subskrybcji newslettera jeśli jesteśmy już zapisani? </br>
-
+Dodać możliwość resetowania hasła z poziomu panelu użytkownika </br>
