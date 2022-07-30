@@ -28,7 +28,6 @@ bash:
 test:
 	$(sail) $(run) php artisan test
 
-
 restart: down install
 
 phpcsfixer:

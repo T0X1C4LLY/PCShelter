@@ -63,7 +63,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Dodac zabezpieczenie na ilość niepoprawnych logowań</s> </br>
 <s>dodać zabezpieczenie by można było zapisać się na newsletter tylko będąc zalogowanym</s> </br>
 Zdecydowć co z psalmem bo stwarza za dużo problemów </br>
-Naprawić testy </br>
+<s>Naprawić testy</s> </br>
 Ograniczyć ilość wyświetlanych artykułów w sekcji edycji i dodac jakąś wyszukiwarkę </br>
 Zdecydować czy bawić się w ujednolicanie kolorystyki w formularzach w panelu administratora </br>
 wywalić stopkę z zakładek administratora </br>
@@ -81,3 +81,6 @@ Dodać możliwość logowania przez username/email </br>
 Zamienić w web.php 6 routów na Route::resource ale tak, żeby działało z post zamiast post:id </br>
 Może wyłączyć możliwość subskrybcji newslettera jeśli jesteśmy już zapisani? </br>
 Dodać możliwość resetowania hasła z poziomu panelu użytkownika </br>
+
+## Uwagi: </br>
+Pamiętać o tym, żeby ujednolicić zapis do bazy - trzymać się lowercase'ów i dbać o case sensitive
