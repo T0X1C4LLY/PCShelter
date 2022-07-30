@@ -37,7 +37,10 @@ class PasswordResetLinkController extends Controller
         )
             ? 'email'
             : 'username';
-        $request->merge([$loginField => strtolower($request->input('login'))]);
+
+        /** @var string $login */
+        $login = $request->input('login');
+        $request->merge([$loginField => strtolower($login)]);
         $request->validate([
             'email' => ['required_without:username', 'email', 'exists:users,email'],
             'username' => ['required_without:email', 'string', 'exists:users,username'],
