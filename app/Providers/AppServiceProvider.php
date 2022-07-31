@@ -56,5 +56,24 @@ class AppServiceProvider extends ServiceProvider
 
             return $request->user()?->can('admin');
         });
+
+        Blade::if('newsletter', static function () {
+            $client = new ApiClient();
+            $client->setConfig([
+                'apiKey' => config('services.mailchimp.key'),
+                'server' => 'us12'
+            ]);
+
+            $users = (new MailchimpNewsletter($client))->getAllSubscribers()->members;
+
+            if (request()->user()) {
+                foreach ($users as $email) {
+                    if ($email->email_address == request()->user()->email) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        });
     }
 }

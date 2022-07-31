@@ -19,4 +19,11 @@ class MailchimpNewsletter implements NewsletterInterface
             'status' => 'subscribed'
         ]);
     }
+
+    public function getAllSubscribers(): \stdClass
+    {
+        $list = config('services.mailchimp.lists.subscribers');
+        /** @phpstan-ignore-next-line */
+        return $this->client->lists->getListMembersInfo($list);
+    }
 }

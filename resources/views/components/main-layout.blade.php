@@ -83,42 +83,47 @@
                 <p class="text-sm mt-3 text-white">
                     Promise to keep the inbox clean. No bugs.
                 </p>
+                @newsletter
+                    <div class="mt-10">
+                        <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                <div class="mt-10">
-                    <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
+                            <form method="POST" action="/newsletter" class="lg:flex text-sm">
+                                @csrf
+                                <div class="lg:py-3 lg:px-5 flex items-center">
+                                    <label for="email" class="hidden lg:inline-block">
+                                        <img src="/images/mailbox-icon.svg" alt="mailbox letter">
+                                    </label>
 
-                        <form method="POST" action="/newsletter" class="lg:flex text-sm">
-                            @csrf
-                            <div class="lg:py-3 lg:px-5 flex items-center">
-                                <label for="email" class="hidden lg:inline-block">
-                                    <img src="/images/mailbox-icon.svg" alt="mailbox letter">
-                                </label>
-
-                                <div>
-                                    <input id="email"
-                                           name="email"
-                                           type="text"
-                                           placeholder="Your email address"
-                                           class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none text-yellow-600"
-                                           value="{{ auth()->user()->email ?? ''}}"
-                                           {{ auth()->user() ? 'readonly="true"' : '' }}"
-                                    >
-                                    @error('email')
-                                        <span class="text-xs text-red-500">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
+                                    <div>
+                                        <input id="email"
+                                               name="email"
+                                               type="text"
+                                               placeholder="Your email address"
+                                               class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none text-yellow-600"
+                                               value="{{ auth()->user()->email ?? ''}}"
+                                               {{ auth()->user() ? 'readonly="true"' : '' }}"
+                                        >
+                                        @error('email')
+                                            <span class="text-xs text-red-500">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
 
-                            <button type="submit"
-                                    class="transition-colors duration-300 bg-yellow-500 hover:bg-yellow-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
-                            >
-                                Subscribe
-                            </button>
-                        </form>
+                                <button type="submit"
+                                        class="transition-colors duration-300 bg-yellow-500 hover:bg-yellow-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
+                                >
+                                    Subscribe
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <p class="text-sm mt-3 text-white">
+                        You are already a subscriber
+                    </p>
+                @endnewsletter
             </footer>
         @endif
     </section>
