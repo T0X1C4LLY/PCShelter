@@ -1,11 +1,11 @@
 @props(['heading'])
 
-<section class="py-8 max-w-4xl mx-auto">
+<section class="py-8 max-w-5xl mx-auto">
     <h1 class="text-lg font-bold mb-8 pb-2 border-b text-yellow-500">
         {{ $heading }}
     </h1>
     <div class="flex">
-        <aside class="w-48 flex-shrink-0 text-yellow-100">
+        <aside class="w-32 flex-shrink-0 text-yellow-100">
             <ul>
                 <li>
                     <a

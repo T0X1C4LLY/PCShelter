@@ -32,6 +32,19 @@ class Post extends Model
     {
 //        Post::newQuery()->filter()
         $query->when(
+            $filters['admin_search'] ?? false,
+            fn (Builder $query, mixed $search): Builder =>
+            $query->where(
+                function (Builder $query) use ($search): Builder {
+                    /** @var string $searchAsString */
+                    $searchAsString = $search;
+
+                    return $query->where('title', 'like', '%' . $searchAsString . '%');
+                }
+            )
+        );
+
+        $query->when(
             $filters['search'] ?? false,
             fn (Builder $query, mixed $search): Builder =>
             $query->where(

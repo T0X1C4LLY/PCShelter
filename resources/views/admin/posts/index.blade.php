@@ -1,6 +1,16 @@
 <x-main-layout>
     <x-setting heading="Manage Posts">
-        <div class="flex flex-col">
+        <div class="inline-flex bg-gray-100 rounded-xl px-3 py-2 float-right">
+            <form class="w-full" method="GET" action="/admin/posts">
+                <input type="text"
+                       name="admin_search"
+                       placeholder="Search by post title"
+                       class="bg-transparent placeholder-yellow-400 font-semibold text-sm text-yellow-500 w-full px-1"
+                       value="{{ request('admin_search') }}"
+                >
+            </form>
+        </div>
+        <div class="clear-both flex flex-col pt-1">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -38,6 +48,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="py-1">
+                        {{ $posts->links() }}
                     </div>
                 </div>
             </div>

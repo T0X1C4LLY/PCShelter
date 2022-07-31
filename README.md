@@ -64,23 +64,29 @@ Fake Thumbnails: https://picsum.photos/
 <s>dodać zabezpieczenie by można było zapisać się na newsletter tylko będąc zalogowanym</s> </br>
 Zdecydowć co z psalmem bo stwarza za dużo problemów </br>
 <s>Naprawić testy</s> </br>
-Ograniczyć ilość wyświetlanych artykułów w sekcji edycji i dodac jakąś wyszukiwarkę </br>
+<s>Ograniczyć ilość wyświetlanych artykułów w sekcji edycji i dodać jakąś wyszukiwarkę</s> </br>
 Zdecydować czy bawić się w ujednolicanie kolorystyki w formularzach w panelu administratora </br>
 wywalić stopkę z zakładek administratora </br>
-Zmienić wygląd wysyłanych maili </br>
+<s>Zmienić wygląd wysyłanych maili</s> </br>
 Zamienić pole do wpisywania email w newsletterze na informację, że jesteś już zapisany na newsletter jeśli faktycznie tak jest </br>
+Wymuszać potwierdzenie rejestracji przed zapisem do bazy </br>
+Dodać panel konta użytkownika </br>
+Naprawić dodwanie postów bo nie wiadomo co się dzieje </br>
+
 ## Pomysły: </br>
 
 Dodać opcję podejrzenia profilu po najechaniu na avatar/nazwę </br>
 Ustawić dane autora na dole postu a nie pod fragmentem artykułu </br>
 Dodać opcję kilku kategorii </br>
 Dodać design przycisków do rejestracji logowania/konta </br>
-Dodać podpowiedzi po najechaniu na przycisk (okienka z oopisem co to za przycisk) </br>
+Dodać podpowiedzi po najechaniu na przycisk (okienka z opisem co to za przycisk) </br>
 Szukanie na podstawie nazwy autora </br>
-Dodać możliwość logowania przez username/email </br>
+<s>Dodać możliwość logowania przez username/email</s> </br>
 Zamienić w web.php 6 routów na Route::resource ale tak, żeby działało z post zamiast post:id </br>
 Może wyłączyć możliwość subskrybcji newslettera jeśli jesteśmy już zapisani? </br>
 Dodać możliwość resetowania hasła z poziomu panelu użytkownika </br>
+Może w sekcji admina dodać dodatkowe pola do edycji artykułów </br>
 
 ## Uwagi: </br>
-Pamiętać o tym, żeby ujednolicić zapis do bazy - trzymać się lowercase'ów i dbać o case sensitive
+Pamiętać o tym, żeby ujednolicić zapis do bazy - trzymać się lowercase'ów i dbać o case sensitive </br>
+Zmienne do widoków można przesyłać z kontrollerów np. return view('admin.posts.index', ['posts' => Post::paginate(50),]) </br>

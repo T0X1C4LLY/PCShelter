@@ -17,7 +17,7 @@ class AdminPostController extends Controller
     public function index(): Application|View|Factory
     {
         return view('admin.posts.index', [
-            'posts' => Post::paginate(50),
+            'posts' => Post::filter(request(['admin_search']))->orderBy('created_at', 'DESC')->paginate(25)->onEachSide(1),
         ]);
     }
     public function create(): Application|View|Factory
