@@ -72,54 +72,55 @@
             </div>
         </nav>
         {{ $slot }}
+        @if(!str_contains(Request::url(), "/admin/"))
+            <footer id="newsletter"
+                    class="bg-gray-800 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16"
+            >
+                {{--        <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">--}}
+                <h5 class="text-3xl text-white">
+                    Stay in touch with newsletter the latest posts
+                </h5>
+                <p class="text-sm mt-3 text-white">
+                    Promise to keep the inbox clean. No bugs.
+                </p>
 
-        <footer id="newsletter"
-                class="bg-gray-800 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16"
-        >
-            {{--        <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">--}}
-            <h5 class="text-3xl text-white">
-                Stay in touch with newsletter the latest posts
-            </h5>
-            <p class="text-sm mt-3 text-white">
-                Promise to keep the inbox clean. No bugs.
-            </p>
+                <div class="mt-10">
+                    <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-            <div class="mt-10">
-                <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
+                        <form method="POST" action="/newsletter" class="lg:flex text-sm">
+                            @csrf
+                            <div class="lg:py-3 lg:px-5 flex items-center">
+                                <label for="email" class="hidden lg:inline-block">
+                                    <img src="/images/mailbox-icon.svg" alt="mailbox letter">
+                                </label>
 
-                    <form method="POST" action="/newsletter" class="lg:flex text-sm">
-                        @csrf
-                        <div class="lg:py-3 lg:px-5 flex items-center">
-                            <label for="email" class="hidden lg:inline-block">
-                                <img src="/images/mailbox-icon.svg" alt="mailbox letter">
-                            </label>
-
-                            <div>
-                                <input id="email"
-                                       name="email"
-                                       type="text"
-                                       placeholder="Your email address"
-                                       class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none text-yellow-600"
-                                       value="{{ auth()->user()->email ?? ''}}"
-                                       {{ auth()->user() ? 'readonly="true"' : '' }}"
-                                >
-                                @error('email')
-                                    <span class="text-xs text-red-500">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
+                                <div>
+                                    <input id="email"
+                                           name="email"
+                                           type="text"
+                                           placeholder="Your email address"
+                                           class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none text-yellow-600"
+                                           value="{{ auth()->user()->email ?? ''}}"
+                                           {{ auth()->user() ? 'readonly="true"' : '' }}"
+                                    >
+                                    @error('email')
+                                        <span class="text-xs text-red-500">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
-                        <button type="submit"
-                                class="transition-colors duration-300 bg-yellow-500 hover:bg-yellow-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
-                        >
-                            Subscribe
-                        </button>
-                    </form>
+                            <button type="submit"
+                                    class="transition-colors duration-300 bg-yellow-500 hover:bg-yellow-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
+                            >
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        @endif
     </section>
 {{--        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">--}}
 {{--            {{ $slot }}--}}

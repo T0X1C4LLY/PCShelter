@@ -65,8 +65,8 @@ Fake Thumbnails: https://picsum.photos/
 Zdecydowć co z psalmem bo stwarza za dużo problemów </br>
 <s>Naprawić testy</s> </br>
 <s>Ograniczyć ilość wyświetlanych artykułów w sekcji edycji i dodać jakąś wyszukiwarkę</s> </br>
-Zdecydować czy bawić się w ujednolicanie kolorystyki w formularzach w panelu administratora </br>
-wywalić stopkę z zakładek administratora </br>
+<s>Zdecydować czy bawić się w ujednolicanie kolorystyki w formularzach w panelu administratora</s> </br>
+<s>Wywalić stopkę z zakładek administratora</s> </br>
 <s>Zmienić wygląd wysyłanych maili</s> </br>
 Zamienić pole do wpisywania email w newsletterze na informację, że jesteś już zapisany na newsletter jeśli faktycznie tak jest </br>
 Wymuszać potwierdzenie rejestracji przed zapisem do bazy </br>
