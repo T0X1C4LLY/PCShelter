@@ -62,16 +62,16 @@ Fake Thumbnails: https://picsum.photos/
 <s>Naprawić wygląd dodawania komentarzy</s> </br>
 <s>Dodac zabezpieczenie na ilość niepoprawnych logowań</s> </br>
 <s>dodać zabezpieczenie by można było zapisać się na newsletter tylko będąc zalogowanym</s> </br>
-Zdecydowć co z psalmem bo stwarza za dużo problemów </br>
+<s>Zdecydowć co z psalmem bo stwarza za dużo problemów</s> </br>
 <s>Naprawić testy</s> </br>
 <s>Ograniczyć ilość wyświetlanych artykułów w sekcji edycji i dodać jakąś wyszukiwarkę</s> </br>
 <s>Zdecydować czy bawić się w ujednolicanie kolorystyki w formularzach w panelu administratora</s> </br>
 <s>Wywalić stopkę z zakładek administratora</s> </br>
 <s>Zmienić wygląd wysyłanych maili</s> </br>
-Zamienić pole do wpisywania email w newsletterze na informację, że jesteś już zapisany na newsletter jeśli faktycznie tak jest </br>
-Wymuszać potwierdzenie rejestracji przed zapisem do bazy </br>
+<s>Zamienić pole do wpisywania email w newsletterze na informację, że jesteś już zapisany na newsletter jeśli faktycznie tak jest</s> </br>
+<s>Wymuszać potwierdzenie rejestracji przed zapisem do bazy</s> </br>
 Dodać panel konta użytkownika </br>
-Naprawić dodwanie postów bo nie wiadomo co się dzieje </br>
+<s>Naprawić dodwanie postów bo nie wiadomo co się dzieje</s> </br>
 
 ## Pomysły: </br>
 
