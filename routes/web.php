@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,5 +38,12 @@ Route::middleware('can:admin')->group(function () {
     Route::patch('admin/posts/{post:id}', [AdminPostController::class, 'update']);
     Route::delete('admin/posts/{post:id}', [AdminPostController::class, 'destroy']);
 });
+
+Route::get('user/account', [UserController::class, 'index'])->middleware('auth');
+Route::get('user/security', [UserController::class, 'security'])->middleware('auth');
+Route::post('user/change/username', [UserController::class, 'updateUsername'])->middleware('auth');
+Route::post('user/change/email', [UserController::class, 'updateEmail'])->middleware('auth');
+Route::post('user/change/name', [UserController::class, 'updateName'])->middleware('auth');
+Route::post('user/change/password', [UserController::class, 'updatePassword'])->middleware('auth');
 
 require __DIR__.'/auth.php';

@@ -54,6 +54,7 @@
                             {{--                    @endif--}}
                             {{--                    @endcan--}}
                         @endadmin
+                        <x-dropdown-item href="/user/account" :active="request()->is('user/account')">My Account</x-dropdown-item>
                         <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
                         <form id="logout-form" method="POST" action="/logout" class="hidden">
                             @csrf
@@ -64,11 +65,13 @@
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
                 @endauth
+                @newsletter
                     <a href="#newsletter"
                        class="bg-yellow-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5"
                     >
                         Subscribe for Updates
                     </a>
+                @endnewsletter
             </div>
         </nav>
         {{ $slot }}

@@ -72,6 +72,9 @@ Fake Thumbnails: https://picsum.photos/
 <s>Wymuszać potwierdzenie rejestracji przed zapisem do bazy</s> </br>
 Dodać panel konta użytkownika </br>
 <s>Naprawić dodwanie postów bo nie wiadomo co się dzieje</s> </br>
+Zrobić kontrolery do edycji postów/danych użytkownika/komentarzy itp. </br>
+zrobić zwrtotkę z fail zamiast korzystać z success tam gdzie się coś nie powiodło np. UserController </br>
+dodać sprawdzanie bezpiecznych haseł 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' </br>
 
 ## Pomysły: </br>
 
