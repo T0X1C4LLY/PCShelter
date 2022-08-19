@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -39,7 +40,7 @@ class UserController extends Controller
 
             $user->save();
 
-            return back()->with('success', "Your username have been changed successfully");
+            return back()->with('success', "Your username has been changed successfully");
         }
 
         return back()->with('success', "Something went wrong");
@@ -56,7 +57,7 @@ class UserController extends Controller
 
             $user->save();
 
-            return back()->with('success', "Your name have been changed successfully");
+            return back()->with('success', "Your name has been changed successfully");
         }
 
         return back()->with('success', "Something went wrong");
@@ -76,7 +77,7 @@ class UserController extends Controller
 
             event(new Registered($user));
 
-            return back()->with('success', "Your email have been changed successfully, please confirm it");
+            return back()->with('success', "Your email has been changed successfully, please confirm it");
         }
 
         return back()->with('success', "Something went wrong");
@@ -93,7 +94,27 @@ class UserController extends Controller
 
             $user->save();
 
-            return back()->with('success', "Your password have been changed successfully");
+            return back()->with('success', "Your password has been changed successfully");
+        }
+
+        return back()->with('success', "Something went wrong");
+    }
+
+    public function deleteAccount()
+    {
+        $user = auth()->user();
+
+        if ($user) {
+
+            Auth::guard('web')->logout();
+
+            request()?->session()->invalidate();
+
+            request()?->session()->regenerateToken();
+
+            $user->delete();
+
+            return back()->with('success', "Your account has been deleted");
         }
 
         return back()->with('success', "Something went wrong");

@@ -1,4 +1,4 @@
-@props(['property', 'type'])
+@props(['property', 'type' => 'text'])
 
 <div class="text-yellow-200 px-3 py-2 text-xl border border-white rounded-xl my-1">
     <form method="POST" action="/user/change/{{ $property }}" class="text-sm w-full flex">

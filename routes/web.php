@@ -45,5 +45,6 @@ Route::post('user/change/username', [UserController::class, 'updateUsername'])->
 Route::post('user/change/email', [UserController::class, 'updateEmail'])->middleware('auth');
 Route::post('user/change/name', [UserController::class, 'updateName'])->middleware('auth');
 Route::post('user/change/password', [UserController::class, 'updatePassword'])->middleware('auth');
+Route::post('user/change/delete', [UserController::class, 'deleteAccount'])->middleware('auth');
 
 require __DIR__.'/auth.php';
