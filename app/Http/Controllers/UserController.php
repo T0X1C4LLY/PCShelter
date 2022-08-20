@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -167,8 +168,7 @@ class UserController extends Controller
         $request = request();
 
         return $request->validate([
-            'password' => ['required', 'min:8', 'max:127'],
-            'password_confirmation' => ['required:password', 'same:password']
+            'password' => ['required', 'confirmed', 'max:127', Password::defaults()],
         ]);
     }
 }

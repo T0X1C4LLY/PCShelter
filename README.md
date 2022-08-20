@@ -74,7 +74,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Naprawić dodwanie postów bo nie wiadomo co się dzieje</s> </br>
 <s>Zrobić kontrolery do edycji postów/danych użytkownika/komentarzy itp.</s> </br>
 <s>Zrobić zwrtotkę z fail zamiast korzystać z success tam gdzie się coś nie powiodło np. UserController</s> </br>
-Dodać sprawdzanie bezpiecznych haseł 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' </br>
+<s>Dodać sprawdzanie bezpiecznych haseł 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'</s> </br>
 Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (w przyszłości może jakiś punktów). Problem: te dane są w różnych tabelach a przesyłam obiekty </br>
 Chyba będzie trzeba przenieść możliwość tworzenia artykułów do panelu użytkownika, żeby creator'zy też mogli tworzyć </br>
 
@@ -91,6 +91,7 @@ Zamienić w web.php 6 routów na Route::resource ale tak, żeby działało z pos
 Może wyłączyć możliwość subskrybcji newslettera jeśli jesteśmy już zapisani? </br>
 Dodać możliwość resetowania hasła z poziomu panelu użytkownika </br>
 Może w sekcji admina dodać dodatkowe pola do edycji artykułów </br>
+Naprawić sekcję security bo pola zwiększają się gdy błąd jest zbyt długi - może wywalić to do failure? </br>
 
 ## Uwagi: </br>
 Pamiętać o tym, żeby ujednolicić zapis do bazy - trzymać się lowercase'ów i dbać o case sensitive </br>

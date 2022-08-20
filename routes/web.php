@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/logo', static function () {
-    return response()->file('/var/www/html/public/storage/logo.png');
+    return response()->file('/var/www/html/public/storage/public/logo.png');
 });
 
 Route::get('/', [PostController::class, 'index'])->name('home');

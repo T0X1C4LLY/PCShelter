@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 use MailchimpMarketing\ApiClient;
 
 class AppServiceProvider extends ServiceProvider
@@ -89,6 +90,15 @@ class AppServiceProvider extends ServiceProvider
                 }
             }
             return true;
+        });
+
+        Password::defaults(static function () {
+            return Password::min(8)
+                ->mixedCase()
+                ->uncompromised()
+                ->letters()
+                ->numbers()
+                ->symbols();
         });
     }
 }
