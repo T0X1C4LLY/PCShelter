@@ -57,6 +57,21 @@ class AppServiceProvider extends ServiceProvider
             return $request->user()?->can('admin');
         });
 
+        Gate::define('creator', function (User $user) {
+            $roles = DB::table('model_has_roles')
+                ->where('model_id', $user->id)
+                ->where('role_id', '<', 3)
+                ->get();
+            return !$roles->isEmpty();
+        });
+
+        Blade::if('creator', function () {
+            /** @var Request $request */
+            $request = request();
+
+            return $request->user()?->can('creator');
+        });
+
         Blade::if('newsletter', static function () {
             $client = new ApiClient();
             $client->setConfig([

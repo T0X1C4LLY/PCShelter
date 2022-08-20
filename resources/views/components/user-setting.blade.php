@@ -15,14 +15,16 @@
                         Account
                     </a>
                 </li>
-                <li>
-                    <a
-                        {{ request()->is('user/posts') ? '' : 'href=/user/posts'}}
-                        class="{{ request()->is('user/posts') ? 'text-yellow-500' : 'hover:text-yellow-300' }}"
-                    >
-                        Posts
-                    </a>
-                </li>
+                @creator
+                    <li>
+                        <a
+                            {{ request()->is('user/posts') ? '' : 'href=/user/posts'}}
+                            class="{{ request()->is('user/posts') ? 'text-yellow-500' : 'hover:text-yellow-300' }}"
+                        >
+                            Posts
+                        </a>
+                    </li>
+                @endcreator
                 <li>
                     <a
                         {{ request()->is('user/comments') ? '' : 'href=/user/comments'}}

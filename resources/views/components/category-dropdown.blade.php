@@ -2,7 +2,7 @@
     @php
         $categories = \App\Models\Category::all();
         foreach ($categories as $category) {
-            if ($url =request()->fullUrlIs("*?category={$category->slug}*")) {
+            if (request()->fullUrlIs("*?category={$category->slug}*")) {
                 $currentCategory = $category;
             }
         }

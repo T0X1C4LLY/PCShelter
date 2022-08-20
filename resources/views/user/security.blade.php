@@ -1,5 +1,5 @@
 <x-main-layout>
-    <x-user-setting heading="Manage Your account">
+    <x-user-setting heading="Security">
         <x-dashboard.account-form property="name"/>
         <x-dashboard.account-form property="username"/>
         <x-dashboard.account-form property="email" type="email"/>

@@ -5,6 +5,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersPostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,12 +40,18 @@ Route::middleware('can:admin')->group(function () {
     Route::delete('admin/posts/{post:id}', [AdminPostController::class, 'destroy']);
 });
 
-Route::get('user/account', [UserController::class, 'index'])->middleware('auth');
-Route::get('user/security', [UserController::class, 'security'])->middleware('auth');
-Route::post('user/change/username', [UserController::class, 'updateUsername'])->middleware('auth');
-Route::post('user/change/email', [UserController::class, 'updateEmail'])->middleware('auth');
-Route::post('user/change/name', [UserController::class, 'updateName'])->middleware('auth');
-Route::post('user/change/password', [UserController::class, 'updatePassword'])->middleware('auth');
-Route::post('user/change/delete', [UserController::class, 'deleteAccount'])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('user/account', [UserController::class, 'index']);
+    Route::get('user/security', [UserController::class, 'security']);
+    Route::post('user/change/username', [UserController::class, 'updateUsername']);
+    Route::post('user/change/email', [UserController::class, 'updateEmail']);
+    Route::post('user/change/name', [UserController::class, 'updateName']);
+    Route::post('user/change/password', [UserController::class, 'updatePassword']);
+    Route::post('user/change/delete', [UserController::class, 'deleteAccount']);
+
+    Route::get('user/posts', [UsersPostsController::class, 'index'])->middleware('can:creator');
+});
+
+
 
 require __DIR__.'/auth.php';

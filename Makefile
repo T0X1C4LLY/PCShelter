@@ -1,6 +1,6 @@
 name := laravel.test
 sail := ./vendor/bin/sail
-run := run $(name)
+exec := exec $(name)
 
 docker:
 	docker run --rm -u "$(id -u):$(id -g)" -v $(pwd):/var/www/html -w /var/www/html laravelsail/php81-composer:latest; composer install --ignore-platform-reqs
@@ -23,24 +23,24 @@ stop:
 	$(sail) stop
 
 bash:
-	$(sail) $(run) bash
+	$(sail) $(exec) bash
 
 test:
-	$(sail) $(run) php artisan test
+	$(sail) $(exec) php artisan test
 
 restart: down install
 
 phpcsfixer:
-	$(sail) $(run) php artisan fixer:fix --no-interaction --allow-risky=yes --dry-run --diff
+	$(sail) $(exec) php artisan fixer:fix --no-interaction --allow-risky=yes --dry-run --diff
 
 phpcsfixer_fix:
-	$(sail) $(run) php artisan fixer:fix --no-interaction --allow-risky=yes --ansi
+	$(sail) $(exec) php artisan fixer:fix --no-interaction --allow-risky=yes --ansi
 
 larastan:
-	$(sail) $(run) ./vendor/bin/phpstan analyse
+	$(sail) $(exec) ./vendor/bin/phpstan analyse
 
 psalm:
-	$(sail) $(run) ./vendor/bin/psalm
+	$(sail) $(exec) ./vendor/bin/psalm
 
 preparedb:
 	$(sail) php artisan cache:forget spatie.permission.cache; $(sail) artisan migrate --seed
@@ -49,7 +49,7 @@ preparedbtest:
 	$(sail) artisan migrate --env=testing
 
 wipe:
-	$(sail) $(run) php artisan db:wipe
+	$(sail) $(exec) php artisan db:wipe
 
 clearcache:
-	$(sail) $(run) php artisan cache:forget spatie.permission.cache; $(sail) $(run) php artisan cache:clear
+	$(sail) $(exec) php artisan cache:forget spatie.permission.cache; $(sail) $(exec) php artisan cache:clear

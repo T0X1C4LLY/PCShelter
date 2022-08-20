@@ -1,4 +1,4 @@
-<p align="center"><img src="public/storage/logo.png" alt="PCShelter Logo"></p>
+<p align="center"><img src="public/storage/public/logo.png" alt="PCShelter Logo"></p>
 
 ## About PCShelter
 
@@ -73,8 +73,10 @@ Fake Thumbnails: https://picsum.photos/
 Dodać panel konta użytkownika </br>
 <s>Naprawić dodwanie postów bo nie wiadomo co się dzieje</s> </br>
 Zrobić kontrolery do edycji postów/danych użytkownika/komentarzy itp. </br>
-zrobić zwrtotkę z fail zamiast korzystać z success tam gdzie się coś nie powiodło np. UserController </br>
-dodać sprawdzanie bezpiecznych haseł 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' </br>
+Zrobić zwrtotkę z fail zamiast korzystać z success tam gdzie się coś nie powiodło np. UserController </br>
+Dodać sprawdzanie bezpiecznych haseł 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' </br>
+Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (w przyszłości może jakiś punktów). Problem: te dane są w różnych tabelach a przesyłam obiekty </br>
+Chyba będzie trzeba przenieść możliwość tworzenia artykułów do panelu użytkownika, żeby creator'zy też mogli tworzyć </br>
 
 ## Pomysły: </br>
 

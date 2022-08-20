@@ -6,6 +6,10 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +17,7 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): Factory|View|Application
     {
         return view('user.index', [
             'user' => User::query()->select()->where('id', '=', auth()->id())->get(),
@@ -22,21 +26,23 @@ class UserController extends Controller
         ]);
     }
 
-    public function security()
+    public function security(): Factory|View|Application
     {
         return view('user.security', [
             'user' => User::query()->select()->where('id', '=', auth()->id())->get(),
         ]);
     }
 
-    public function updateUsername()
+    public function updateUsername(): RedirectResponse
     {
         $this->validateUsernameUpdateRequest();
 
         $user = auth()->user();
 
         if ($user) {
-            $user->username = request()->username;
+            /** @var string $username */
+            $username = request()->username;
+            $user->username = $username;
 
             $user->save();
 
@@ -46,14 +52,16 @@ class UserController extends Controller
         return back()->with('success', "Something went wrong");
     }
 
-    public function updateName()
+    public function updateName(): RedirectResponse
     {
         $this->validateNameUpdateRequest();
 
         $user = auth()->user();
 
         if ($user) {
-            $user->name = request()->name;
+            /** @var string $name */
+            $name = request()->name;
+            $user->name = $name;
 
             $user->save();
 
@@ -63,14 +71,16 @@ class UserController extends Controller
         return back()->with('success', "Something went wrong");
     }
 
-    public function updateEmail()
+    public function updateEmail(): RedirectResponse
     {
         $this->validateEmailUpdateRequest();
 
         $user = auth()->user();
 
         if ($user) {
-            $user->email = request()->email;
+            /** @var string $email */
+            $email = request()->email;
+            $user->email = $email;
             $user->email_verified_at = null;
 
             $user->save();
@@ -83,14 +93,16 @@ class UserController extends Controller
         return back()->with('success', "Something went wrong");
     }
 
-    public function updatePassword()
+    public function updatePassword(): RedirectResponse
     {
         $this->validatePasswordUpdateRequest();
 
         $user = auth()->user();
 
         if ($user) {
-            $user->password = Hash::make(request()->password);
+            /** @var string $password */
+            $password = request()->password;
+            $user->password = Hash::make($password);
 
             $user->save();
 
@@ -100,17 +112,16 @@ class UserController extends Controller
         return back()->with('success', "Something went wrong");
     }
 
-    public function deleteAccount()
+    public function deleteAccount(): RedirectResponse
     {
         $user = auth()->user();
 
         if ($user) {
-
             Auth::guard('web')->logout();
 
-            request()?->session()->invalidate();
+            request()->session()->invalidate();
 
-            request()?->session()->regenerateToken();
+            request()->session()->regenerateToken();
 
             $user->delete();
 
@@ -120,7 +131,8 @@ class UserController extends Controller
         return back()->with('success', "Something went wrong");
     }
 
-    protected function validateUsernameUpdateRequest(): array {
+    protected function validateUsernameUpdateRequest(): array
+    {
         /** @var Request $request */
         $request = request();
 

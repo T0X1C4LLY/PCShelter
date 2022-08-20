@@ -30,7 +30,6 @@ class Post extends Model
 
     public function scopeFilter(Builder $query, array $filters): void
     {
-//        Post::newQuery()->filter()
         $query->when(
             $filters['admin_search'] ?? false,
             fn (Builder $query, mixed $search): Builder =>
@@ -78,6 +77,35 @@ class Post extends Model
                 return $query->whereHas(
                     'author',
                     fn (Builder $query): Builder => $query->where('username', strtolower($authorAsString)),
+                );
+            }
+        );
+    }
+
+    public function scopeFilterForCreator(Builder $query, array $filters): void
+    {
+        $query->when(
+            $filters['search']['search'] ?? false,
+            fn (Builder $query, mixed $search): Builder =>
+            $query->where(
+                function (Builder $query) use ($search): Builder {
+                    /** @var string $searchAsString */
+                    $searchAsString = $search;
+                    return $query->where('title', 'like', '%' . $searchAsString . '%');
+                }
+            )
+        );
+
+        $query->when(
+            $filters['id'] ?? false,
+            function (Builder $query, mixed $author): Builder {
+
+                /** @var string $authorAsString */
+                $authorAsString = $author;
+
+                return $query->whereHas(
+                    'author',
+                    fn (Builder $query): Builder => $query->where('user_id', strtolower($authorAsString)),
                 );
             }
         );
