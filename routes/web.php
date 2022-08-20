@@ -31,13 +31,15 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
 Route::middleware('can:admin')->group(function () {
-//    Route::resource('admin/posts', AdminPostController::class)->except('show')->parameter('post', 'post:id');
-    Route::post('admin/posts', [AdminPostController::class, 'store']); //LINIJKA WYŻEJ ROBI TO WSZYSTKO CO TE 6
-    Route::get('admin/posts/create', [AdminPostController::class, 'create']);
-    Route::get('admin/posts', [AdminPostController::class, 'index']);
-    Route::get('admin/posts/{post:id}/edit', [AdminPostController::class, 'edit']);
-    Route::patch('admin/posts/{post:id}', [AdminPostController::class, 'update']);
-    Route::delete('admin/posts/{post:id}', [AdminPostController::class, 'destroy']);
+    Route::resource('admin/posts', AdminPostController::class)
+        ->except('show')
+        ->parameters(['posts' => 'post:id']);
+//    Route::post('admin/posts', [AdminPostController::class, 'store']); //LINIJKA WYŻEJ ROBI TO WSZYSTKO CO TE 6
+//    Route::get('admin/posts/create', [AdminPostController::class, 'create']);
+//    Route::get('admin/posts', [AdminPostController::class, 'index']);
+//    Route::get('admin/posts/{post:id}/edit', [AdminPostController::class, 'edit']);
+//    Route::patch('admin/posts/{post:id}', [AdminPostController::class, 'update']);
+//    Route::delete('admin/posts/{post:id}', [AdminPostController::class, 'destroy']);
 });
 
 Route::middleware('auth')->group(function () {
