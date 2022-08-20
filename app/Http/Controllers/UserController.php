@@ -49,7 +49,7 @@ class UserController extends Controller
             return back()->with('success', "Your username has been changed successfully");
         }
 
-        return back()->with('success', "Something went wrong");
+        return back()->with('failure', "Something went wrong");
     }
 
     public function updateName(): RedirectResponse
@@ -68,7 +68,7 @@ class UserController extends Controller
             return back()->with('success', "Your name has been changed successfully");
         }
 
-        return back()->with('success', "Something went wrong");
+        return back()->with('failure', "Something went wrong");
     }
 
     public function updateEmail(): RedirectResponse
@@ -90,7 +90,7 @@ class UserController extends Controller
             return back()->with('success', "Your email has been changed successfully, please confirm it");
         }
 
-        return back()->with('success', "Something went wrong");
+        return back()->with('failure', "Something went wrong");
     }
 
     public function updatePassword(): RedirectResponse
@@ -109,7 +109,7 @@ class UserController extends Controller
             return back()->with('success', "Your password has been changed successfully");
         }
 
-        return back()->with('success', "Something went wrong");
+        return back()->with('failure', "Something went wrong");
     }
 
     public function deleteAccount(): RedirectResponse
@@ -128,7 +128,7 @@ class UserController extends Controller
             return back()->with('success', "Your account has been deleted");
         }
 
-        return back()->with('success', "Something went wrong");
+        return back()->with('failure', "Something went wrong");
     }
 
     protected function validateUsernameUpdateRequest(): array
