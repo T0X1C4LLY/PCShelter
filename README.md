@@ -70,9 +70,9 @@ Fake Thumbnails: https://picsum.photos/
 <s>Zmienić wygląd wysyłanych maili</s> </br>
 <s>Zamienić pole do wpisywania email w newsletterze na informację, że jesteś już zapisany na newsletter jeśli faktycznie tak jest</s> </br>
 <s>Wymuszać potwierdzenie rejestracji przed zapisem do bazy</s> </br>
-Dodać panel konta użytkownika </br>
+<s>Dodać panel konta użytkownika</s> </br>
 <s>Naprawić dodwanie postów bo nie wiadomo co się dzieje</s> </br>
-Zrobić kontrolery do edycji postów/danych użytkownika/komentarzy itp. </br>
+<s>Zrobić kontrolery do edycji postów/danych użytkownika/komentarzy itp.</s> </br>
 Zrobić zwrtotkę z fail zamiast korzystać z success tam gdzie się coś nie powiodło np. UserController </br>
 Dodać sprawdzanie bezpiecznych haseł 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/' </br>
 Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (w przyszłości może jakiś punktów). Problem: te dane są w różnych tabelach a przesyłam obiekty </br>

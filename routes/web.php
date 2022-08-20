@@ -5,6 +5,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersCommentsController;
 use App\Http\Controllers\UsersPostsController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::post('user/change/delete', [UserController::class, 'deleteAccount']);
 
     Route::get('user/posts', [UsersPostsController::class, 'index'])->middleware('can:creator');
+    Route::get('user/comments', [UsersCommentsController::class, 'index']);
 });
 
 
