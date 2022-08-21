@@ -77,6 +77,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Dodać sprawdzanie bezpiecznych haseł 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'</s> </br>
 Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (w przyszłości może jakiś punktów). Problem: te dane są w różnych tabelach a przesyłam obiekty </br>
 Chyba będzie trzeba przenieść możliwość tworzenia artykułów do panelu użytkownika, żeby creator'zy też mogli tworzyć </br>
+<s>Naprawić sekcję security bo pola zwiększają się gdy błąd jest zbyt długi - może wywalić to do failure?</s> </br>
 
 ## Pomysły: </br>
 
@@ -87,11 +88,10 @@ Dodać design przycisków do rejestracji logowania/konta </br>
 Dodać podpowiedzi po najechaniu na przycisk (okienka z opisem co to za przycisk) </br>
 Szukanie na podstawie nazwy autora </br>
 <s>Dodać możliwość logowania przez username/email</s> </br>
-Zamienić w web.php 6 routów na Route::resource ale tak, żeby działało z post zamiast post:id </br>
-Może wyłączyć możliwość subskrybcji newslettera jeśli jesteśmy już zapisani? </br>
-Dodać możliwość resetowania hasła z poziomu panelu użytkownika </br>
-Może w sekcji admina dodać dodatkowe pola do edycji artykułów </br>
-Naprawić sekcję security bo pola zwiększają się gdy błąd jest zbyt długi - może wywalić to do failure? </br>
+<s>Zamienić w web.php 6 routów na Route::resource ale tak, żeby działało z post zamiast post:id</s> </br>
+<s>Może wyłączyć możliwość subskrybcji newslettera jeśli jesteśmy już zapisani?</s> </br>
+<s>Dodać możliwość resetowania hasła z poziomu panelu użytkownika</s> </br>
+<s>Może w sekcji admina dodać dodatkowe pola do edycji artykułów</s> </br>
 
 ## Uwagi: </br>
 Pamiętać o tym, żeby ujednolicić zapis do bazy - trzymać się lowercase'ów i dbać o case sensitive </br>
