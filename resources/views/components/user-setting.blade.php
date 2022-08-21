@@ -24,6 +24,14 @@
                             Posts
                         </a>
                     </li>
+                    <li>
+                        <a
+                            {{ request()->is('user/posts/create') ? '' : 'href=/user/posts/create'}}
+                            class="{{ request()->is('user/posts/create') ? 'text-yellow-500' : 'hover:text-yellow-300' }}"
+                        >
+                            New Post
+                        </a>
+                    </li>
                 @endcreator
                 <li>
                     <a

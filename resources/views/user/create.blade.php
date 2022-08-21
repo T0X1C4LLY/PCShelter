@@ -1,5 +1,5 @@
 <x-main-layout>
-    <x-setting heading="Publish New Post">
+    <x-user-setting heading="Publish New Post">
         <script src="https://use.fontawesome.com/3a2eaf6206.js"></script>
         <form method="POST" action="/admin/posts" enctype="multipart/form-data">
             @csrf
@@ -29,5 +29,5 @@
             </x-form.field>
             <x-form.button>Publish</x-form.button>
         </form>
-    </x-setting>
+    </x-user-setting>
 </x-main-layout>

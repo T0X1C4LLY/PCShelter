@@ -50,10 +50,12 @@
                         {{--                    @can('admin')--}}
                         @admin
                             <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
-                            <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
+                        @endadmin
+                        @creator
+                            <x-dropdown-item href="/user/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
                             {{--                    @endif--}}
                             {{--                    @endcan--}}
-                        @endadmin
+                        @endcreator
                         <x-dropdown-item href="/user/account" :active="request()->is('user/account')">My Account</x-dropdown-item>
                         <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
                         <form id="logout-form" method="POST" action="/logout" class="hidden">

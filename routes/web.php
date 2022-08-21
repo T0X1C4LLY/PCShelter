@@ -33,7 +33,7 @@ Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store
 
 Route::middleware('can:admin')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)
-        ->except('show')
+        ->except(['show', 'create'])
         ->parameters(['posts' => 'post:id']);
 //    Route::post('admin/posts', [AdminPostController::class, 'store']); //LINIJKA WYŻEJ ROBI TO WSZYSTKO CO TE 6
 //    Route::get('admin/posts/create', [AdminPostController::class, 'create']);
@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::post('user/change/delete', [UserController::class, 'deleteAccount']);
 
     Route::get('user/posts', [UsersPostsController::class, 'index'])->middleware('can:creator');
+    Route::get('user/posts/create', [UsersPostsController::class, 'create'])->middleware('can:creator');
     Route::get('user/comments', [UsersCommentsController::class, 'index']);
 });
 

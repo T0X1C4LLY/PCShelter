@@ -5,6 +5,12 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Psr\Log\LogLevel;
 use Throwable;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\Foundation\Application;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class Handler extends ExceptionHandler
 {
@@ -47,5 +53,10 @@ class Handler extends ExceptionHandler
         $this->reportable(static function (Throwable $e) {
             return response()->json(['Error' => $e->getMessage()]);
         });
+    }
+
+    public function render($request, Throwable $e): Response|JsonResponse|Redirector|RedirectResponse|Application|SymfonyResponse
+    {
+        return redirect('/');
     }
 }

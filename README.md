@@ -75,9 +75,10 @@ Fake Thumbnails: https://picsum.photos/
 <s>Zrobić kontrolery do edycji postów/danych użytkownika/komentarzy itp.</s> </br>
 <s>Zrobić zwrtotkę z fail zamiast korzystać z success tam gdzie się coś nie powiodło np. UserController</s> </br>
 <s>Dodać sprawdzanie bezpiecznych haseł 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'</s> </br>
-Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (w przyszłości może jakiś punktów). Problem: te dane są w różnych tabelach a przesyłam obiekty </br>
-Chyba będzie trzeba przenieść możliwość tworzenia artykułów do panelu użytkownika, żeby creator'zy też mogli tworzyć </br>
+Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (w przyszłości może jakiś punktów). Problem: te dane są w różnych tabelach a przesyłam obiekty - może łaczyć te dane w kontrolerach i wysyłać jako stdObject albo uj wie co innnego </br>
+<s>Chyba będzie trzeba przenieść możliwość tworzenia artykułów do panelu użytkownika, żeby creator'zy też mogli tworzyć</s> </br>
 <s>Naprawić sekcję security bo pola zwiększają się gdy błąd jest zbyt długi - może wywalić to do failure?</s> </br>
+Dodać możliwość aktualizacji roli użytkownika w sekcji admina </br>
 
 ## Pomysły: </br>
 

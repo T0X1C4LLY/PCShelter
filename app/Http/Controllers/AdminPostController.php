@@ -20,10 +20,6 @@ class AdminPostController extends Controller
             'posts' => Post::filter(request(['admin_search']))->orderBy('created_at', 'DESC')->paginate(25)->onEachSide(1),
         ]);
     }
-    public function create(): Application|View|Factory
-    {
-        return view('admin.posts.create');
-    }
 
     public function store(): Redirector|Application|RedirectResponse
     {

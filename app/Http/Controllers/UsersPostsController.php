@@ -30,4 +30,9 @@ class UsersPostsController extends Controller
 
         abort(404);
     }
+
+    public function create(): Application|View|Factory
+    {
+        return view('user.create');
+    }
 }

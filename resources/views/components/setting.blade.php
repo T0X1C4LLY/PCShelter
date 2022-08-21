@@ -15,14 +15,6 @@
                         All Posts
                     </a>
                 </li>
-                <li>
-                    <a
-                        {{ request()->is('admin/posts/create') ? '' : 'href=/admin/posts/create'}}
-                        class="{{ request()->is('admin/posts/create') ? 'text-yellow-500' : 'hover:text-yellow-300' }}"
-                    >
-                        New Post
-                    </a>
-                </li>
             </ul>
         </aside>
         <main class="flex-1">
