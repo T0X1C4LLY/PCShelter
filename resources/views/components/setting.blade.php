@@ -15,9 +15,17 @@
                         All Posts
                     </a>
                 </li>
+                <li>
+                    <a
+                        {{ request()->is('admin/users') ? '' : 'href=/admin/users'}}
+                        class="{{ request()->is('admin/users') ? 'text-yellow-500' : 'hover:text-yellow-300' }}"
+                    >
+                        Users
+                    </a>
+                </li>
             </ul>
         </aside>
-        <main class="flex-1">
+        <main class="flex-1 max-w-4xl">
             <x-panel>
                 {{ $slot }}
             </x-panel>

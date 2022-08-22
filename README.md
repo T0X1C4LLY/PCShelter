@@ -78,7 +78,10 @@ Fake Thumbnails: https://picsum.photos/
 Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (w przyszłości może jakiś punktów). Problem: te dane są w różnych tabelach a przesyłam obiekty - może łaczyć te dane w kontrolerach i wysyłać jako stdObject albo uj wie co innnego </br>
 <s>Chyba będzie trzeba przenieść możliwość tworzenia artykułów do panelu użytkownika, żeby creator'zy też mogli tworzyć</s> </br>
 <s>Naprawić sekcję security bo pola zwiększają się gdy błąd jest zbyt długi - może wywalić to do failure?</s> </br>
-Dodać możliwość aktualizacji roli użytkownika w sekcji admina </br>
+<s>Dodać możliwość aktualizacji roli użytkownika w sekcji admina</s> </br>
+Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w panelu administratora </br>
+Dodać ustawianie roli dla użytkownika przy tworzeniu konta </br>
+Przy wyszukiwaniu trzeba zadabać o case sensitive </br>
 
 ## Pomysły: </br>
 
@@ -93,6 +96,7 @@ Szukanie na podstawie nazwy autora </br>
 <s>Może wyłączyć możliwość subskrybcji newslettera jeśli jesteśmy już zapisani?</s> </br>
 <s>Dodać możliwość resetowania hasła z poziomu panelu użytkownika</s> </br>
 <s>Może w sekcji admina dodać dodatkowe pola do edycji artykułów</s> </br>
+Dawać ostrzeżenie administratorowi przed usunięciem postu/użytkownika? </br>
 
 ## Uwagi: </br>
 Pamiętać o tym, żeby ujednolicić zapis do bazy - trzymać się lowercase'ów i dbać o case sensitive </br>

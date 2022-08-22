@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
@@ -43,6 +44,10 @@ Route::middleware('can:admin')->group(function () {
 //    Route::delete('admin/posts/{post:id}', [AdminPostController::class, 'destroy']);
 });
 
+Route::get('admin/users', [AdminUserController::class, 'index'])->middleware('can:admin');
+Route::delete('admin/users/{user:id}', [AdminUserController::class, 'destroy'])->middleware('can:admin');
+Route::patch('admin/users/{user:id}/{id}', [AdminUserController::class, 'update'])->middleware('can:admin');
+
 Route::middleware('auth')->group(function () {
     Route::get('user/account', [UserController::class, 'index']);
     Route::get('user/security', [UserController::class, 'security']);
@@ -56,7 +61,5 @@ Route::middleware('auth')->group(function () {
     Route::get('user/posts/create', [UsersPostsController::class, 'create'])->middleware('can:creator');
     Route::get('user/comments', [UsersCommentsController::class, 'index']);
 });
-
-
 
 require __DIR__.'/auth.php';

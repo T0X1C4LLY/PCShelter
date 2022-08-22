@@ -16,8 +16,17 @@ class AdminPostController extends Controller
 {
     public function index(): Application|View|Factory
     {
+        /** @var string $by */
+        $by = request('by') ?? 'created_at';
+
+        /** @var string $sort */
+        $sort = request('sort') ?? 'DESC';
+
         return view('admin.posts.index', [
-            'posts' => Post::filter(request(['admin_search']))->orderBy('created_at', 'DESC')->paginate(25)->onEachSide(1),
+            'posts' => Post::filter(request(['admin_search']))
+                ->orderBy($by, $sort)
+                ->paginate(25)
+                ->onEachSide(1),
         ]);
     }
 

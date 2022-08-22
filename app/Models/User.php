@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -62,5 +63,23 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function scopeFilter(Builder $query, array $filters): void
+    {
+        $query->when(
+            $filters['admin_search'] ?? false,
+            fn (Builder $query, mixed $search): Builder =>
+            $query->where(
+                function (Builder $query) use ($search): Builder {
+                    /** @var string $searchAsString */
+                    $searchAsString = $search;
+
+                    return $query
+                        ->where('username', 'like', '%' . $searchAsString . '%')
+                        ->orWhere('name', 'like', '%' . $searchAsString . '%');
+                }
+            )
+        );
     }
 }
