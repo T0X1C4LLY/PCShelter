@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
 
 class RegisteredUserController extends Controller
 {
@@ -53,9 +54,9 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($password),
         ]);
 
-        event(new Registered($user));
-
         Auth::login($user);
+        event(new Registered($user));
+        $user->assignRole(Role::findByName('user'));
 
         return redirect(RouteServiceProvider::HOME)->with(['success' => 'Please confirm email to finish registration']);
     }
