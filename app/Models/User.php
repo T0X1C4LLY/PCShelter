@@ -50,10 +50,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function getUsernameAttribute(string $username): string
-    { //Accessor
-        return ucwords($username);
-    }
+//    public function getUsernameAttribute(string $username): string
+//    { //Accessor
+//        return ucwords($username);
+//    }
 
 //    public function setPasswordAttribute(string $password): void
 //    { //Mutator: set + nazwa_atrybutu + Attribute()
