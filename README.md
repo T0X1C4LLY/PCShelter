@@ -83,7 +83,9 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Dodać ustawianie roli dla użytkownika przy tworzeniu konta</s> </br>
 <s>Przy wyszukiwaniu trzeba zadabać o case sensitive</s> </br>
 <s>Zamienić zapytania do bazki wewnątrz blade'ów na relacje (model relationships)</s> </br>
-Zamienić gate'y tak by opierały się na permisjach a nie na rolach </br>
+<s>Zamienić gate'y tak by opierały się na permisjach a nie na rolach</s> </br>
+Zamienić tego if'a z newslettera na permisję </br>
+Stworzyć opcję usunięcia subskrypcji newslettera </br>
 
 ## Pomysły: </br>
 

@@ -32,21 +32,14 @@ Route::post('newsletter', NewsletterController::class);
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
-Route::middleware('can:admin')->group(function () {
+Route::middleware('can:enter_dashboard')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)
         ->except(['show', 'create'])
         ->parameters(['posts' => 'post:id']);
-//    Route::post('admin/posts', [AdminPostController::class, 'store']); //LINIJKA WYŻEJ ROBI TO WSZYSTKO CO TE 6
-//    Route::get('admin/posts/create', [AdminPostController::class, 'create']);
-//    Route::get('admin/posts', [AdminPostController::class, 'index']);
-//    Route::get('admin/posts/{post:id}/edit', [AdminPostController::class, 'edit']);
-//    Route::patch('admin/posts/{post:id}', [AdminPostController::class, 'update']);
-//    Route::delete('admin/posts/{post:id}', [AdminPostController::class, 'destroy']);
+    Route::get('admin/users', [AdminUserController::class, 'index']);
+    Route::delete('admin/users/{user:id}', [AdminUserController::class, 'destroy']);
+    Route::patch('admin/users/{user:id}/{id}', [AdminUserController::class, 'update']);
 });
-
-Route::get('admin/users', [AdminUserController::class, 'index'])->middleware('can:admin');
-Route::delete('admin/users/{user:id}', [AdminUserController::class, 'destroy'])->middleware('can:admin');
-Route::patch('admin/users/{user:id}/{id}', [AdminUserController::class, 'update'])->middleware('can:admin');
 
 Route::middleware('auth')->group(function () {
     Route::get('user/account', [UserController::class, 'index']);
@@ -57,8 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::post('user/change/password', [UserController::class, 'updatePassword']);
     Route::post('user/change/delete', [UserController::class, 'deleteAccount']);
 
-    Route::get('user/posts', [UsersPostsController::class, 'index'])->middleware('can:creator');
-    Route::get('user/posts/create', [UsersPostsController::class, 'create'])->middleware('can:creator');
+    Route::get('user/posts', [UsersPostsController::class, 'index'])->middleware('can:watch_own_posts');
+    Route::get('user/posts/create', [UsersPostsController::class, 'create'])->middleware('can:create_post');
     Route::get('user/comments', [UsersCommentsController::class, 'index']);
 });
 

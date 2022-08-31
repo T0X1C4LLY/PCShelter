@@ -5,9 +5,9 @@
             <x-dashboard.account-data dataType="Email:" dataToDisplay="{{ $user[0]->email }}"/>
             <x-dashboard.account-data dataType="Email verified at:" dataToDisplay="{{ $user[0]->email_verified_at }}"/>
             <x-dashboard.account-data dataType="Account created at:" dataToDisplay="{{ $user[0]->created_at }}"/>
-            @creator
+            @can('watch_own_posts')
                 <x-dashboard.account-data dataType="Posts created:" dataToDisplay="{{ count($posts) }}"/>
-            @endcreator
+            @endcan
             <x-dashboard.account-data dataType="Comments written:" dataToDisplay="{{ count($comments) }}"/>
         </div>
     </x-user-setting>

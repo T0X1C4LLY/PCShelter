@@ -17,6 +17,19 @@
         ],
         "give_permission": [
             "admin"
+        ],
+        "edit_user": [
+            "admin"
+        ],
+        "delete_user": [
+            "admin"
+        ],
+        "enter_dashboard": [
+            "admin"
+        ],
+        "watch_own_posts": [
+            "admin",
+            "creator"
         ]
     }
 }

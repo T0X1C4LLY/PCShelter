@@ -46,16 +46,13 @@
                                 Welcome, {{ auth()->user()->name }}
                             </button>
                         </x-slot>
-                        {{--                    @if (auth()->user()->can('admin'))--}}
-                        {{--                    @can('admin')--}}
-                        @admin
+
+                        @can('enter_dashboard')
                             <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
-                        @endadmin
-                        @creator
+                        @endcan
+                        @can('create_post')
                             <x-dropdown-item href="/user/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
-                            {{--                    @endif--}}
-                            {{--                    @endcan--}}
-                        @endcreator
+                        @endcan
                         <x-dropdown-item href="/user/account" :active="request()->is('user/account')">My Account</x-dropdown-item>
                         <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
                         <form id="logout-form" method="POST" action="/logout" class="hidden">

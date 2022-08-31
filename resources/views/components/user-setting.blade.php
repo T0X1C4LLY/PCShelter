@@ -15,7 +15,7 @@
                         Account
                     </a>
                 </li>
-                @creator
+                @can('watch_own_posts')
                     <li>
                         <a
                             {{ request()->is('user/posts') ? '' : 'href=/user/posts'}}
@@ -24,6 +24,8 @@
                             Posts
                         </a>
                     </li>
+                @endcan
+                @can('create_post')
                     <li>
                         <a
                             {{ request()->is('user/posts/create') ? '' : 'href=/user/posts/create'}}
@@ -32,7 +34,7 @@
                             New Post
                         </a>
                     </li>
-                @endcreator
+                @endcan
                 <li>
                     <a
                         {{ request()->is('user/comments') ? '' : 'href=/user/comments'}}
