@@ -1,4 +1,5 @@
 @props(['post'])
+
 <header {{ $attributes->merge( ['class' => '']) }}>
     <div class="space-x-2">
         <x-category-button :category="$post->category"/>

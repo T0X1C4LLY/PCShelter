@@ -9,21 +9,40 @@
         <div>
             <x-breeze.label for="name" :value="__('Name')" />
 
-            <x-breeze.input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            <x-breeze.input id="name"
+                            class="block mt-1 w-full"
+                            type="text"
+                            name="name"
+                            :value="old('name')"
+                            required
+                            autofocus
+            />
         </div>
 
         <!-- Username -->
         <div class="mt-4">
             <x-breeze.label for="username" :value="__('Username')" />
 
-            <x-breeze.input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
+            <x-breeze.input id="username"
+                            class="block mt-1 w-full"
+                            type="text"
+                            name="username"
+                            :value="old('username')"
+                            required
+            />
         </div>
 
         <!-- Email Address -->
         <div class="mt-4">
             <x-breeze.label for="email" :value="__('Email')" />
 
-            <x-breeze.input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            <x-breeze.input id="email"
+                            class="block mt-1 w-full"
+                            type="email"
+                            name="email"
+                            :value="old('email')"
+                            required
+            />
         </div>
 
         <!-- Password -->
@@ -33,7 +52,9 @@
             <x-breeze.input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                            required
+                            autocomplete="new-password"
+            />
         </div>
 
         <!-- Confirm Password -->
@@ -42,7 +63,9 @@
 
             <x-breeze.input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
-                            name="password_confirmation" required />
+                            name="password_confirmation"
+                            required
+            />
         </div>
 
         <div class="flex items-center justify-end mt-4">

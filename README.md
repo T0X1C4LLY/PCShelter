@@ -82,6 +82,8 @@ Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (
 Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w panelu administratora </br>
 <s>Dodać ustawianie roli dla użytkownika przy tworzeniu konta</s> </br>
 <s>Przy wyszukiwaniu trzeba zadabać o case sensitive</s> </br>
+<s>Zamienić zapytania do bazki wewnątrz blade'ów na relacje (model relationships)</s> </br>
+Zamienić gate'y tak by opierały się na permisjach a nie na rolach </br>
 
 ## Pomysły: </br>
 

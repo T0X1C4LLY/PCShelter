@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,20 @@ class Comment extends Model
 
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class, 'post_id');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getPostSlug(): string
+    {
+        $post = Post::where('id', $this->post_id)->first();
+        if ($post) {
+            return $post->slug;
+        }
+
+        throw new Exception('Expected Post, null appeared');
     }
 
     public function author(): BelongsTo

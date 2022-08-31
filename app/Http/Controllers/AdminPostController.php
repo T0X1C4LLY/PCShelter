@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -54,7 +55,7 @@ class AdminPostController extends Controller
 
     public function edit(Post $post): Factory|View|Application
     {
-        return view('admin.posts.edit', ['post' => $post]);
+        return view('admin.posts.edit', ['post' => $post, 'categories' => Category::all()]);
     }
 
     public function update(Post $post): RedirectResponse

@@ -55,8 +55,8 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $e): Response|JsonResponse|Redirector|RedirectResponse|Application|SymfonyResponse
-    {
-        return redirect('/');
-    }
+//    public function render($request, Throwable $e): Response|JsonResponse|Redirector|RedirectResponse|Application|SymfonyResponse
+//    {
+//        return redirect('/');
+//    }
 }

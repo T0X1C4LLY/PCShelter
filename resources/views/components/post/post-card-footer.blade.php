@@ -1,4 +1,5 @@
 @props(['post'])
+
 <footer class="flex justify-between items-center mt-8">
     <div class="flex items-center text-sm">
         <img src="https://i.pravatar.cc/75?img={{ $post->author->id }}" alt="avatar" class="rounded-xl">

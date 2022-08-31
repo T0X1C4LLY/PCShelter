@@ -77,10 +77,7 @@
                                                 <x-panel-dropdown>
                                                     <x-slot name="trigger">
                                                         <button class="text-xs font-bold uppercase">
-                                                            @php
-                                                                $currentRole = (DB::table('roles')->where('id', ((DB::table('model_has_roles')->where('model_id', $user->id)->get('role_id'))[0]->role_id))->get('name'))[0]->name;
-                                                            @endphp
-                                                            {{ $currentRole }}
+                                                            {{ $user->role() }}
                                                         </button>
                                                     </x-slot>
                                                     @foreach ($roles as $role)
@@ -88,8 +85,8 @@
                                                             @method('PATCH')
                                                             @csrf
                                                             <button type="submit"
-                                                                    class="block w-full text-left px-3 text-sm leading-6 hover:bg-yellow-500 focus:bg-yellow-500 hover:text-white focus:text-white {{ ($currentRole == $role->name) ? ' bg-yellow-500 text-white pointer-events-none' : ' text-yellow-500' }}"
-                                                                    {{ ($currentRole == $role->name) ? 'disabled' : '' }}
+                                                                    class="block w-full text-left px-3 text-sm leading-6 hover:bg-yellow-500 focus:bg-yellow-500 hover:text-white focus:text-white {{ ($user->role() == $role->name) ? ' bg-yellow-500 text-white pointer-events-none' : ' text-yellow-500' }}"
+                                                                    {{ ($user->role() == $role->name) ? 'disabled' : '' }}
                                                             >
                                                                 {{ $role->name }}
                                                             </button>

@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -63,6 +67,28 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function role(): int
+    {
+        $roleId = DB::table('model_has_roles')->where('model_id', $this->id)->first('role_id');
+
+        if (!$roleId) {
+            throw new Exception('Expected ModelHasRoles, null appeared');
+        }
+
+        $roleIdAsString = (get_object_vars($roleId))['role_id'];
+
+        $role = Role::where('id', $roleIdAsString)->first();
+
+        if (!$role) {
+            throw new Exception('Expected Role, null appeared');
+        }
+
+        return $role->id;
     }
 
     public function scopeFilter(Builder $query, array $filters): void

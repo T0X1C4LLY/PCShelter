@@ -56,6 +56,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
         event(new Registered($user));
+
         $user->assignRole(Role::findByName('user'));
 
         return redirect(RouteServiceProvider::HOME)->with(['success' => 'Please confirm email to finish registration']);

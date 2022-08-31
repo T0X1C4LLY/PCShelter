@@ -53,11 +53,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="max-w-xl truncate text-center">
                                             <div class="text-sm font-medium text-gray-900">
-                                                {{ count(DB::table('comments')
-                                                    ->where('post_id', $post->id)
-                                                    ->get()
-                                                    )
-                                                }}
+                                                {{ \App\Models\Comment::where('post_id', $post->id)->count() }}
                                             </div>
                                         </div>
                                     </td>
