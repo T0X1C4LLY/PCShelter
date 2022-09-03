@@ -84,8 +84,11 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Przy wyszukiwaniu trzeba zadabać o case sensitive</s> </br>
 <s>Zamienić zapytania do bazki wewnątrz blade'ów na relacje (model relationships)</s> </br>
 <s>Zamienić gate'y tak by opierały się na permisjach a nie na rolach</s> </br>
-Zamienić tego if'a z newslettera na permisję </br>
-Stworzyć opcję usunięcia subskrypcji newslettera </br>
+<s>Zamienić tego if'a z newslettera na permisję</s> </br>
+<s>Stworzyć opcję usunięcia subskrypcji newslettera</s> </br>
+<s>Zrobić wstrzykiwanie Mailchimpa z domyślnymi ustawieniami</s> </br>
+Usunąć stopkę z newsletterem w panelu admina/użytkownika </br>
+Napisać testy na dosłownie wszystko </br>
 
 ## Pomysły: </br>
 

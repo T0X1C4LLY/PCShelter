@@ -27,7 +27,7 @@ Route::get('/logo', static function () {
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
-Route::post('newsletter', NewsletterController::class);
+Route::post('subscribe', NewsletterController::class);
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::get('user/posts', [UsersPostsController::class, 'index'])->middleware('can:watch_own_posts');
     Route::get('user/posts/create', [UsersPostsController::class, 'create'])->middleware('can:create_post');
     Route::get('user/comments', [UsersCommentsController::class, 'index']);
+    Route::get('user/newsletter', [NewsletterController::class, 'index']);
+    Route::post('unsubscribe', [NewsletterController::class, 'destroy']);
 });
 
 require __DIR__.'/auth.php';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Services\NewsletterInterface;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,11 +32,11 @@ class RegisteredUserController extends Controller
      * Handle an incoming registration request.
      *
      * @param Request $request
+     * @param NewsletterInterface $newsletter
      * @return RedirectResponse
      *
-     * @throws ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, NewsletterInterface $newsletter): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:127'],
@@ -58,6 +59,14 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         $user->assignRole(Role::findByName('user'));
+
+        $users = $newsletter->getAllSubscribers()->members;
+
+        foreach ($users as $email) {
+            if ($email->email_address === $user->email) {
+                $user->givePermissionTo('unsubscribe');
+            }
+        }
 
         return redirect(RouteServiceProvider::HOME)->with(['success' => 'Please confirm email to finish registration']);
     }

@@ -51,6 +51,14 @@
                         Security
                     </a>
                 </li>
+                <li>
+                    <a
+                        {{ request()->is('user/newsletter') ? '' : 'href=/user/newsletter'}}
+                        class="{{ request()->is('user/newsletter') ? 'text-yellow-500' : 'hover:text-yellow-300' }}"
+                    >
+                        Newsletter
+                    </a>
+                </li>
             </ul>
         </aside>
         <main class="flex-1 max-w-4xl">

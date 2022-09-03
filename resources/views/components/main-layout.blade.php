@@ -64,13 +64,13 @@
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
                 @endauth
-                @newsletter
+                @cannot('unsubscribe')
                     <a href="#newsletter"
                        class="bg-yellow-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5"
                     >
                         Subscribe for Updates
                     </a>
-                @endnewsletter
+                @endcannot
             </div>
         </nav>
         {{ $slot }}
@@ -85,7 +85,8 @@
                 <p class="text-sm mt-3 text-white">
                     Promise to keep the inbox clean. No bugs.
                 </p>
-                @newsletter
+
+                @cannot('unsubscribe')
                     <div class="mt-10">
                         <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
@@ -125,7 +126,7 @@
                     <p class="text-sm mt-3 text-white">
                         You are already a subscriber
                     </p>
-                @endnewsletter
+                @endcannot
             </footer>
         @endif
     </section>

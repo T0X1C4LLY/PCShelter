@@ -6,13 +6,17 @@ use MailchimpMarketing\ApiClient;
 
 class MailchimpNewsletter implements NewsletterInterface
 {
+    private readonly mixed $list;
+
     public function __construct(protected ApiClient $client)
     {
+        $this->list = config('services.mailchimp.lists.subscribers');
     }
 
     public function subscribe(string $email, string $list = null): mixed
     {
-        $list ??= config('services.mailchimp.lists.subscribers');
+        $list ??= $this->list;
+
         /** @phpstan-ignore-next-line */
         return $this->client->lists->addListMember($list, [
             'email_address' => $email,
@@ -20,10 +24,17 @@ class MailchimpNewsletter implements NewsletterInterface
         ]);
     }
 
+    public function unsubscribe(string $email, string $list = null): void
+    {
+        $list ??= $this->list;
+
+        /** @phpstan-ignore-next-line */
+        $this->client->lists->deleteListMember($list, $email);
+    }
+
     public function getAllSubscribers(): \stdClass
     {
-        $list = config('services.mailchimp.lists.subscribers');
         /** @phpstan-ignore-next-line */
-        return $this->client->lists->getListMembersInfo($list);
+        return $this->client->lists->getListMembersInfo($this->list);
     }
 }
