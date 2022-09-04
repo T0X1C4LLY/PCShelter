@@ -87,7 +87,7 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Zamienić tego if'a z newslettera na permisję</s> </br>
 <s>Stworzyć opcję usunięcia subskrypcji newslettera</s> </br>
 <s>Zrobić wstrzykiwanie Mailchimpa z domyślnymi ustawieniami</s> </br>
-Usunąć stopkę z newsletterem w panelu admina/użytkownika </br>
+<s>Usunąć stopkę z newsletterem w panelu admina/użytkownika</s> </br>
 Napisać testy na dosłownie wszystko </br>
 
 ## Pomysły: </br>

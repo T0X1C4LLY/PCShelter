@@ -66,6 +66,6 @@ class NewsletterController extends Controller
             }
         }
 
-        return back();
+        return back()->with('success', 'You are no longer subscribed for our newsletter');
     }
 }

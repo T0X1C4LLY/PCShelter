@@ -64,17 +64,19 @@
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
                 @endauth
-                @cannot('unsubscribe')
-                    <a href="#newsletter"
-                       class="bg-yellow-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5"
-                    >
-                        Subscribe for Updates
-                    </a>
-                @endcannot
+                @if(request()->is('/'))
+                    @cannot('unsubscribe')
+                        <a href="#newsletter"
+                           class="bg-yellow-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5"
+                        >
+                            Subscribe for Updates
+                        </a>
+                    @endcannot
+                @endif
             </div>
         </nav>
         {{ $slot }}
-        @if(!str_contains(Request::url(), "/admin/"))
+        @if(request()->is('/'))
             <footer id="newsletter"
                     class="bg-gray-800 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16"
             >
@@ -90,7 +92,7 @@
                     <div class="mt-10">
                         <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                            <form method="POST" action="/newsletter" class="lg:flex text-sm">
+                            <form method="POST" action="/subscribe" class="lg:flex text-sm">
                                 @csrf
                                 <div class="lg:py-3 lg:px-5 flex items-center">
                                     <label for="email" class="hidden lg:inline-block">
