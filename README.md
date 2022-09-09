@@ -89,6 +89,8 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Zrobić wstrzykiwanie Mailchimpa z domyślnymi ustawieniami</s> </br>
 <s>Usunąć stopkę z newsletterem w panelu admina/użytkownika</s> </br>
 Napisać testy na dosłownie wszystko </br>
+Napisać testy na komponenty </br>
+Wyłączyć zapisywanie obrazów w storage przy testach - AllPostsTest test_post_can_be_edited() </br>
 
 ## Pomysły: </br>
 

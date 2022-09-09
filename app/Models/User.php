@@ -72,7 +72,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @throws Exception
      */
-    public function role(): int
+    public function role(): string
     {
         $roleId = DB::table('model_has_roles')->where('model_id', $this->id)->first('role_id');
 
@@ -82,13 +82,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
         $roleIdAsString = (get_object_vars($roleId))['role_id'];
 
-        $role = Role::where('id', $roleIdAsString)->first();
+        /** @var string $role */
+        $role = Role::where('id', $roleIdAsString)->value('name');
 
         if (!$role) {
             throw new Exception('Expected Role, null appeared');
         }
 
-        return $role->id;
+        return $role;
     }
 
     public function scopeFilter(Builder $query, array $filters): void
