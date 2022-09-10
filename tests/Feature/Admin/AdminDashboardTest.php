@@ -10,16 +10,19 @@ use Illuminate\Http\UploadedFile;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
+use Tests\CreatesApplication;
 use Tests\TestCase;
 
 class AdminDashboardTest extends TestCase
 {
     use RefreshDatabase;
+    use CreatesApplication;
 
     private User $admin;
     private User $user;
     private Post $post;
     private Category $category;
+    private UploadedFile $image;
 
     protected function setUp(): void
     {
@@ -29,6 +32,14 @@ class AdminDashboardTest extends TestCase
         $this->prepareUsers();
         $this->prepareCategories();
         $this->preparePosts();
+
+        $this->image = new UploadedFile(
+            public_path('storage/public/logo.png'),
+            'logo.png',
+            null,
+            null,
+            true
+        );
     }
 
     public function prepareUsers(): void
@@ -63,7 +74,6 @@ class AdminDashboardTest extends TestCase
     private function prepareCategories(): void
     {
         $this->category = Category::factory()->create();
-        Category::factory()->count(2)->create();
     }
 
     private function preparePosts(): void
@@ -77,17 +87,10 @@ class AdminDashboardTest extends TestCase
         for ($i = 2; $i <= 3; ++$i) {
             Post::factory()->create([
                 'user_id' => $this->admin->id,
-                'category_id' => $i,
+                'category_id' => $this->category->id,
                 'title' => 'Post ' . $i
             ]);
         }
-    }
-
-    public function test_dashboard_screen_with_all_posts_can_not_be_rendered_while_unauthenticated(): void
-    {
-        $response = $this->get('/admin/posts');
-
-        $response->assertStatus(403);
     }
 
     public function test_dashboard_screen_with_all_posts_can_be_rendered()
@@ -110,7 +113,7 @@ class AdminDashboardTest extends TestCase
     {
         $response = $this->actingAs($this->admin)->json('PATCH', '/user/posts/' . $this->post->id, [
             'title' => 'Updated title',
-            'thumbnail' => UploadedFile::fake()->image('avatar.jpg'),
+            'thumbnail' => $this->image,
             'slug' => 'Updated slug',
             'excerpt' => 'Updated excerpt',
             'body' => 'Updated body',
@@ -135,30 +138,6 @@ class AdminDashboardTest extends TestCase
         $response->assertStatus(302);
         $response->assertSessionHas('success');
         $this->assertNull($deletedPost);
-    }
-
-    public function test_dashboard_screen_with_all_users_can_not_be_rendered_while_unauthenticated(): void
-    {
-        $response = $this->get('/admin/users');
-
-        $response->assertStatus(403);
-    }
-
-    public function test_dashboard_screen_with_all_users_can_be_rendered()
-    {
-        $response = $this->actingAs($this->admin)->get('/admin/users');
-
-        $response->assertSeeInOrder([
-            'Manage Posts',
-            'All Posts',
-            'Users',
-            'Username',
-            'Name',
-            'Created at',
-            'Role',
-            $this->admin->username
-        ]);
-        $response->assertStatus(200);
     }
 
     public function test_user_can_be_deleted()

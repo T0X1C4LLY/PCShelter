@@ -47,7 +47,13 @@ class DashboardTest extends TestCase
         $this->validNewPostData = [
             'title' => 'Title',
             'slug' => 'Slug',
-            'thumbnail' => UploadedFile::fake()->image('avatar.jpg'),
+            'thumbnail' => new UploadedFile(
+                public_path('storage/public/logo.png'),
+                'logo.png',
+                null,
+                null,
+                true
+            ),
             'excerpt' => 'Excerpt',
             'body' => 'Body',
             'category_id' => $this->category->id,
@@ -136,26 +142,6 @@ class DashboardTest extends TestCase
         }
     }
 
-    /** @dataProvider urlProvider */
-    public function test_unauthorized_can_not_enter_dashboard(string $url): void
-    {
-        $response = $this->get($url);
-
-        $response->assertRedirect('/login');
-    }
-
-    private function urlProvider(): array
-    {
-        return [
-            ['/user/account'],
-            ['/user/posts'],
-            ['/user/posts/create'],
-            ['/user/comments'],
-            ['/user/security'],
-            ['/user/newsletter'],
-        ];
-    }
-
     /** @dataProvider userProvider */
     public function test_dashboard_screen_with_my_account_data_can_be_rendered_when_user_is_logged(string $user): void
     {
@@ -165,22 +151,6 @@ class DashboardTest extends TestCase
 
         $response->assertSeeInOrder(['Username', 'Email', 'Email verified at', 'Account created at', 'Comments written', $this->$comments]);
         $response->assertStatus(200);
-    }
-
-    /** @dataProvider notForUserUrlProvider */
-    public function test_dashboard_screen_with_my_posts_can_not_be_rendered_when_common_user_is_logged(string $url): void
-    {
-        $response = $this->actingAs($this->commonUser)->get($url);
-
-        $response->assertStatus(403);
-    }
-
-    private function notForUserUrlProvider(): array
-    {
-        return [
-            ['/user/posts'],
-            ['/user/posts/create'],
-        ];
     }
 
     /** @dataProvider specialUserAndPostProvider */
@@ -221,20 +191,6 @@ class DashboardTest extends TestCase
         ];
     }
 
-    public function test_new_post_can_not_be_created_by_unauthorized_user(): void
-    {
-        $response = $this->postJson('/user/posts', $this->validNewPostData);
-
-        $response->assertStatus(401);
-    }
-
-    public function test_new_post_can_not_be_created_by_common_user(): void
-    {
-        $response = $this->actingAs($this->commonUser)->postJson('/user/posts', $this->validNewPostData);
-
-        $response->assertStatus(403);
-    }
-
     /** @dataProvider specialUserProvider */
     public function test_new_post_can_be_created_by_special_user(string $user): void
     {
@@ -242,30 +198,6 @@ class DashboardTest extends TestCase
 
         $response->assertStatus(302);
         $response->assertSessionHas('success');
-    }
-
-    /** @dataProvider invalidData */
-    public function test_post_can_not_be_created_with_invalid_data(string $key, string $value): void
-    {
-        $validData = $this->validNewPostData;
-
-        $validData[$key] = $value;
-
-        $response = $this->actingAs($this->creator)->postJson('/user/posts', $validData);
-        $response->assertStatus(422);
-    }
-
-    private function invalidData(): array
-    {
-        return [
-            ['title', ''],
-            ['slug', ''],
-            ['slug', $this->postSlug],
-            ['thumbnail', ''],
-            ['excerpt', ''],
-            ['body', ''],
-            ['category_id', '-1'],
-        ];
     }
 
     /** @dataProvider userProvider */
@@ -353,30 +285,4 @@ class DashboardTest extends TestCase
             ['creator'],
         ];
     }
-
-//    public function test_newsletter_can_be_subscribed(): void
-//    {
-//        $response = $this->actingAs($this->commonUser)->postJson('/subscribe', [
-//            'email' => $this->commonUser->email,
-//        ]);
-//
-//        $response->assertStatus(302);
-//
-//        $response = $this->actingAs($this->commonUser)->get('/user/newsletter');
-//        $response->assertDontSee('You are not a subscriber, please consider checking our newsletter');
-//        $response->assertSeeInOrder(['You are currently our subscriber, Thank You for Your support', 'unsubscribe']);
-//    }
-//
-//    public function test_newsletter_can_be_unsubscribed(): void
-//    {
-//        $response = $this->actingAs($this->commonUser)->postJson('/unsubscribe', [
-//            'email' => $this->commonUser->email,
-//        ]);
-//
-//        $response->assertStatus(302);
-//
-//        $response = $this->actingAs($this->commonUser)->get('/user/newsletter');
-//        $response->assertSeeInOrder(['You are not a subscriber, please consider checking our newsletter', 'subscribe']);
-//        $response->assertDontSee(['You are currently our subscriber, Thank You for Your support', 'unsubscribe']);
-//    }
 }
