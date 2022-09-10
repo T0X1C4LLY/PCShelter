@@ -90,7 +90,7 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Usunąć stopkę z newsletterem w panelu admina/użytkownika</s> </br>
 Napisać testy na dosłownie wszystko </br>
 Napisać testy na komponenty </br>
-Wyłączyć zapisywanie obrazów w storage przy testach - AllPostsTest test_post_can_be_edited() </br>
+<s>Wyłączyć zapisywanie obrazów w storage przy testach - AllPostsTest test_post_can_be_edited()</s> </br>
 <s>Może wrzucić testy do jednego pliku tak, żeby nie robić miliona razy factory()->create()</s> </br>
 Trzeba zająć się routami bo się bałagan zrobił co gdzie powinno walić </br>
 <s>Stworzyć dummy implementation dla newslettera dla testów</s> </br>

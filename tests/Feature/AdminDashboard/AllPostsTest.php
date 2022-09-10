@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -22,8 +23,6 @@ class AllPostsTest extends TestCase
     private Post $post;
     private Category $category;
     private array $posts;
-    private UploadedFile $image;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -31,14 +30,6 @@ class AllPostsTest extends TestCase
 
         $this->prepareUsers();
         $this->preparePosts();
-
-        $this->image = new UploadedFile(
-            public_path('storage/public/logo.png'),
-            'logo.png',
-            null,
-            null,
-            true
-        );
     }
 
     public function prepareUsers(): void
@@ -112,7 +103,13 @@ class AllPostsTest extends TestCase
 
         $response = $this->actingAs($this->admin)->json('PATCH', '/user/posts/' . $this->post->id, [
             'title' => 'Updated title',
-            'thumbnail' => $this->image,
+            'thumbnail' => new UploadedFile(
+                public_path('storage/public/logo.png'),
+                'logo.png',
+                null,
+                null,
+                true
+            ),
             'slug' => 'Updated slug',
             'excerpt' => 'Updated excerpt',
             'body' => 'Updated body',
@@ -126,6 +123,8 @@ class AllPostsTest extends TestCase
         $this->assertSame('Updated title', $updatedPost->title);
         $this->assertSame('Updated slug', $updatedPost->slug);
         $this->assertSame('Updated body', $updatedPost->body);
+
+        Storage::delete($updatedPost->thumbnail);
     }
 
     public function test_post_can_be_deleted(): void

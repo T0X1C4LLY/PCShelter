@@ -3,9 +3,11 @@
 namespace Tests\Feature\User;
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -17,7 +19,6 @@ class NewPostTest extends TestCase
 
     private User $creator;
     private Category $category;
-    private array $validNewPostData;
 
     protected function setUp(): void
     {
@@ -26,20 +27,6 @@ class NewPostTest extends TestCase
 
         $this->prepareUsers();
         $this->prepareCategories();
-        $this->validNewPostData = [
-            'title' => 'Title',
-            'slug' => 'Slug',
-            'thumbnail' => new UploadedFile(
-                public_path('storage/public/logo.png'),
-                'logo.png',
-                null,
-                null,
-                true
-            ),
-            'excerpt' => 'Excerpt',
-            'body' => 'Body',
-            'category_id' => $this->category->id,
-        ];
     }
 
     public function prepareUsers(): void
@@ -84,9 +71,27 @@ class NewPostTest extends TestCase
 
     public function test_new_post_can_be_created_by_creator(): void
     {
-        $response = $this->actingAs($this->creator)->postJson('/user/posts', $this->validNewPostData);
+        $slug = 'Slug';
+
+        $response = $this->actingAs($this->creator)->postJson('/user/posts', [
+            'title' => 'Title',
+            'slug' => $slug,
+            'thumbnail' => new UploadedFile(
+                public_path('storage/public/logo.png'),
+                'logo.png',
+                null,
+                null,
+                true
+            ),
+            'excerpt' => 'Excerpt',
+            'body' => 'Body',
+            'category_id' => $this->category->id,
+        ]);
 
         $response->assertStatus(302);
         $response->assertSessionHas('success');
+
+        $post = Post::where('slug', $slug)->first();
+        Storage::delete($post->thumbnail);
     }
 }
