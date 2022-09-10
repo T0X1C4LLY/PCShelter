@@ -94,6 +94,7 @@ Wyłączyć zapisywanie obrazów w storage przy testach - AllPostsTest test_post
 <s>Może wrzucić testy do jednego pliku tak, żeby nie robić miliona razy factory()->create()</s> </br>
 Trzeba zająć się routami bo się bałagan zrobił co gdzie powinno walić </br>
 <s>Stworzyć dummy implementation dla newslettera dla testów</s> </br>
+Skorzystać z zabezpieczenia przy dodawaniu komentarzy </br>
 
 ## Pomysły: </br>
 

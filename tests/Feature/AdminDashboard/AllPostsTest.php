@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\AdminDashboard;
 
 use App\Models\Category;
 use App\Models\Post;
@@ -13,15 +13,15 @@ use Spatie\Permission\PermissionRegistrar;
 use Tests\CreatesApplication;
 use Tests\TestCase;
 
-class AdminDashboardTest extends TestCase
+class AllPostsTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesApplication;
 
     private User $admin;
-    private User $user;
     private Post $post;
     private Category $category;
+    private array $posts;
     private UploadedFile $image;
 
     protected function setUp(): void
@@ -30,7 +30,6 @@ class AdminDashboardTest extends TestCase
         $this->app->make(PermissionRegistrar::class)->registerPermissions();
 
         $this->prepareUsers();
-        $this->prepareCategories();
         $this->preparePosts();
 
         $this->image = new UploadedFile(
@@ -66,9 +65,21 @@ class AdminDashboardTest extends TestCase
 
         $this->admin = User::factory()->create();
         $this->admin->assignRole('admin');
+    }
 
-        $this->user = User::factory()->create();
-        $this->user->assignRole('user');
+    private function preparePosts(): void
+    {
+        $this->post = Post::factory()->create([
+            'user_id' => $this->admin->id,
+            'title' => 'Post ' . 1
+        ]);
+
+        for ($i = 2; $i <= 3; ++$i) {
+            $this->posts[] = Post::factory()->create([
+                'user_id' => $this->admin->id,
+                'title' => 'Post ' . $i
+            ]);
+        }
     }
 
     private function prepareCategories(): void
@@ -76,28 +87,14 @@ class AdminDashboardTest extends TestCase
         $this->category = Category::factory()->create();
     }
 
-    private function preparePosts(): void
-    {
-        $this->post = Post::factory()->create([
-            'user_id' => $this->admin->id,
-            'category_id' => 1,
-            'title' => 'Post ' . 1
-        ]);
-
-        for ($i = 2; $i <= 3; ++$i) {
-            Post::factory()->create([
-                'user_id' => $this->admin->id,
-                'category_id' => $this->category->id,
-                'title' => 'Post ' . $i
-            ]);
-        }
-    }
-
     public function test_dashboard_screen_with_all_posts_can_be_rendered()
     {
+        $this->preparePosts();
+
         $response = $this->actingAs($this->admin)->get('/admin/posts');
 
         $response->assertSeeInOrder(['Manage Posts', 'All Posts', 'Users', 'title', 'Comments', 'Created at']);
+        $response->assertSee(array_map(static fn (Post $post) => $post->title, $this->posts), $this->post->title);
         $response->assertStatus(200);
     }
 
@@ -111,6 +108,8 @@ class AdminDashboardTest extends TestCase
 
     public function test_post_can_be_edited(): void
     {
+        $this->prepareCategories();
+
         $response = $this->actingAs($this->admin)->json('PATCH', '/user/posts/' . $this->post->id, [
             'title' => 'Updated title',
             'thumbnail' => $this->image,
@@ -138,50 +137,5 @@ class AdminDashboardTest extends TestCase
         $response->assertStatus(302);
         $response->assertSessionHas('success');
         $this->assertNull($deletedPost);
-    }
-
-    public function test_user_can_be_deleted()
-    {
-        $responseBefore = $this->actingAs($this->admin)->get('/admin/users');
-        $responseBefore->assertSee($this->user->username);
-
-        $response = $this->delete('admin/users/' . $this->user->id);
-        $response->assertStatus(302);
-        $response->assertSessionHas('success');
-
-        $responseAfter = $this->actingAs($this->admin)->get('/admin/users');
-        $responseAfter->assertDontSee($this->user->username);
-
-        $userAfter = User::where('id', $this->user->id)->first();
-        $this->assertNull($userAfter);
-    }
-
-    public function test_admin_can_not_delete_itself()
-    {
-        $responseBefore = $this->actingAs($this->admin)->get('/admin/users');
-        $responseBefore->assertSee($this->admin->username);
-
-        $response = $this->delete('admin/users/' . $this->admin->id);
-        $response->assertSessionHas('failure');
-
-        $responseAfter = $this->actingAs($this->admin)->get('/admin/users');
-        $responseAfter->assertSee($this->admin->username);
-
-        $adminAfter = User::where('id', $this->admin->id)->first();
-
-        $this->assertNotNull($adminAfter);
-    }
-
-    public function test_admin_can_change_user_role()
-    {
-        $this->assertTrue($this->user->hasRole('user'));
-        $this->assertFalse($this->user->hasRole('creator'));
-
-        $response = $this->actingAs($this->admin)->patch('admin/users/' . $this->user->id . '/' . Role::findByName('creator')->id);
-        $response->assertStatus(302);
-
-        $userAfter = User::where('id', $this->user->id)->first();
-        $this->assertTrue($userAfter->hasRole('creator'));
-        $this->assertFalse($userAfter->hasRole('user'));
     }
 }
