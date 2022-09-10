@@ -12,11 +12,12 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 use Tests\TestCase;
 
-class AllPostsTest extends TestCase
+class AdminDashboardTest extends TestCase
 {
     use RefreshDatabase;
 
     private User $admin;
+    private User $user;
     private Post $post;
     private Category $category;
 
@@ -53,8 +54,10 @@ class AllPostsTest extends TestCase
         }, $permissions, array_keys($permissions));
 
         $this->admin = User::factory()->create();
-
         $this->admin->assignRole('admin');
+
+        $this->user = User::factory()->create();
+        $this->user->assignRole('user');
     }
 
     private function prepareCategories(): void
@@ -105,7 +108,7 @@ class AllPostsTest extends TestCase
 
     public function test_post_can_be_edited(): void
     {
-        $response = $this->actingAs($this->admin)->json('PATCH', '/admin/posts/' . $this->post->id, [
+        $response = $this->actingAs($this->admin)->json('PATCH', '/user/posts/' . $this->post->id, [
             'title' => 'Updated title',
             'thumbnail' => UploadedFile::fake()->image('avatar.jpg'),
             'slug' => 'Updated slug',
@@ -132,5 +135,74 @@ class AllPostsTest extends TestCase
         $response->assertStatus(302);
         $response->assertSessionHas('success');
         $this->assertNull($deletedPost);
+    }
+
+    public function test_dashboard_screen_with_all_users_can_not_be_rendered_while_unauthenticated(): void
+    {
+        $response = $this->get('/admin/users');
+
+        $response->assertStatus(403);
+    }
+
+    public function test_dashboard_screen_with_all_users_can_be_rendered()
+    {
+        $response = $this->actingAs($this->admin)->get('/admin/users');
+
+        $response->assertSeeInOrder([
+            'Manage Posts',
+            'All Posts',
+            'Users',
+            'Username',
+            'Name',
+            'Created at',
+            'Role',
+            $this->admin->username
+        ]);
+        $response->assertStatus(200);
+    }
+
+    public function test_user_can_be_deleted()
+    {
+        $responseBefore = $this->actingAs($this->admin)->get('/admin/users');
+        $responseBefore->assertSee($this->user->username);
+
+        $response = $this->delete('admin/users/' . $this->user->id);
+        $response->assertStatus(302);
+        $response->assertSessionHas('success');
+
+        $responseAfter = $this->actingAs($this->admin)->get('/admin/users');
+        $responseAfter->assertDontSee($this->user->username);
+
+        $userAfter = User::where('id', $this->user->id)->first();
+        $this->assertNull($userAfter);
+    }
+
+    public function test_admin_can_not_delete_itself()
+    {
+        $responseBefore = $this->actingAs($this->admin)->get('/admin/users');
+        $responseBefore->assertSee($this->admin->username);
+
+        $response = $this->delete('admin/users/' . $this->admin->id);
+        $response->assertSessionHas('failure');
+
+        $responseAfter = $this->actingAs($this->admin)->get('/admin/users');
+        $responseAfter->assertSee($this->admin->username);
+
+        $adminAfter = User::where('id', $this->admin->id)->first();
+
+        $this->assertNotNull($adminAfter);
+    }
+
+    public function test_admin_can_change_user_role()
+    {
+        $this->assertTrue($this->user->hasRole('user'));
+        $this->assertFalse($this->user->hasRole('creator'));
+
+        $response = $this->actingAs($this->admin)->patch('admin/users/' . $this->user->id . '/' . Role::findByName('creator')->id);
+        $response->assertStatus(302);
+
+        $userAfter = User::where('id', $this->user->id)->first();
+        $this->assertTrue($userAfter->hasRole('creator'));
+        $this->assertFalse($userAfter->hasRole('user'));
     }
 }

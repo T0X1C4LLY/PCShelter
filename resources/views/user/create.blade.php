@@ -1,7 +1,7 @@
 <x-main-layout>
     <x-user-setting heading="Publish New Post">
         <script src="https://use.fontawesome.com/3a2eaf6206.js"></script>
-        <form method="POST" action="/admin/posts" enctype="multipart/form-data">
+        <form method="POST" action="/user/posts" enctype="multipart/form-data">
             @csrf
             <x-form.input name="title"/>
             <x-form.input name="slug"/>

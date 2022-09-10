@@ -34,7 +34,7 @@ Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store
 
 Route::middleware('can:enter_dashboard')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)
-        ->except(['show', 'create'])
+        ->except(['show', 'create', 'store', 'update'])
         ->parameters(['posts' => 'post:id']);
     Route::get('admin/users', [AdminUserController::class, 'index']);
     Route::delete('admin/users/{user:id}', [AdminUserController::class, 'destroy']);
@@ -51,7 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::post('user/change/delete', [UserController::class, 'deleteAccount']);
 
     Route::get('user/posts', [UsersPostsController::class, 'index'])->middleware('can:watch_own_posts');
+    Route::post('user/posts', [UsersPostsController::class, 'store'])->middleware('can:create_post');
     Route::get('user/posts/create', [UsersPostsController::class, 'create'])->middleware('can:create_post');
+    Route::patch('user/posts/{post:id}', [UsersPostsController::class, 'update']);
     Route::get('user/comments', [UsersCommentsController::class, 'index']);
     Route::get('user/newsletter', [NewsletterController::class, 'index']);
     Route::post('unsubscribe', [NewsletterController::class, 'destroy']);
