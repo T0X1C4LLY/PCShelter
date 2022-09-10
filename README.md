@@ -15,6 +15,7 @@ itsgoingd/clockwork </br>
 mailchimp/marketing </br>
 spatie/laravel-permission </br>
 vimeo/psalm </br>
+brianium/paratest </br>
 
 Tailwind </br>
 AlpineJS </br>
