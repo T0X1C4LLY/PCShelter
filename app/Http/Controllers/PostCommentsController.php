@@ -23,10 +23,10 @@ class PostCommentsController extends Controller
             $post->comments()->create([
                 'user_id' => $user->id,
                 'body' => request('body')
-        ]);
+            ]);
+            return back(201)->with('success', 'You comment has been successfully posted');
         }
 
-
-        return back();
+        return back()->with('failure', 'Something went wrong, please try again');
     }
 }

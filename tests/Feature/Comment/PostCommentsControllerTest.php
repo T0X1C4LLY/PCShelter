@@ -1,20 +1,23 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\Comment;
 
+use App\Models\Category;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 use Tests\TestCase;
 
-class NotForUserDashboardTest extends TestCase
+class PostCommentsControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private User $commonUser;
+    private User $user;
+    private Category $category;
+    private Post $post;
 
     protected function setUp(): void
     {
@@ -22,6 +25,7 @@ class NotForUserDashboardTest extends TestCase
         $this->app->make(PermissionRegistrar::class)->registerPermissions();
 
         $this->prepareUsers();
+        $this->preparePost();
     }
 
     public function prepareUsers(): void
@@ -46,43 +50,29 @@ class NotForUserDashboardTest extends TestCase
             }, $roles);
         }, $permissions, array_keys($permissions));
 
-        $this->commonUser = User::factory()->create(['email' => 'user1@user.com']);
-        $this->commonUser->assignRole('user');
+        $this->user = User::factory()->create();
+        $this->user->assignRole('user');
     }
 
-    /** @dataProvider notForUserUrlProvider */
-    public function test_dashboard_screen_for_creator_can_not_be_rendered_when_common_user_is_logged(string $url): void
+    private function preparePost(): void
     {
-        $response = $this->actingAs($this->commonUser)->get($url);
-
-        $response->assertStatus(403);
+        $this->post = Post::factory()->create();
     }
 
-    private function notForUserUrlProvider(): array
-    {
-        return [
-            ['/user/posts'],
-            ['/user/posts/create'],
-        ];
-    }
 
-    public function test_new_post_can_not_be_created_by_common_user(): void
+    public function test_user_can_add_a_comment_to_post(): void
     {
-        $response = $this->actingAs($this->commonUser)->postJson('/user/posts', [
-            'title' => 'Title',
-            'slug' => 'Slug',
-            'thumbnail' => new UploadedFile(
-                public_path('storage/public/logo.png'),
-                'logo.png',
-                null,
-                null,
-                true
-            ),
-            'excerpt' => 'Excerpt',
-            'body' => 'Body',
-            'category_id' => 1,
+        $commentBody = 'This is a test comment';
+
+        $response = $this->actingAs($this->user)->postJson('/posts/'.$this->post->slug.'/comments', [
+            'body' => $commentBody,
         ]);
 
-        $response->assertStatus(403);
+        $response->assertCreated();
+        $response->assertSessionHas('success');
+
+        $responseAfter = $this->get('/posts/'.$this->post->slug);
+
+        $responseAfter->assertSee($commentBody);
     }
 }

@@ -26,7 +26,7 @@ bash:
 	$(sail) $(exec) bash
 
 test:
-	$(sail) $(exec) php artisan test --parallel
+	$(sail) $(exec) php artisan test --parallel --coverage
 
 restart: down install
 
