@@ -26,16 +26,17 @@ Route::get('/logo', static function () {
 });
 
 Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
+
+Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store'])->middleware('can:add_comment');
 
 Route::post('subscribe', NewsletterController::class);
-
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
-Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
 Route::middleware('can:enter_dashboard')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)
         ->except(['show', 'create', 'store', 'update'])
         ->parameters(['posts' => 'post:id']);
+
     Route::get('admin/users', [AdminUserController::class, 'index']);
     Route::delete('admin/users/{user:id}', [AdminUserController::class, 'destroy']);
     Route::patch('admin/users/{user:id}/{id}', [AdminUserController::class, 'update']);

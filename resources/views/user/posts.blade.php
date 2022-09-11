@@ -17,21 +17,9 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-base font-medium text-yellow-600 text-center">
-                                            <a href="/user/posts?sort={{ request()->fullUrlIs("*&sort=DESC") ? 'ASC' : 'DESC' }}&by=title&{{ http_build_query(request()->except(['by', 'sort'])) }}">
-                                                Title
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
-                                        Comments
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
-                                        <a href="/user/posts?sort={{ request()->fullUrlIs("*&sort=DESC") ? 'ASC' : 'DESC' }}&by=created_at&{{ http_build_query(request()->except(['by', 'sort'])) }}">
-                                            Created at
-                                        </a>
-                                    </td>
+                                    <x-posts-anchor user="user" value="title"/>
+                                    <x-posts-anchor user="user" value="comments"/>
+                                    <x-posts-anchor user="user" value="created at"/>
                                 </tr>
                                 @foreach ($posts as $post)
                                     <tr>
@@ -45,11 +33,7 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                            {{ count(DB::table('comments')
-                                                ->where('post_id', $post->id)
-                                                ->get()
-                                                )
-                                            }}
+                                            {{ $post->comments }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                             {{ $post->created_at }}

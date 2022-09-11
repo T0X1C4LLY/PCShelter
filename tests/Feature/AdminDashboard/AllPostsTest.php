@@ -23,6 +23,8 @@ class AllPostsTest extends TestCase
     private Post $post;
     private Category $category;
     private array $posts;
+    private int $amountOfPosts = 3;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -60,16 +62,10 @@ class AllPostsTest extends TestCase
 
     private function preparePosts(): void
     {
-        $this->post = Post::factory()->create([
-            'user_id' => $this->admin->id,
-            'title' => 'Post ' . 1
-        ]);
+        $this->post = Post::factory()->create();
 
-        for ($i = 2; $i <= 3; ++$i) {
-            $this->posts[] = Post::factory()->create([
-                'user_id' => $this->admin->id,
-                'title' => 'Post ' . $i
-            ]);
+        for ($i = 1; $i < $this->amountOfPosts; ++$i) {
+            $this->posts[] = Post::factory()->create();
         }
     }
 
@@ -93,7 +89,7 @@ class AllPostsTest extends TestCase
     {
         $response = $this->actingAs($this->admin)->get('/admin/posts/' . $this->post->id . '/edit');
 
-        $response->assertSeeInOrder(['Edit Post: Post 1', 'Title', 'Slug', 'Thumbnail', 'Excerpt', 'Body', 'Category', 'Update']);
+        $response->assertSeeInOrder(['Edit Post: '.$this->post->title, 'Title', 'Slug', 'Thumbnail', 'Excerpt', 'Body', 'Category', 'Update']);
         $response->assertStatus(200);
     }
 

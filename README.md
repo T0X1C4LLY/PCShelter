@@ -76,7 +76,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Zrobić kontrolery do edycji postów/danych użytkownika/komentarzy itp.</s> </br>
 <s>Zrobić zwrtotkę z fail zamiast korzystać z success tam gdzie się coś nie powiodło np. UserController</s> </br>
 <s>Dodać sprawdzanie bezpiecznych haseł 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/'</s> </br>
-Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (w przyszłości może jakiś punktów). Problem: te dane są w różnych tabelach a przesyłam obiekty - może łaczyć te dane w kontrolerach i wysyłać jako stdObject albo uj wie co innnego </br>
+<s>Trzeba zastanowić się jak stworzyć sortowanie postów po ilości komentarzy (w przyszłości może jakiś punktów). Problem: te dane są w różnych tabelach a przesyłam obiekty - może łaczyć te dane w kontrolerach i wysyłać jako stdObject albo uj wie co innnego</s> </br>
 <s>Chyba będzie trzeba przenieść możliwość tworzenia artykułów do panelu użytkownika, żeby creator'zy też mogli tworzyć</s> </br>
 <s>Naprawić sekcję security bo pola zwiększają się gdy błąd jest zbyt długi - może wywalić to do failure?</s> </br>
 <s>Dodać możliwość aktualizacji roli użytkownika w sekcji admina</s> </br>
@@ -89,13 +89,13 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Stworzyć opcję usunięcia subskrypcji newslettera</s> </br>
 <s>Zrobić wstrzykiwanie Mailchimpa z domyślnymi ustawieniami</s> </br>
 <s>Usunąć stopkę z newsletterem w panelu admina/użytkownika</s> </br>
-Napisać testy na dosłownie wszystko </br>
-Napisać testy na komponenty </br>
+<s>Napisać testy na dosłownie wszystko</s> </br>
+<s>Napisać testy na komponenty</s> </br>
 <s>Wyłączyć zapisywanie obrazów w storage przy testach - AllPostsTest test_post_can_be_edited()</s> </br>
 <s>Może wrzucić testy do jednego pliku tak, żeby nie robić miliona razy factory()->create()</s> </br>
-Trzeba zająć się routami bo się bałagan zrobił co gdzie powinno walić </br>
+<s>Trzeba zająć się routami bo się bałagan zrobił co gdzie powinno walić</s> </br>
 <s>Stworzyć dummy implementation dla newslettera dla testów</s> </br>
-Skorzystać z zabezpieczenia przy dodawaniu komentarzy </br>
+<s>Skorzystać z zabezpieczenia przy dodawaniu komentarzy</s> </br>
 
 ## Pomysły: </br>
 

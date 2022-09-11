@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class UsersPostsController extends Controller
@@ -26,7 +27,10 @@ class UsersPostsController extends Controller
 
         if ($user) {
             return view('user.posts', [
-                'posts' => Post::filterForCreator(['search' => request(['search']), 'id' => $user->id])
+                'posts' => Post::select(['slug', 'title', 'posts.created_at', DB::raw('COALESCE(COUNT(comments.id),0) as comments')])
+                    ->leftJoin('comments', 'comments.post_id', '=', 'posts.id')
+                    ->filterForCreator(['search' => request(['search']), 'id' => $user->id])
+                    ->groupBy(['title', 'slug', 'posts.created_at'])
                     ->orderBy($by, $sort)
                     ->paginate(25)
                     ->onEachSide(1),

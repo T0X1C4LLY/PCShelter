@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\DB;
 
 class Post extends Model
 {
@@ -106,7 +105,7 @@ class Post extends Model
 
                 return $query->whereHas(
                     'author',
-                    fn (Builder $query): Builder => $query->where('user_id', strtolower($authorAsString)),
+                    fn (Builder $query): Builder => $query->where('posts.user_id', strtolower($authorAsString)),
                 );
             }
         );

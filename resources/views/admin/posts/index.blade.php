@@ -17,53 +17,29 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <tbody class="bg-white divide-y divide-gray-200">
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-base font-medium text-yellow-600 text-center">
-                                        <a href="/admin/posts?sort={{ request()->fullUrlIs("*&sort=DESC") ? 'ASC' : 'DESC' }}&by=title&{{ http_build_query(request()->except(['by', 'sort'])) }}">
-                                            Title
-                                        </a>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
-                                    Comments
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
-                                    <a href="/admin/posts?sort={{ request()->fullUrlIs("*&sort=DESC") ? 'ASC' : 'DESC' }}&by=created_at&{{ http_build_query(request()->except(['by', 'sort'])) }}">
-                                        Created at
-                                    </a>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
-
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
-
-                                </td>
+                                <x-posts-anchor user="admin" value="title"/>
+                                <x-posts-anchor user="admin" value="comments"/>
+                                <x-posts-anchor user="admin" value="created at"/>
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600" />
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600" />
                             </tr>
                             @foreach ($posts as $post)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="max-w-xl truncate flex items-center">
-                                            <div class="text-sm font-medium text-gray-900 max-w-xs truncate">
-                                                <a href="/posts/{{ $post->slug }}">
-                                                    {{ $post->title }}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <x-post-table-element>
+                                        <a href="/posts/{{ $post->slug }}">
+                                            {{ $post->title }}
+                                        </a>
+                                    </x-post-table-element>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="max-w-xl truncate text-center">
                                             <div class="text-sm font-medium text-gray-900">
-                                                {{ \App\Models\Comment::where('post_id', $post->id)->count() }}
+                                                {{ $post->comments }}
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="max-w-xl truncate flex items-center">
-                                            <div class="text-sm font-medium text-gray-900">
-                                                    {{ $post->created_at }}
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <x-post-table-element>
+                                        {{ $post->created_at }}
+                                    </x-post-table-element>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="/admin/posts/{{ $post->id }}/edit"
                                            class="text-yellow-500 hover:text-yellow-600"
