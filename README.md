@@ -16,6 +16,7 @@ mailchimp/marketing </br>
 spatie/laravel-permission </br>
 vimeo/psalm </br>
 brianium/paratest </br>
+propaganistas/laravel-disposable-email </br>
 
 Tailwind </br>
 AlpineJS </br>
