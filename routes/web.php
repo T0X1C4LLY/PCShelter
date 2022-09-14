@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersCommentsController;
@@ -59,5 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::get('user/newsletter', [NewsletterController::class, 'index']);
     Route::post('unsubscribe', [NewsletterController::class, 'destroy']);
 });
+
+Route::get('auth/steam', [AuthController::class, 'redirectToSteam'])->name('auth.steam');
+Route::get('auth/steam/handle', [AuthController::class, 'handle'])->name('auth.steam.handle');
 
 require __DIR__.'/auth.php';

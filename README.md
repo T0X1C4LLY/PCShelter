@@ -17,6 +17,7 @@ spatie/laravel-permission </br>
 vimeo/psalm </br>
 brianium/paratest </br>
 propaganistas/laravel-disposable-email </br>
+invisnik/laravel-steam-auth </br>
 
 Tailwind </br>
 AlpineJS </br>

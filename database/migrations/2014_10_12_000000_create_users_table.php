@@ -21,6 +21,9 @@ return new class () extends Migration {
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('steamUsername')->nullable();
+            $table->string('avatar')->nullable();
+            $table->bigInteger('steamId')->nullable();
         });
     }
 

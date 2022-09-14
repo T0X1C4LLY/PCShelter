@@ -36,6 +36,7 @@
             "admin",
             "creator",
             "user"
-        ]
+        ],
+        "delete_steam_data": []
     }
 }
