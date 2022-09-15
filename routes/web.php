@@ -4,11 +4,13 @@ use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SteamAuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SteamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersCommentsController;
 use App\Http\Controllers\UsersPostsController;
+use App\Http\Controllers\UserSteamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,10 +60,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('user/posts/{post:id}', [UsersPostsController::class, 'update']);
     Route::get('user/comments', [UsersCommentsController::class, 'index']);
     Route::get('user/newsletter', [NewsletterController::class, 'index']);
+    Route::get('user/steam', [UserSteamController::class, 'index']);
+    Route::delete('steam', [UserSteamController::class, 'destroy']);
     Route::post('unsubscribe', [NewsletterController::class, 'destroy']);
-});
 
-Route::get('auth/steam', [AuthController::class, 'redirectToSteam'])->name('auth.steam');
-Route::get('auth/steam/handle', [AuthController::class, 'handle'])->name('auth.steam.handle');
+    Route::get('auth/steam', [SteamAuthController::class, 'redirectToSteam'])->name('auth.steam')->middleware('can:login_to_steam');
+    Route::get('auth/steam/handle', [SteamAuthController::class, 'handle'])->name('auth.steam.handle')->middleware('can:login_to_steam');
+});
 
 require __DIR__.'/auth.php';

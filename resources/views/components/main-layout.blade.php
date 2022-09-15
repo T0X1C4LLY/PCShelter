@@ -40,7 +40,6 @@
 
             <div class="mt-8 md:mt-0 flex items-center text-white">
                 @auth
-                    <x-steam-login-button/>
                     <x-dropdown>
                         <x-slot name="trigger">
                             <button class="text-xs font-bold uppercase">

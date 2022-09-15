@@ -59,6 +59,14 @@
                         Newsletter
                     </a>
                 </li>
+                <li>
+                    <a
+                        {{ request()->is('user/steam') ? '' : 'href=/user/steam'}}
+                        class="{{ request()->is('user/steam') ? 'text-yellow-500' : 'hover:text-yellow-300' }}"
+                    >
+                        Steam
+                    </a>
+                </li>
             </ul>
         </aside>
         <main class="flex-1 max-w-4xl">

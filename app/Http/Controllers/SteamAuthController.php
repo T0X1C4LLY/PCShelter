@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Invisnik\LaravelSteamAuth\SteamInfo;
 
-class AuthController extends Controller
+class SteamAuthController extends Controller
 {
     /**
      * The SteamAuth instance.
@@ -82,6 +82,8 @@ class AuthController extends Controller
         $user->save();
 
         $user->givePermissionTo('delete_steam_data');
+        $user->revokePermissionTo("login_to_steam");
+        $user->givePermissionTo('add_review');
 
         return $user;
     }

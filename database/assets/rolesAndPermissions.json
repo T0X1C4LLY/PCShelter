@@ -37,6 +37,12 @@
             "creator",
             "user"
         ],
-        "delete_steam_data": []
+        "login_to_steam": [
+            "admin",
+            "creator",
+            "user"
+        ],
+        "delete_steam_data": [],
+        "add_review": []
     }
 }

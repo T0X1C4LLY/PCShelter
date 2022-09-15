@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 
@@ -65,6 +64,7 @@ class RegisteredUserController extends Controller
         foreach ($users as $email) {
             if ($email->email_address === $user->email) {
                 $user->givePermissionTo('unsubscribe');
+                $user->givePermissionTo('login_to_steam');
             }
         }
 
