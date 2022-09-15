@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('auth/steam', [SteamAuthController::class, 'redirectToSteam'])->name('auth.steam')->middleware('can:login_to_steam');
     Route::get('auth/steam/handle', [SteamAuthController::class, 'handle'])->name('auth.steam.handle')->middleware('can:login_to_steam');
+    Route::get('steam', [SteamController::class, 'index']);
 });
 
 require __DIR__.'/auth.php';
