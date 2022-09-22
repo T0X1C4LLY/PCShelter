@@ -4,7 +4,7 @@ namespace App\Models\Steam;
 
 use JsonSerializable;
 
-class Game implements JsonSerializable
+class MyGame implements JsonSerializable
 {
     private function __construct(
         public readonly int $appId,

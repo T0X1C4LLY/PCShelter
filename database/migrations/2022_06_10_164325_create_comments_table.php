@@ -17,7 +17,7 @@ return new class () extends Migration {
 //            $table->unsignedBigInteger('post_id'); //bigInteger bo pole id to zawsze bigInteger
 //            $table->foreign('post_id')->references('id')->on('posts')->cascadeOnDelete(); //te 2 linijki robią to samo co ta niżej
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
             $table->text('body');
             $table->timestamps();
         });

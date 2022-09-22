@@ -69,10 +69,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class);
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
     /**
      * @throws Exception
      */
-    public function role(): string
+    public function getRole(): string
     {
         $roleId = DB::table('model_has_roles')->where('model_id', $this->id)->first('role_id');
 

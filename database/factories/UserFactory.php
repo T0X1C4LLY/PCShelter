@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @extends Factory<\App\Models\User>
@@ -18,6 +19,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'id' => Uuid::uuid4(),
             'name' => $this->faker->name(),
             'username' => $this->faker->unique()->userName(),
             'email' => $this->faker->unique()->safeEmail(),

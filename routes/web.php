@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\SteamAuthController;
@@ -67,6 +68,7 @@ Route::middleware('auth')->group(function () {
     Route::get('auth/steam', [SteamAuthController::class, 'redirectToSteam'])->name('auth.steam')->middleware('can:login_to_steam');
     Route::get('auth/steam/handle', [SteamAuthController::class, 'handle'])->name('auth.steam.handle')->middleware('can:login_to_steam');
     Route::get('steam', [SteamController::class, 'index']);
+    Route::get('games', [GameController::class, 'index']);
 });
 
 require __DIR__.'/auth.php';

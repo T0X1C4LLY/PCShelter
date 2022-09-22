@@ -1,0 +1,63 @@
+[
+    {
+        "id": "b12ad55a-43ee-4155-b510-2e0cafc852ff",
+        "steam_appid": 10,
+        "name": "Counter-Strike",
+        "categories": [
+            "Wieloosobowa",
+            "PvP",
+            "Sieciowe PvP",
+            "PvP na wspólnym/dzielonym ekranie"
+
+        ],
+        "genres": [
+            "Akcja"
+        ]
+    },
+    {
+        "id": "f69a577c-dda7-4c93-b1e4-be80df43a693",
+        "steam_appid": 218620,
+        "name": "PAYDAY 2",
+        "categories": [
+            "Jednoosobowa",
+            "Wieloosobowa",
+            "Kooperacja",
+            "Sieciowa kooperacja"
+
+        ],
+        "genres": [
+            "Akcja",
+            "RPG"
+        ]
+    },
+    {
+        "id": "09e5fd85-ca92-47d1-b77f-04d51452db0d",
+        "steam_appid": 322500,
+        "name": "SUPERHOT",
+        "categories": [
+            "Jednoosobowa"
+
+        ],
+        "genres": [
+            "Akcja",
+            "Niezależne"
+        ]
+    },
+    {
+        "id": "54ce2fbd-528d-47e0-a519-28a8e90355d4",
+        "steam_appid": 239140,
+        "name": "Dying Light",
+        "categories": [
+            "Jednoosobowa",
+            "Wieloosobowa",
+            "PvP",
+            "Sieciowe PvP",
+            "Kooperacja",
+            "Sieciowa kooperacja"
+        ],
+        "genres": [
+            "Akcja",
+            "RPG"
+        ]
+    }
+]

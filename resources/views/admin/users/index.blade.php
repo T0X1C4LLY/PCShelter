@@ -77,7 +77,7 @@
                                                 <x-panel-dropdown>
                                                     <x-slot name="trigger">
                                                         <button class="text-xs font-bold uppercase">
-                                                            {{ $user->role() }}
+                                                            {{ $user->getRole() }}
                                                         </button>
                                                     </x-slot>
                                                     @foreach ($roles as $role)
@@ -85,8 +85,8 @@
                                                             @method('PATCH')
                                                             @csrf
                                                             <button type="submit"
-                                                                    class="block w-full text-left px-3 text-sm leading-6 hover:bg-yellow-500 focus:bg-yellow-500 hover:text-white focus:text-white {{ ($user->role() == $role->name) ? ' bg-yellow-500 text-white pointer-events-none' : ' text-yellow-500' }}"
-                                                                    {{ ($user->role() == $role->name) ? 'disabled' : '' }}
+                                                                    class="block w-full text-left px-3 text-sm leading-6 hover:bg-yellow-500 focus:bg-yellow-500 hover:text-white focus:text-white {{ ($user->getRole() == $role->name) ? ' bg-yellow-500 text-white pointer-events-none' : ' text-yellow-500' }}"
+                                                                    {{ ($user->getRole() == $role->name) ? 'disabled' : '' }}
                                                             >
                                                                 {{ $role->name }}
                                                             </button>

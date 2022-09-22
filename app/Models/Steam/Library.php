@@ -16,7 +16,7 @@ class Library implements JsonSerializable
     {
         return new self(
             $data['game_count'],
-            array_map(static fn (array $game) => Game::fromArray($game), $data['games'])
+            array_map(static fn (array $game) => MyGame::fromArray($game), $data['games'])
         );
     }
 
@@ -35,7 +35,7 @@ class Library implements JsonSerializable
     {
         return [
             'game_cunt' => $this->gameCunt,
-            'games' => array_map(static fn (Game $game) => $game->jsonSerialize(), $this->games),
+            'games' => array_map(static fn (MyGame $game) => $game->jsonSerialize(), $this->games),
         ];
     }
 }
