@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\TraitUuid;
 use Exception;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use Notifiable;
     use HasRoles;
+    use TraitUuid;
 
     /**
      * The attributes that are mass assignable.
@@ -52,6 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'id' => 'string'
     ];
 
 //    public function getUsernameAttribute(string $username): string
