@@ -13,6 +13,7 @@ return new class () extends Migration {
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->foreignUuid('game_id')->constrained()->cascadeOnDelete();
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
             $table->unsignedInteger('music');
@@ -27,7 +28,7 @@ return new class () extends Migration {
             $table->unsignedInteger('gore');
             $table->unsignedInteger('unique');
             $table->unsignedInteger('general');
-            $table->unsignedInteger('current_time_played');
+            $table->unsignedFloat('current_time_played');
             $table->timestamps();
         });
     }
