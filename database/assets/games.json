@@ -12,7 +12,11 @@
         ],
         "genres": [
             "Akcja"
-        ]
+        ],
+        "release_date": {
+            "coming_soon": false,
+            "date": "1 listopada 2000"
+        }
     },
     {
         "id": "f69a577c-dda7-4c93-b1e4-be80df43a693",
@@ -28,7 +32,11 @@
         "genres": [
             "Akcja",
             "RPG"
-        ]
+        ],
+        "release_date": {
+            "coming_soon":false,
+            "date":"13 sierpnia 2013"
+        }
     },
     {
         "id": "09e5fd85-ca92-47d1-b77f-04d51452db0d",
@@ -41,7 +49,11 @@
         "genres": [
             "Akcja",
             "Niezależne"
-        ]
+        ],
+        "release_date": {
+            "coming_soon":false,
+            "date":"25 lutego 2016"
+        }
     },
     {
         "id": "54ce2fbd-528d-47e0-a519-28a8e90355d4",
@@ -58,6 +70,10 @@
         "genres": [
             "Akcja",
             "RPG"
-        ]
+        ],
+        "release_date": {
+            "coming_soon":false,
+            "date":"27 stycznia 2015"
+        }
     }
 ]

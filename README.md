@@ -98,7 +98,7 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Trzeba zająć się routami bo się bałagan zrobił co gdzie powinno walić</s> </br>
 <s>Stworzyć dummy implementation dla newslettera dla testów</s> </br>
 <s>Skorzystać z zabezpieczenia przy dodawaniu komentarzy</s> </br>
-Trzeba stworzyć factory dla roles/permission żeby id było z uuid albo robić to w seederach </br>
+</s>Trzeba stworzyć factory dla roles/permission żeby id było z uuid albo robić to w seederach</s> </br>
 Seedować Review (sprawdzić czy 1 użytkownik może dać 1 opinię na temat danej gry) </br>
 Połączyć sprawdzanie czy posiadam daną grę z dodawaniem recenzji </br>
 Dodać wyszukiwarkę gier - po nazwie z bazy i po steamid - dodawać grę do bazy jeśli jeszcze jej tam nie ma </br>

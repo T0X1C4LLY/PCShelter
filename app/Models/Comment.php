@@ -54,7 +54,6 @@ class Comment extends Model
         $query->when(
             $filters['id'] ?? false,
             function (Builder $query, mixed $author): Builder {
-
                 /** @var string $authorAsString */
                 $authorAsString = $author;
 

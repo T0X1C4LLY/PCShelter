@@ -70,7 +70,6 @@ class Post extends Model
         $query->when(
             $filters['author'] ?? false,
             function (Builder $query, mixed $author): Builder {
-
                 /** @var string $authorAsString */
                 $authorAsString = $author;
 
@@ -99,7 +98,6 @@ class Post extends Model
         $query->when(
             $filters['id'] ?? false,
             function (Builder $query, mixed $author): Builder {
-
                 /** @var string $authorAsString */
                 $authorAsString = $author;
 

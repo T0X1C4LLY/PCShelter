@@ -17,7 +17,7 @@ class GameController extends Controller
         $gamesAsArray = [];
         $gamesAsArray[] = array_map(/**
          * @throws JsonException
-         */ static function(Game $game):array {
+         */ static function (Game $game): array {
             $attributesToArray = $game->attributesToArray();
             $attributesToArray['categories'] = json_decode(
                 $attributesToArray['categories'],
