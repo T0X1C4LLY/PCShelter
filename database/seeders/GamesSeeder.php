@@ -42,9 +42,6 @@ class GamesSeeder extends Seeder
          * @return void
          * @throws \JsonException
          */ static function (array $game): void {
-            $game['categories'] = json_encode($game['categories'], JSON_THROW_ON_ERROR);
-            $game['genres'] = json_encode($game['genres'], JSON_THROW_ON_ERROR);
-            $game['release_date'] = json_encode($game['release_date'], JSON_THROW_ON_ERROR);
             Game::create($game);
         }, $games);
     }

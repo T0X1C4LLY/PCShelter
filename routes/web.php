@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SteamAuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SteamController;
@@ -35,6 +36,8 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store'])->middleware('can:add_comment');
 
 Route::post('subscribe', NewsletterController::class);
+
+Route::get('games', [GameController::class, 'index']);
 
 Route::middleware('can:enter_dashboard')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)
@@ -68,7 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::get('auth/steam', [SteamAuthController::class, 'redirectToSteam'])->name('auth.steam')->middleware('can:login_to_steam');
     Route::get('auth/steam/handle', [SteamAuthController::class, 'handle'])->name('auth.steam.handle')->middleware('can:login_to_steam');
     Route::get('steam', [SteamController::class, 'index']);
-    Route::get('games', [GameController::class, 'index']);
+    Route::get('games/{steam_appid}', [GameController::class, 'show']);
 });
 
 require __DIR__.'/auth.php';

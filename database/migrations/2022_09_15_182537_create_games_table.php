@@ -19,6 +19,7 @@ return new class () extends Migration {
             $table->json('categories');
             $table->json('genres');
             $table->json('release_date');
+            $table->string('header_image');
         });
     }
 

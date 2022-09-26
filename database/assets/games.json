@@ -16,7 +16,8 @@
         "release_date": {
             "coming_soon": false,
             "date": "1 listopada 2000"
-        }
+        },
+        "header_image": "https:\/\/cdn.akamai.steamstatic.com\/steam\/apps\/10\/header.jpg?t=1602535893"
     },
     {
         "id": "f69a577c-dda7-4c93-b1e4-be80df43a693",
@@ -36,7 +37,8 @@
         "release_date": {
             "coming_soon":false,
             "date":"13 sierpnia 2013"
-        }
+        },
+        "header_image": "https:\/\/cdn.akamai.steamstatic.com\/steam\/apps\/218620\/header.jpg?t=1663853898"
     },
     {
         "id": "09e5fd85-ca92-47d1-b77f-04d51452db0d",
@@ -53,7 +55,8 @@
         "release_date": {
             "coming_soon":false,
             "date":"25 lutego 2016"
-        }
+        },
+        "header_image": "https:\/\/cdn.akamai.steamstatic.com\/steam\/apps\/322500\/header.jpg?t=1661853120"
     },
     {
         "id": "54ce2fbd-528d-47e0-a519-28a8e90355d4",
@@ -74,6 +77,7 @@
         "release_date": {
             "coming_soon":false,
             "date":"27 stycznia 2015"
-        }
+        },
+        "header_image":"https:\/\/cdn.akamai.steamstatic.com\/steam\/apps\/239140\/header.jpg?t=1659436723"
     }
 ]

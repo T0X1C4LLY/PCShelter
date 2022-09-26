@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -19,9 +22,9 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): void
+    public function create(): Factory|View|Application
     {
-        //
+        return view('reviews.index');
     }
 
     /**
