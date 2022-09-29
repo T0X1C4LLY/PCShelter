@@ -8,7 +8,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 
@@ -21,7 +20,7 @@ class GameController extends Controller
         'about_the_game',
         'short_description',
 //        'supported_languages',
-//        'header_image',
+        'header_image',
         'developers',
         'publishers',
         'platforms',
@@ -92,8 +91,6 @@ class GameController extends Controller
             $info[$key] = $gameData['data'][$key] ?? null;
         }
 
-//        ddd($info);
-
         // Replace steam URl to PCShelter URL
         $info['about_the_game'] = preg_replace(
             '/("https:\/\/store.steampowered.com\/app)/',
@@ -107,13 +104,6 @@ class GameController extends Controller
             '"',
             $info['about_the_game']
         );
-//
-//        // Replace steam links as plain text to game title
-//        $info['detailed_description'] = Str::headline(preg_replace(
-//            '/(https:\/\/store.steampowered.com\/app\/)([0-9]+\/)(\w+)\//',
-//            '$3',
-//            $info['detailed_description'])
-//        );
 
         if ($info['release_date']) {
             $info['release_date'] = $info['release_date']['coming_soon'] ? 'Coming Soon' : $info['release_date']['date'];

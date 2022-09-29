@@ -38,6 +38,8 @@ Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store
 Route::post('subscribe', NewsletterController::class);
 
 Route::get('games', [GameController::class, 'index']);
+Route::get('games/{steam_appid}', [GameController::class, 'show']);
+
 
 Route::middleware('can:enter_dashboard')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)
@@ -71,7 +73,6 @@ Route::middleware('auth')->group(function () {
     Route::get('auth/steam', [SteamAuthController::class, 'redirectToSteam'])->name('auth.steam')->middleware('can:login_to_steam');
     Route::get('auth/steam/handle', [SteamAuthController::class, 'handle'])->name('auth.steam.handle')->middleware('can:login_to_steam');
     Route::get('steam', [SteamController::class, 'index']);
-    Route::get('games/{steam_appid}', [GameController::class, 'show']);
 });
 
 require __DIR__.'/auth.php';
