@@ -45,14 +45,15 @@ class UsersSeeder extends Seeder
         $quantityOfCreators = 15;
 
         for ($i = 0; $i < $quantityOfCommonUsers; $i++) {
-            /** @var Model $user */
-            User::factory()->create();
+            /** @var Model $temp */
+            $temp = User::factory()->create();
+            $temp->assignRole(Role::findByName('user'));
         }
 
         for ($i = 0; $i < $quantityOfCreators; $i++) {
-            /** @var Model $user */
-            $user = User::factory()->create();
-            $user->assignRole(Role::findByName('creator'));
+            /** @var Model $temp */
+            $temp = User::factory()->create();
+            $temp->assignRole(Role::findByName('creator'));
         }
     }
 }
