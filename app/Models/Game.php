@@ -26,6 +26,70 @@ class Game extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function reviewResults(): array
+    {
+        $keys = [
+            'music',
+            'graphic',
+            'atmosphere',
+            'difficulty',
+            'storyline',
+            'relaxation',
+            'pleasure',
+            'child-friendly',
+            'NSFW',
+            'gore',
+            'unique',
+            'general',
+        ];
+
+        $reviews = $this->reviews()->get()->toArray();
+
+        $reviewResults = [];
+
+        foreach ($keys as $key) {
+            $reviewResults[$key] = 0;
+        }
+
+        if (count($reviews) === 0) {
+            return [
+                'reviews' => $reviewResults,
+                'all' => count($reviews)
+            ];
+        }
+
+        foreach ($reviews as $review) {
+            foreach ($keys as $key) {
+                $reviewResults[$key] += $review[$key];
+            }
+        }
+
+        foreach ($keys as $key) {
+            $reviewResults[$key] /= count($reviews);
+        }
+
+        return [
+            'reviews' => $reviewResults,
+            'all' => count($reviews)
+        ];
+    }
+
+    public function getBestAndGeneralReviews(): array
+    {
+        $reviews = $this->reviewResults();
+
+        $best = array_search(max($reviews['reviews']), $reviews['reviews'], true);
+
+        return [
+            'best' => [
+                'name' => $best,
+                'score' => round($reviews['reviews'][$best], 2),
+            ],
+            'general' => round($reviews['reviews']['general'], 2),
+            'allReviews' => $reviews['all'],
+        ];
+    }
+
     public function scopeFilter(Builder $query, array $filters): void
     {
         $query->when(

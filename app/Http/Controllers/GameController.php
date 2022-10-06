@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\URL;
+use JsonException;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class GameController extends Controller
 {
     private array $gameArrayKeys = [
         'name',
-//        'steam_appid',
+        'steam_appid',
 //        'detailed_description',
         'about_the_game',
         'short_description',
@@ -57,9 +58,14 @@ class GameController extends Controller
         ]);
     }
 
+    /**
+     * @throws JsonException
+     */
     public function show(int $steamGameId): Factory|View|Application|RedirectResponse
     {
+        /** @var string $data */
         $data = file_get_contents('https://store.steampowered.com/api/appdetails?l=english&appids='.$steamGameId);
+        /** @var array $dataAsArray */
         $dataAsArray = json_decode($data, true, 512, JSON_THROW_ON_ERROR);
         $dataWithoutKey = array_values($dataAsArray);
         $gameData = $dataWithoutKey[0];
@@ -73,10 +79,10 @@ class GameController extends Controller
         if (!$game) {
             $data = $gameData['data'];
 
-            $genres = array_map(static fn(array $value) => $value['description'], $data['genres']);
-            $categories = array_map(static fn(array $value) => $value['description'], $data['categories']);
+            $genres = array_map(static fn (array $value) => $value['description'], $data['genres']);
+            $categories = array_map(static fn (array $value) => $value['description'], $data['categories']);
 
-            Game::create([
+            $game = Game::create([
                 'id' => Uuid::uuid4(),
                 'steam_appid' => $data['steam_appid'],
                 'name' => $data['name'],
@@ -86,6 +92,8 @@ class GameController extends Controller
                 'header_image' => $data['header_image'],
             ]);
         }
+
+        $info = [];
 
         foreach ($this->gameArrayKeys as $key) {
             $info[$key] = $gameData['data'][$key] ?? null;
@@ -109,8 +117,10 @@ class GameController extends Controller
             $info['release_date'] = $info['release_date']['coming_soon'] ? 'Coming Soon' : $info['release_date']['date'];
         }
 
+        /** @var Game $game */
         return view('games.show', [
             'game' => $info,
+            'reviews' => $game->getBestAndGeneralReviews(),
         ]);
     }
 

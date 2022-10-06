@@ -24,7 +24,7 @@ class ReviewController extends Controller
      */
     public function create(): Factory|View|Application
     {
-        return view('reviews.index');
+        return view('reviews.create');
     }
 
     /**
