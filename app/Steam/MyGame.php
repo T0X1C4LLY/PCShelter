@@ -36,7 +36,7 @@ class MyGame implements JsonSerializable
 
     public function wasEverPlayed(): bool
     {
-        return $this->playtimeForever > 0;
+        return $this->playtimeForever >= 1;
     }
 
     public function jsonSerialize(): array
