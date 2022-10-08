@@ -1,11 +1,16 @@
 <?php
 
-namespace App\Models\Steam;
+namespace App\Steam;
 
+use Exception;
 use JsonSerializable;
 
 class Library implements JsonSerializable
 {
+    /**
+     * @param int $gameCunt
+     * @param MyGame[] $games
+     */
     private function __construct(
         public readonly int $gameCunt,
         public readonly array $games,
@@ -29,6 +34,16 @@ class Library implements JsonSerializable
         }
 
         return false;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getByName(string $name): MyGame
+    {
+        $key = array_search($name, array_column($this->games, 'name'), true);
+
+        return $this->games[$key];
     }
 
     public function jsonSerialize(): array

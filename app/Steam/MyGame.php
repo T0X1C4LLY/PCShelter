@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Steam;
+namespace App\Steam;
 
 use JsonSerializable;
 

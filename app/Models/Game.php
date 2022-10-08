@@ -58,6 +58,21 @@ class Game extends Model
             ];
         }
 
+        /** @var array{
+         *     atmosphere: int,
+         *     child-friendly: int,
+         *     difficulty: int,
+         *     general: int,
+         *     gore: int,
+         *     graphic: int,
+         *     music: int,
+         *     NSFW: int,
+         *     pleasure: int,
+         *     relaxation: int,
+         *     storyline: int,
+         *     unique: int,
+         *     } $review
+         */
         foreach ($reviews as $review) {
             foreach ($keys as $key) {
                 $reviewResults[$key] += $review[$key];

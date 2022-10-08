@@ -126,6 +126,5 @@ class GameController extends Controller
 
     public function store(): void
     {
-
     }
 }

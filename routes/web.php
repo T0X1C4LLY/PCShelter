@@ -72,7 +72,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('auth/steam', [SteamAuthController::class, 'redirectToSteam'])->name('auth.steam')->middleware('can:login_to_steam');
     Route::get('auth/steam/handle', [SteamAuthController::class, 'handle'])->name('auth.steam.handle')->middleware('can:login_to_steam');
-    Route::get('steam', [SteamController::class, 'index']);
+
+    Route::get('add-review/{steamAppid}', [ReviewController::class, 'create'])->middleware('own_the_game');
+    Route::post('add-review', [ReviewController::class, 'store'])->middleware('own_the_game');
 });
 
 require __DIR__.'/auth.php';

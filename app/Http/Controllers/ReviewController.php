@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\Review;
+use App\Models\User;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 
 class ReviewController extends Controller
 {
@@ -22,19 +26,38 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): Factory|View|Application
+    public function create(string $steamAppid): Factory|View|Application
     {
-        return view('reviews.create');
+        /** @var Game $game */
+        $game = Game::where('steam_appid', '=', $steamAppid)->first(['name', 'id']);
+
+        return view('reviews.create', ['name' => $game->name, 'id' => $game->id]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param Request $request
+     *
+     * @throws Exception
      */
-    public function store(Request $request): void
+    public function store(Request $request): Redirector|Application|RedirectResponse
     {
-        //
+        $review = $request->request->all();
+
+        unset($review['_token']);
+
+        /** @var User $user */
+        $user = auth()->user();
+
+        $review['user_id'] = $user->id;
+
+        Review::factory()->create($review);
+
+        /** @var Game $game */
+        $game = Game::where('id', '=', $review['game_id'])->first('steam_appid');
+
+        return redirect('/games/'.$game->steam_appid)->with(['success' => 'Review added']);
     }
 
     /**
