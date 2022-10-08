@@ -102,6 +102,11 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 </s>Seedować Review (sprawdzić czy 1 użytkownik może dać 1 opinię na temat danej gry)</s> </br>
 <s>Połączyć sprawdzanie czy posiadam daną grę z dodawaniem recenzji</s> </br>
 <s>Dodać wyszukiwarkę gier - po nazwie z bazy i po steamid - dodawać grę do bazy jeśli jeszcze jej tam nie ma</s> </br>
+<s>Ujednolicić wygląd postów (stopka na samym dole artykuły a nie bezpośrednio pod fragmentem tekstu)</s> </br>
+Naprawić wyświetlanie avatarów (wysyłany jest UUID i sobie nie radzi) </br>
+Naprawić wyświetlanie przycisku Read More (potrafi wyświetlać się w 2 częściach) </br>
+Stworzyć przejście między blogiem a sekcją gier </br>
+Stworzyć wyszukiwarkę spersonalizowanych gier </br>
 
 ## Pomysły: </br>
 
