@@ -100,8 +100,8 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Skorzystać z zabezpieczenia przy dodawaniu komentarzy</s> </br>
 </s>Trzeba stworzyć factory dla roles/permission żeby id było z uuid albo robić to w seederach</s> </br>
 </s>Seedować Review (sprawdzić czy 1 użytkownik może dać 1 opinię na temat danej gry)</s> </br>
-Połączyć sprawdzanie czy posiadam daną grę z dodawaniem recenzji </br>
-Dodać wyszukiwarkę gier - po nazwie z bazy i po steamid - dodawać grę do bazy jeśli jeszcze jej tam nie ma </br>
+<s>Połączyć sprawdzanie czy posiadam daną grę z dodawaniem recenzji</s> </br>
+<s>Dodać wyszukiwarkę gier - po nazwie z bazy i po steamid - dodawać grę do bazy jeśli jeszcze jej tam nie ma</s> </br>
 
 ## Pomysły: </br>
 
