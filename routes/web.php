@@ -37,7 +37,7 @@ Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store
 
 Route::post('subscribe', NewsletterController::class);
 
-Route::get('games', [GameController::class, 'index']);
+Route::get('games', [GameController::class, 'index'])->name('games');
 Route::get('games/{steam_appid}', [GameController::class, 'show']);
 
 

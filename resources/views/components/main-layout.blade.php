@@ -31,13 +31,26 @@
     <body style="font-family: Open Sans, sans-serif; background-color: #1a202c" >
     <section class="px-6 py-8 bg-slate-700">
         <nav class="md:flex md:justify-between md:items-center">
-            <div>
-                <a href="/">
+            <div x-data="{ showLogo: false }" @click.away="showLogo = false" class="relative">
+                <div @click="showLogo = ! showLogo" class="cursor-pointer">
                     <x-breeze.application-logo/>
-{{--                    <img src="../../storage/logo.png" alt="PCShelter Logo" width="165" height="16">--}}
-                </a>
+                </div>
+                <div x-show="showLogo"
+                     class="py-2 absolute bg-gray-100 w-full mt-2 rounded-xl z-50 overflow-auto max-h-52"
+                     style="display: none"
+                >
+                    <x-dropdown-item href="/"
+                                     :active="request()->routeIs('home') && is_null(request()->getQueryString())"
+                    >
+                        Posts
+                    </x-dropdown-item>
+                    <x-dropdown-item href="/games"
+                                     :active="request()->routeIs('games') && is_null(request()->getQueryString())"
+                    >
+                        Games
+                    </x-dropdown-item>
+                </div>
             </div>
-
             <div class="mt-8 md:mt-0 flex items-center text-white">
                 @auth
                     <x-dropdown>

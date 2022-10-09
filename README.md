@@ -105,7 +105,7 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Ujednolicić wygląd postów (stopka na samym dole artykuły a nie bezpośrednio pod fragmentem tekstu)</s> </br>
 <s>Naprawić wyświetlanie avatarów (wysyłany jest UUID i sobie nie radzi)</s> </br>
 <s>Naprawić wyświetlanie przycisku Read More (potrafi wyświetlać się w 2 częściach)</s> </br>
-Stworzyć przejście między blogiem a sekcją gier </br>
+<s>Stworzyć przejście między blogiem a sekcją gier</s> </br>
 Stworzyć wyszukiwarkę spersonalizowanych gier </br>
 
 ## Pomysły: </br>

@@ -14,7 +14,7 @@
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
-                        <img src="https://i.pravatar.cc/75?img={{ $post->author->id }}" alt="avatar" class="rounded-xl">
+                        <img src="https://i.pravatar.cc/75?img={{ $post->author->name }}" alt="avatar" class="rounded-xl">
                         <div class="ml-3 text-left">
                             <h5 class="font-bold text-yellow-500">
                                 <a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
