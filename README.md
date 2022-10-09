@@ -98,8 +98,8 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Trzeba zająć się routami bo się bałagan zrobił co gdzie powinno walić</s> </br>
 <s>Stworzyć dummy implementation dla newslettera dla testów</s> </br>
 <s>Skorzystać z zabezpieczenia przy dodawaniu komentarzy</s> </br>
-</s>Trzeba stworzyć factory dla roles/permission żeby id było z uuid albo robić to w seederach</s> </br>
-</s>Seedować Review (sprawdzić czy 1 użytkownik może dać 1 opinię na temat danej gry)</s> </br>
+<s>Trzeba stworzyć factory dla roles/permission żeby id było z uuid albo robić to w seederach</s> </br>
+<s>Seedować Review (sprawdzić czy 1 użytkownik może dać 1 opinię na temat danej gry)</s> </br>
 <s>Połączyć sprawdzanie czy posiadam daną grę z dodawaniem recenzji</s> </br>
 <s>Dodać wyszukiwarkę gier - po nazwie z bazy i po steamid - dodawać grę do bazy jeśli jeszcze jej tam nie ma</s> </br>
 <s>Ujednolicić wygląd postów (stopka na samym dole artykuły a nie bezpośrednio pod fragmentem tekstu)</s> </br>
@@ -111,7 +111,7 @@ Stworzyć wyszukiwarkę spersonalizowanych gier </br>
 ## Pomysły: </br>
 
 Dodać opcję podejrzenia profilu po najechaniu na avatar/nazwę </br>
-Ustawić dane autora na dole postu a nie pod fragmentem artykułu </br>
+<s>Ustawić dane autora na dole postu a nie pod fragmentem artykułu</s> </br>
 Dodać opcję kilku kategorii </br>
 Dodać design przycisków do rejestracji logowania/konta </br>
 Dodać podpowiedzi po najechaniu na przycisk (okienka z opisem co to za przycisk) </br>

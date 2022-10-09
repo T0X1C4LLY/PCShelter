@@ -87,24 +87,7 @@ class GameController extends Controller
             return back()->with('failure', 'Something went wrong');
         }
 
-        $game = Game::where('steam_appid', '=', $steamGameId)->first();
-
-        if (!$game) {
-            $data = $gameData['data'];
-
-            $genres = array_map(static fn (array $value) => $value['description'], $data['genres']);
-            $categories = array_map(static fn (array $value) => $value['description'], $data['categories']);
-
-            $game = Game::create([
-                'id' => Uuid::uuid4(),
-                'steam_appid' => $data['steam_appid'],
-                'name' => $data['name'],
-                'categories' => $categories,
-                'genres' => $genres,
-                'release_date' => $data['release_date'],
-                'header_image' => $data['header_image'],
-            ]);
-        }
+        $game = Game::where('steam_appid', '=', $steamGameId)->first() ?: $this->store($gameData['data']);
 
         $info = [];
 
@@ -137,7 +120,19 @@ class GameController extends Controller
         ]);
     }
 
-    public function store(): void
+    public function store(array $data): Game
     {
+        $genres = array_map(static fn (array $value) => $value['description'], $data['genres']);
+        $categories = array_map(static fn (array $value) => $value['description'], $data['categories']);
+
+        return Game::create([
+            'id' => Uuid::uuid4(),
+            'steam_appid' => $data['steam_appid'],
+            'name' => $data['name'],
+            'categories' => $categories,
+            'genres' => $genres,
+            'release_date' => $data['release_date'],
+            'header_image' => $data['header_image'],
+        ]);
     }
 }
