@@ -7,6 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\URL;
 use JsonException;
 use Ramsey\Uuid\Uuid;
@@ -32,7 +33,7 @@ class GameController extends Controller
         'pc_requirements'
     ];
 
-    public function index(Request $request): Factory|View|Application|RedirectResponse
+    public function index(Request $request): View|Factory|Redirector|string|RedirectResponse|Application
     {
         if ($request->has(['search'])) {
             $isSteamId = (bool) filter_var(
@@ -48,14 +49,26 @@ class GameController extends Controller
         $search = ['search' => $request->input('search')];
 
         /** @var Game[] $games */
-        $games = Game::inRandomOrder()
-            ->filter($search)
-            ->get(['steam_appid', 'name', 'header_image'])
-            ->all();
+        $games = Game::filter($search)
+            ->orderBy('name')
+            ->paginate(9);
 
-        return view('games.index', [
-            'games' => $games,
-        ]);
+        if ($request->ajax()) {
+            $html = '';
+
+            foreach ($games as $game) {
+                $html.= '
+                    <div class="px-2 py-2 transform transition duration-500 hover:scale-105">
+                        <a href="/games/'.$game->steam_appid.'">
+                            <img src="'.$game->header_image.'" alt="" title="'.$game->name.'" class="w-full h-full"/>
+                        </a>
+                    </div>
+                ';
+            }
+            return $html;
+        }
+
+        return view('games.index');
     }
 
     /**

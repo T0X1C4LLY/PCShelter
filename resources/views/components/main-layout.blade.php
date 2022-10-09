@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="/images/favicon1.png">
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <style>
             html {

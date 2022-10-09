@@ -12,15 +12,9 @@
                 </form>
             </div>
         </div>
-        <div class="flex items-start grid grid-cols-3 pt-4">
-            @foreach($games as $game)
-                <div class="px-2 py-2 transform transition duration-500 hover:scale-105">
-                    <a href="/games/{{ $game->steam_appid }}">
-                        <img src="{{ $game->header_image }}" alt="" title="{{ $game->name }}" class="w-full h-full"/>
-                    </a>
-                </div>
-            @endforeach
-        </div>
+        <div class="flex items-start grid grid-cols-3 pt-4" id="game"></div>
+        <p class="text-center loading text-yellow-500">Loading...</p>
+        <x-infinite-scroll id="game" loading="loading" name="games"/>
     </div>
 </x-main-layout>
 
