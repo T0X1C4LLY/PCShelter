@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\GameCategory;
+use App\Models\Genre;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -124,6 +126,29 @@ class GameController extends Controller
     {
         $genres = array_map(static fn (array $value) => $value['description'], $data['genres']);
         $categories = array_map(static fn (array $value) => $value['description'], $data['categories']);
+
+        $genresInDb = Genre::all()->toArray();
+        $categoriesInDb = GameCategory::all()->toArray();
+
+        foreach ($genres as $genre) {
+            $key = array_search($genre, array_column($genresInDb, 'name'), true);
+            if (!$key) {
+                Genre::create([
+                    'id' => Uuid::uuid4(),
+                    'name' => $genre,
+                ]);
+            }
+        }
+
+        foreach ($categories as $category) {
+            $key = array_search($category, array_column($categoriesInDb, 'name'), true);
+            if (!$key) {
+                GameCategory::create([
+                    'id' => Uuid::uuid4(),
+                    'name' => $category,
+                ]);
+            }
+        }
 
         return Game::create([
             'id' => Uuid::uuid4(),

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\GameFinderController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\ReviewController;
@@ -75,6 +76,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('add-review/{steamAppid}', [ReviewController::class, 'create'])->middleware('own_the_game');
     Route::post('add-review', [ReviewController::class, 'store'])->middleware('own_the_game');
+
+    Route::get('game-finder', [GameFinderController::class, 'index']);
+    Route::post('game-finder', [GameFinderController::class, 'show']);
 });
 
 require __DIR__.'/auth.php';

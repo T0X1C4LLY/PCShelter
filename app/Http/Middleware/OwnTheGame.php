@@ -35,6 +35,11 @@ class OwnTheGame
         $user = auth()->user();
 
         $userId = $user->steamId;
+
+        if (!$userId) {
+            return back()->with(['failure' => 'You must login to Your Steam Account to review a game']);
+        }
+
         $key = getenv('STEAM_API_KEY');
         $response = file_get_contents(
             'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key='.

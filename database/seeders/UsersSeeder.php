@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class UsersSeeder extends Seeder
@@ -38,6 +39,7 @@ class UsersSeeder extends Seeder
         ]);
 
         $admin->assignRole(Role::findByName('admin'));
+        $admin->givePermissionTo(Permission::findByName('login_to_steam'));
         $user->assignRole(Role::findByName('user'));
         $creator->assignRole(Role::findByName('creator'));
 

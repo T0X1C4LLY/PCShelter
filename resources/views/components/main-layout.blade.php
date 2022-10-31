@@ -54,6 +54,11 @@
             </div>
             <div class="mt-8 md:mt-0 flex items-center text-white">
                 @auth
+                    @can('login_to_steam')
+                        <div>
+                            <x-steam-login-button/>
+                        </div>
+                    @endcan
                     <x-dropdown>
                         <x-slot name="trigger">
                             <button class="text-xs font-bold uppercase">
