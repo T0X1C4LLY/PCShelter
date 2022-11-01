@@ -15,9 +15,25 @@ class GameFinderController extends Controller
 {
     public function index(): Factory|View|Application
     {
+        $reviewCategories = [
+            'general',
+            'music',
+            'graphic',
+            'atmosphere',
+            'difficulty',
+            'storyline',
+            'relaxation',
+            'pleasure',
+            'child-friendly',
+            'NSFW',
+            'gore',
+            'unique',
+        ];
+
         return view('gameFinder.index', [
             'genres' => Genre::all(),
             'categories' => GameCategory::all(),
+            'reviewCategories' => $reviewCategories,
         ]);
     }
 

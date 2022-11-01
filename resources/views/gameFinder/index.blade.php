@@ -30,6 +30,18 @@
                         </select>
                     </div>
                 </div>
+                <div class="flex flex-cols justify-between border border-gray-500 rounded-xl mb-3">
+                    <div class="text-yellow-500 p-3 w-1/2">
+                        <label for="category">Review Category:</label>
+                    </div>
+                    <div class="w-1/2 mx-2">
+                        <select name="reviewCategory" id="reviewCategory" class="text-yellow-500 m-2 bg-gray-500 rounded-xl py-1 px-3 appearance-none min-w-max cursor-pointer">
+                            @foreach($reviewCategories as $category)
+                                <option value="{{ $category }}">{{ ucfirst($category) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <x-form.button>Find</x-form.button>
             </form>
         </div>

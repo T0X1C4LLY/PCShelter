@@ -20,10 +20,10 @@ class GameCategoriesSeeder extends Seeder
         $categories = str_getcsv(file_get_contents(base_path().'/database/assets/categories.csv'));
 
         foreach ($categories as $category) {
-           GameCategory::create([
-               'id' => Uuid::uuid4(),
-               'name' => $category,
-           ]);
+            GameCategory::create([
+                'id' => Uuid::uuid4(),
+                'name' => $category,
+            ]);
         }
     }
 }

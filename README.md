@@ -113,6 +113,7 @@ Stworzyć wyszukiwarkę spersonalizowanych gier </br>
 <s>Dodać dopisywanie danych do json'a z grami za każdym razem jak jakieś trafi do bazki</s> </br>
 Poprawić wyszukiwarkę gier </br>
 Strona nie ładuje się gdy nie ma postów - naprawić </br>
+Dodać datę wydania gry do bazy/pliku </br>
 
 ## Pomysły: </br>
 

@@ -20,10 +20,10 @@ class GenresSeeder extends Seeder
         $genres = str_getcsv(file_get_contents(base_path().'/database/assets/genres.csv'));
 
         foreach ($genres as $genre) {
-           Genre::create([
-               'id' => Uuid::uuid4(),
-               'name' => $genre,
-           ]);
+            Genre::create([
+                'id' => Uuid::uuid4(),
+                'name' => $genre,
+            ]);
         }
     }
 }

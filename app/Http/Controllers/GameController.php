@@ -175,6 +175,7 @@ class GameController extends Controller
             'header_image' => $data['header_image'],
         ];
 
+        /** @var string $gamesAsJson */
         $gamesAsJson = file_get_contents(base_path().'/database/assets/games.json');
         $gamesAsJson = substr($gamesAsJson, 0, -2);
         $gamesAsJson .= ','.json_encode($gameData, JSON_THROW_ON_ERROR).']';
