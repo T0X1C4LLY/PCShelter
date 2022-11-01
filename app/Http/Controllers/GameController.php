@@ -134,8 +134,8 @@ class GameController extends Controller
         $categoriesInDb = GameCategory::all()->toArray();
 
         foreach ($genres as $genre) {
-            $key = array_search($genre, array_column($genresInDb, 'name'), true);
-            if (!$key) {
+            $key = in_array($genre, array_column($genresInDb, 'name'), true);
+            if ($key === false) {
                 Genre::create([
                     'id' => Uuid::uuid4(),
                     'name' => $genre,
@@ -143,26 +143,26 @@ class GameController extends Controller
 
                 file_put_contents(
                     base_path().'/database/assets/genres.csv',
-                    $genre.',',
+                    ','.$genre,
                     FILE_APPEND
                 );
             }
         }
 
         foreach ($categories as $category) {
-            $key = array_search($category, array_column($categoriesInDb, 'name'), true);
-            if (!$key) {
+            $key = in_array($category, array_column($categoriesInDb, 'name'), true);
+            if ($key === false) {
                 GameCategory::create([
                     'id' => Uuid::uuid4(),
                     'name' => $category,
                 ]);
-            }
 
-            file_put_contents(
-                base_path().'/database/assets/categories.csv',
-                $category.',',
-                FILE_APPEND
-            );
+                file_put_contents(
+                    base_path().'/database/assets/categories.csv',
+                    ','.$category,
+                    FILE_APPEND
+                );
+            }
         }
 
         $gameData = [
@@ -176,7 +176,7 @@ class GameController extends Controller
         ];
 
         $gamesAsJson = file_get_contents(base_path().'/database/assets/games.json');
-        $gamesAsJson = substr($gamesAsJson, 0, -1);
+        $gamesAsJson = substr($gamesAsJson, 0, -2);
         $gamesAsJson .= ','.json_encode($gameData, JSON_THROW_ON_ERROR).']';
 
         file_put_contents(

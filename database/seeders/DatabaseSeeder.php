@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PostsSeeder::class);
         $this->call(CommentsSeeder::class);
         $this->call(ReviewsSeeder::class);
+        $this->call(GenresSeeder::class);
+        $this->call(GameCategoriesSeeder::class);
     }
 }

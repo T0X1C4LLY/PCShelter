@@ -108,7 +108,7 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Stworzyć przejście między blogiem a sekcją gier</s> </br>
 Stworzyć wyszukiwarkę spersonalizowanych gier </br>
 <s>Dodać do bazki kategorii i gatunków</s> </br>
-Dodać Seedowanie do kategorii i gatunków </br>
+<s>Dodać Seedowanie do kategorii i gatunków</s> </br>
 <s>Dodać dopisywanie nowych kategorii i gatunków tak jak robię to z grami</s> </br>
 <s>Dodać dopisywanie danych do json'a z grami za każdym razem jak jakieś trafi do bazki</s> </br>
 Poprawić wyszukiwarkę gier </br>
