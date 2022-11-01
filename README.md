@@ -110,7 +110,7 @@ Stworzyć wyszukiwarkę spersonalizowanych gier </br>
 <s>Dodać do bazki kategorii i gatunków</s> </br>
 Dodać Seedowanie do kategorii i gatunków </br>
 <s>Dodać dopisywanie nowych kategorii i gatunków tak jak robię to z grami</s> </br>
-Dodać dopisywanie danych do json'a z grami za każdym razem jak jakieś trafi do bazki </br>
+<s>Dodać dopisywanie danych do json'a z grami za każdym razem jak jakieś trafi do bazki</s> </br>
 Poprawić wyszukiwarkę gier </br>
 Strona nie ładuje się gdy nie ma postów - naprawić </br>
 

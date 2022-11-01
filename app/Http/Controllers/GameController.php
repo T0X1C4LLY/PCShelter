@@ -122,6 +122,9 @@ class GameController extends Controller
         ]);
     }
 
+    /**
+     * @throws JsonException
+     */
     public function store(array $data): Game
     {
         $genres = array_map(static fn (array $value) => $value['description'], $data['genres']);
@@ -137,6 +140,12 @@ class GameController extends Controller
                     'id' => Uuid::uuid4(),
                     'name' => $genre,
                 ]);
+
+                file_put_contents(
+                    base_path().'/database/assets/genres.csv',
+                    $genre.',',
+                    FILE_APPEND
+                );
             }
         }
 
@@ -148,9 +157,15 @@ class GameController extends Controller
                     'name' => $category,
                 ]);
             }
+
+            file_put_contents(
+                base_path().'/database/assets/categories.csv',
+                $category.',',
+                FILE_APPEND
+            );
         }
 
-        return Game::create([
+        $gameData = [
             'id' => Uuid::uuid4(),
             'steam_appid' => $data['steam_appid'],
             'name' => $data['name'],
@@ -158,6 +173,17 @@ class GameController extends Controller
             'genres' => $genres,
             'release_date' => $data['release_date'],
             'header_image' => $data['header_image'],
-        ]);
+        ];
+
+        $gamesAsJson = file_get_contents(base_path().'/database/assets/games.json');
+        $gamesAsJson = substr($gamesAsJson, 0, -1);
+        $gamesAsJson .= ','.json_encode($gameData, JSON_THROW_ON_ERROR).']';
+
+        file_put_contents(
+            base_path().'/database/assets/games.json',
+            $gamesAsJson
+        );
+
+        return Game::create($gameData);
     }
 }
