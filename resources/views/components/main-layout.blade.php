@@ -50,6 +50,11 @@
                     >
                         Games
                     </x-dropdown-item>
+                    <x-dropdown-item href="/game-finder"
+                                     :active="request()->routeIs('game-finder') && is_null(request()->getQueryString())"
+                    >
+                        Game Finder
+                    </x-dropdown-item>
                 </div>
             </div>
             <div class="mt-8 md:mt-0 flex items-center text-white">

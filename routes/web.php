@@ -41,6 +41,8 @@ Route::post('subscribe', NewsletterController::class);
 Route::get('games', [GameController::class, 'index'])->name('games');
 Route::get('games/{steam_appid}', [GameController::class, 'show']);
 
+Route::get('game-finder', [GameFinderController::class, 'index'])->name('game-finder');
+Route::post('game-finder', [GameFinderController::class, 'show']);
 
 Route::middleware('can:enter_dashboard')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)
@@ -76,9 +78,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('add-review/{steamAppid}', [ReviewController::class, 'create'])->middleware('own_the_game');
     Route::post('add-review', [ReviewController::class, 'store'])->middleware('own_the_game');
-
-    Route::get('game-finder', [GameFinderController::class, 'index']);
-    Route::post('game-finder', [GameFinderController::class, 'show']);
 });
 
 require __DIR__.'/auth.php';
