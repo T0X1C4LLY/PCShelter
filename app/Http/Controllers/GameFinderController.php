@@ -39,5 +39,6 @@ class GameFinderController extends Controller
 
     public function show(Request $request): void
     {
+        ddd($request->request->all());
     }
 }
