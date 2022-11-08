@@ -106,14 +106,17 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Naprawić wyświetlanie avatarów (wysyłany jest UUID i sobie nie radzi)</s> </br>
 <s>Naprawić wyświetlanie przycisku Read More (potrafi wyświetlać się w 2 częściach)</s> </br>
 <s>Stworzyć przejście między blogiem a sekcją gier</s> </br>
-Stworzyć wyszukiwarkę spersonalizowanych gier </br>
+<s>Stworzyć wyszukiwarkę spersonalizowanych gier</s> </br>
 <s>Dodać do bazki kategorii i gatunków</s> </br>
 <s>Dodać Seedowanie do kategorii i gatunków</s> </br>
 <s>Dodać dopisywanie nowych kategorii i gatunków tak jak robię to z grami</s> </br>
 <s>Dodać dopisywanie danych do json'a z grami za każdym razem jak jakieś trafi do bazki</s> </br>
-Poprawić wyszukiwarkę gier </br>
+<s>Poprawić wyszukiwarkę gier</s> </br>
 Strona nie ładuje się gdy nie ma postów - naprawić </br>
-Dodać datę wydania gry do bazy/pliku </br>
+<s>Dodać datę wydania gry do bazy/pliku</s> </br>
+Dołożyć walidację formularza do wyszukiwarki gier </br>
+<s>Dołożyć znaczniki od/do na dacie w wyszukiwarce gier</s> </br>
+<s>W GameFinderController i Game mam takie same tablice, może wyodrębnić do Enuma lub env</s> </br>
 
 ## Pomysły: </br>
 

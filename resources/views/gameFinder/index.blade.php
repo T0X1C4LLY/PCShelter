@@ -6,18 +6,18 @@
                 @csrf
                 <x-gameFinder.formElement name="genre" :array="$genres"/>
                 <x-gameFinder.formElement name="category" :array="$categories"/>
-                <x-gameFinder.formElement name="Type" :array="$reviewCategories"/>
+                <x-gameFinder.formElement name="type" :array="$reviewCategories"/>
                 <div class="flex w-full">
                     <div class="flex flex-cols justify-between border border-gray-500 rounded-xl mb-3 w-11/12">
                         <div class="text-yellow-500 p-3 w-1/3">
                             <label for="date">Date:</label>
                         </div>
                         <div class="w-1/3 mx-2">
-                            <input type="number" min="1950" max="{{ date("Y") }}" step="1" name="dateFrom" id="dateFrom"
+                            <input type="number" placeholder="From" min="1950" max="{{ date("Y") }}" step="1" name="dateFrom" id="dateFrom"
                                    class="w-full text-yellow-500 my-2 bg-gray-500 rounded-xl py-1 px-3 appearance-none cursor-pointer">
                         </div>
                         <div class="w-1/3 mx-2">
-                            <input type="number" min="1950" max="{{ date("Y") }}" step="1" name="dateTo" id="dateTo"
+                            <input type="number" placeholder="To" min="1950" max="{{ date("Y") }}" step="1" name="dateTo" id="dateTo"
                                    class="w-full text-yellow-500 my-2 bg-gray-500 rounded-xl py-1 px-3 appearance-none cursor-pointer">
                         </div>
                     </div>

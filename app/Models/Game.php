@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ReviewCategory;
 use App\Traits\TraitUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,20 +29,7 @@ class Game extends Model
 
     public function reviewResults(): array
     {
-        $keys = [
-            'music',
-            'graphic',
-            'atmosphere',
-            'difficulty',
-            'storyline',
-            'relaxation',
-            'pleasure',
-            'child-friendly',
-            'NSFW',
-            'gore',
-            'unique',
-            'general',
-        ];
+        $keys = ReviewCategory::allValues();
 
         $reviews = $this->reviews()->get()->toArray();
 
@@ -116,6 +104,39 @@ class Game extends Model
                     $searchAsString = $search;
 
                     return $query->where('name', 'ilike', '%' . $searchAsString . '%');
+                }
+            )
+        );
+    }
+
+    public function scopeFilterForGameFinder(Builder $query, array $filters): void
+    {
+        $query->when(
+            $filters['genre'] ?? false,
+            fn (Builder $query, mixed $search): Builder =>
+            $query->where(
+                function (Builder $query) use ($search): Builder {
+                    $query->whereJsonContains('genres', $search[0]);
+
+                    for($i = 1, $iMax = count($search); $i < $iMax; $i++) {
+                        $query->orWhereJsonContains('genres', $search[$i]);
+                    }
+                    return $query;
+                }
+            )
+        );
+
+        $query->when(
+            $filters['category'] ?? false,
+            fn (Builder $query, mixed $search): Builder =>
+            $query->where(
+                function (Builder $query) use ($search): Builder {
+                    $query->whereJsonContains('categories', $search[0]);
+
+                    for($i = 1, $iMax = count($search); $i < $iMax; $i++) {
+                        $query->orWhereJsonContains('categories', $search[$i]);
+                    }
+                    return $query;
                 }
             )
         );
