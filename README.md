@@ -118,6 +118,8 @@ Dołożyć walidację formularza do wyszukiwarki gier </br>
 <s>Dołożyć znaczniki od/do na dacie w wyszukiwarce gier</s> </br>
 <s>W GameFinderController i Game mam takie same tablice, może wyodrębnić do Enuma lub env</s> </br>
 
+Wysyłam już odpowiednie gry, teraz trzeba dołożyć do obiektów recenzje i wyświetlać ładnie te dane
+
 ## Pomysły: </br>
 
 Dodać opcję podejrzenia profilu po najechaniu na avatar/nazwę </br>

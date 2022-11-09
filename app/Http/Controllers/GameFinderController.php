@@ -106,20 +106,32 @@ class GameFinderController extends Controller
                     break;
                 }
                 $sortedReviews[$gameId][$key]['values'][] = $value;
-                $sortedReviews[$gameId][$key]['sum'] = array_key_exists('sum', $sortedReviews[$gameId][$key]) ? $sortedReviews[$gameId][$key]['sum'] + $value : 0;
-                $sortedReviews[$gameId][$key]['count'] = array_key_exists('count', $sortedReviews[$gameId][$key]) ? $sortedReviews[$gameId][$key]['count'] += 1 : 1;
+                $sortedReviews[$gameId][$key]['sum'] = array_key_exists('sum', $sortedReviews[$gameId][$key]) ?
+                    $sortedReviews[$gameId][$key]['sum'] + $value :
+                    0;
+                $sortedReviews[$gameId][$key]['count'] = array_key_exists('count', $sortedReviews[$gameId][$key]) ?
+                    $sortedReviews[$gameId][$key]['count'] += 1 :
+                    1;
             }
         }
+
 
         $total = [];
         foreach ($sortedReviews as $key => $review) {
             $total[$key] = 0;
-            foreach($review as $k => $value) {
-                $total[$key] += ($value['sum'] / $value['count']);
+            foreach ($review as $k => $value) {
+                $temp = (float) number_format(
+                    ($value['sum'] / $value['count']),
+                    2,
+                    '.',
+                    ''
+                );
+                $total[$key] += $temp;
+                $sortedReviews[$key][$k]['total'] = $temp;
             }
         }
 
-        uasort($total, static fn($a, $b) => $b <=> $a);
+        uasort($total, static fn ($a, $b) => $b <=> $a);
 
         $gamesToReturn = [];
 
@@ -133,6 +145,7 @@ class GameFinderController extends Controller
 
         return view('gameFinder.show', [
             'games' => $gamesToReturn,
+            'reviews' => $sortedReviews,
         ]);
     }
 }

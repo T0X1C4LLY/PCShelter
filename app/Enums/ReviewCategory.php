@@ -25,7 +25,7 @@ enum ReviewCategory: string
     public static function allValues(): array
     {
         return array_map(
-            static fn (ReviewCategory $category ) => $category->value,
+            static fn (ReviewCategory $category) => $category->value,
             self::cases()
         );
     }

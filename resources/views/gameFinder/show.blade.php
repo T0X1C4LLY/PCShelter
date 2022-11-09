@@ -6,6 +6,9 @@
             @foreach ($games as $game)
                 <div>
                     <a href='/games/{{ $game['steam_appid'] }}' >{{ $loop->index + 1 }}. {{ $game['name'] }} </a>
+                    @foreach ($reviews[$game['id']] as $key => $value)
+                        {{ $key }}: {{ ($value['total']) }}
+                    @endforeach
                 </div>
             @endforeach
         </div>

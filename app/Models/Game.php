@@ -118,7 +118,7 @@ class Game extends Model
                 function (Builder $query) use ($search): Builder {
                     $query->whereJsonContains('genres', $search[0]);
 
-                    for($i = 1, $iMax = count($search); $i < $iMax; $i++) {
+                    for ($i = 1, $iMax = count($search); $i < $iMax; $i++) {
                         $query->orWhereJsonContains('genres', $search[$i]);
                     }
                     return $query;
@@ -133,7 +133,7 @@ class Game extends Model
                 function (Builder $query) use ($search): Builder {
                     $query->whereJsonContains('categories', $search[0]);
 
-                    for($i = 1, $iMax = count($search); $i < $iMax; $i++) {
+                    for ($i = 1, $iMax = count($search); $i < $iMax; $i++) {
                         $query->orWhereJsonContains('categories', $search[$i]);
                     }
                     return $query;
