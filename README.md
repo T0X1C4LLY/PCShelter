@@ -117,8 +117,14 @@ Strona nie ładuje się gdy nie ma postów - naprawić </br>
 Dołożyć walidację formularza do wyszukiwarki gier </br>
 <s>Dołożyć znaczniki od/do na dacie w wyszukiwarce gier</s> </br>
 <s>W GameFinderController i Game mam takie same tablice, może wyodrębnić do Enuma lub env</s> </br>
-
-Wysyłam już odpowiednie gry, teraz trzeba dołożyć do obiektów recenzje i wyświetlać ładnie te dane
+Zamienić latające obiekty na arraye </br>
+Pokryć kod testami </br>
+Zaktualizować libki </br>
+Naprawić błędy larastana / spróbować psalmu </br>
+Wyodrębnić logikę do prywatnych metod / zastanowić się gdzie możnaby ją przenieść </br>
+Sprawdzić i ewentualnie przepisać SQL na raw jeśli te będą działąć szybciej </br>
+Możliwie pozbyć się logiki z widoków </br>
+Naprawiać klasa po klasie: </br>
 
 ## Pomysły: </br>
 
