@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
+use App\Traits\EnumValuesTrait;
+
 enum ReviewCategory: string
 {
+    use EnumValuesTrait;
+
     case GENERAL = 'general';
     case MUSIC = 'music';
     case GRAPHIC = 'graphic';
@@ -18,15 +22,4 @@ enum ReviewCategory: string
     case NSFW = 'NSFW';
     case GORE = 'gore';
     case UNIQUE = 'unique';
-
-    /**
-     * @return string[]
-     */
-    public static function allValues(): array
-    {
-        return array_map(
-            static fn (ReviewCategory $category) => $category->value,
-            self::cases()
-        );
-    }
 }

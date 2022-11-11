@@ -29,7 +29,7 @@ class Game extends Model
 
     public function reviewResults(): array
     {
-        $keys = ReviewCategory::allValues();
+        $keys = ReviewCategory::values();
 
         $reviews = $this->reviews()->get()->toArray();
 

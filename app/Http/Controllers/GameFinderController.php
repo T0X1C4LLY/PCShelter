@@ -20,12 +20,10 @@ class GameFinderController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $reviewCategories = ReviewCategory::allValues();
-
         return view('gameFinder.index', [
             'genres' => Genre::all(),
             'categories' => GameCategory::all(),
-            'reviewCategories' => $reviewCategories,
+            'reviewCategories' => ReviewCategory::values(),
         ]);
     }
 
