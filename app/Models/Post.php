@@ -12,6 +12,10 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'created_at'  => 'date:Y-m-d h:i:s',
+    ];
+
 //    protected $guarded = ['id']; //wszytsko jest fillable oprócz id
     protected $fillable = ['title', 'excerpt', 'body']; // pozwala tworzyć nowe obiekty z poziomu tinkera w następujący sposób: php artisan tinker     Post::create(['title' => 'cos', 'excerpt' => 'cos])
 

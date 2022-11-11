@@ -125,8 +125,10 @@ Wyodrębnić logikę do prywatnych metod / zastanowić się gdzie możnaby ją p
 Sprawdzić i ewentualnie przepisać SQL na raw jeśli te będą działąć szybciej </br>
 Możliwie pozbyć się logiki z widoków </br>
 Naprawiać klasa po klasie: </br>
-    <s>app/Enums/ReviewCategory.php </s>
+    <s>app/Enums/ReviewCategory.php
+    app/Http/Controllers/AdminPostController.php </s> </br>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
+users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 
 ## Pomysły: </br>
 

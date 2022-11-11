@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Other\ArrayPagination;
 use App\Services\MailchimpNewsletter;
 use App\Services\NewsletterInterface;
 use Illuminate\Database\Eloquent\Model;
@@ -45,6 +46,10 @@ class AppServiceProvider extends ServiceProvider
                 ->letters()
                 ->numbers()
                 ->symbols();
+        });
+
+        $this->app->bind('ArrayPagination', function () {
+            return new ArrayPagination();
         });
     }
 }

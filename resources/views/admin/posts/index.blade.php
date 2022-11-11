@@ -26,22 +26,22 @@
                             @foreach ($posts as $post)
                                 <tr>
                                     <x-post-table-element>
-                                        <a href="/posts/{{ $post->slug }}">
-                                            {{ $post->title }}
+                                        <a href="/posts/{{ $post['slug'] }}">
+                                            {{ $post['title'] }}
                                         </a>
                                     </x-post-table-element>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="max-w-xl truncate text-center">
                                             <div class="text-sm font-medium text-gray-900">
-                                                {{ $post->comments }}
+                                                {{ $post['comments'] }}
                                             </div>
                                         </div>
                                     </td>
                                     <x-post-table-element>
-                                        {{ $post->created_at }}
+                                        {{ $post['created_at'] }}
                                     </x-post-table-element>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="/admin/posts/{{ $post->id }}/edit"
+                                        <a href="/admin/posts/{{ $post['id'] }}/edit"
                                            class="text-yellow-500 hover:text-yellow-600"
                                         >
                                             Edit
@@ -49,7 +49,7 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/admin/posts/{{ $post->id }}">
+                                        <form method="POST" action="/admin/posts/{{ $post['id'] }}">
                                             @csrf
                                             @method('DELETE')
 
