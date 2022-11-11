@@ -114,7 +114,7 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Poprawić wyszukiwarkę gier</s> </br>
 Strona nie ładuje się gdy nie ma postów - naprawić </br>
 <s>Dodać datę wydania gry do bazy/pliku</s> </br>
-Dołożyć walidację formularza do wyszukiwarki gier </br>
+<s>Dołożyć walidację formularza do wyszukiwarki gier</s> </br>
 <s>Dołożyć znaczniki od/do na dacie w wyszukiwarce gier</s> </br>
 <s>W GameFinderController i Game mam takie same tablice, może wyodrębnić do Enuma lub env</s> </br>
 Zamienić latające obiekty na arraye </br>

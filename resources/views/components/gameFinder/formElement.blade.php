@@ -1,4 +1,4 @@
-@props(['name', 'array'])
+@props(['name', 'array', 'isAllEnable' => true])
 
 <div class="flex w-full">
     <div class="flex flex-cols justify-between border border-gray-500 rounded-xl mb-3 w-11/12">
@@ -8,7 +8,9 @@
         <div class="w-2/3 mx-2" id="{{ $name }}Div">
             <select name="{{ $name }}[]" id="{{ $name }}"
                     class="w-full text-yellow-500 my-2 bg-gray-500 rounded-xl py-1 px-3 appearance-none cursor-pointer">
-                <option value="all">All</option>
+                @if ($isAllEnable)
+                    <option value="all">All</option>
+                @endif
                 @foreach($array as $element)
                     <option value="{{ $element['name'] ?? $element }}">{{ ucfirst($element['name'] ?? $element) }}</option>
                 @endforeach

@@ -9,6 +9,7 @@ use App\Models\Game;
 use App\Models\GameCategory;
 use App\Models\Genre;
 use App\Models\Review;
+use App\Rules\GreaterOrEqualIfExists;
 use DateTimeImmutable;
 use Illuminate\Console\View\Components\Factory;
 use Illuminate\Contracts\Foundation\Application;
@@ -30,10 +31,14 @@ class GameFinderController extends Controller
 
     public function show(Request $request): View|\Illuminate\Contracts\View\Factory|string|Application
     {
+        $this->assertValid();
+
         $genre = $request->request->all('genre');
         $category = $request->request->all('category');
         $type = $request->request->all('type');
+        /** @var string $dateFrom */
         $dateFrom = $request->request->get('dateFrom');
+        /** @var string $dateTo */
         $dateTo = $request->request->get('dateTo');
 
         $filters = [];
@@ -55,8 +60,24 @@ class GameFinderController extends Controller
 
         if ($dateFrom) {
             $gamesByDate = [];
+            /** @var array{
+             *     id: string,
+             *     steam_appid: string,
+             *     name: string,
+             *     categories: string[],
+             *     genres: string[],
+             *     release_date: array{coming_soon: boolean, date: string},
+             *     header_image: string,
+             * } $game
+             */
             foreach ($games as $game) {
+                if ($game['release_date']['coming_soon']) {
+                    continue;
+                }
+
+                /** @var DateTimeImmutable $releaseDate */
                 $releaseDate = DateTimeImmutable::createFromFormat('d M, Y', $game['release_date']['date']);
+                /** @var DateTimeImmutable $from */
                 $from = DateTimeImmutable::createFromFormat('Y', $dateFrom);
                 $releaseDate = $releaseDate->modify('January 1 00:00:00');
                 $from = $from->modify('January 1 00:00:00');
@@ -71,7 +92,13 @@ class GameFinderController extends Controller
             $gamesFrom = $gamesByDate;
             $gamesByDate = [];
             foreach ($gamesFrom as $game) {
+                if ($game['release_date']['coming_soon']) {
+                    continue;
+                }
+
+                /** @var DateTimeImmutable $releaseDate */
                 $releaseDate = DateTimeImmutable::createFromFormat('d M, Y', $game['release_date']['date']);
+                /** @var DateTimeImmutable $to */
                 $to = DateTimeImmutable::createFromFormat('Y', $dateTo);
 
                 $releaseDate = $releaseDate->modify('January 1 00:00:00');
@@ -84,15 +111,10 @@ class GameFinderController extends Controller
         }
 
         $columns = $type;
-
-        if (in_array('all', $type, true)) {
-            $columns = ReviewCategory::allValues();
-        }
-
         $columns[] = 'game_id';
 
         $reviews = Review::select($columns)
-            ->whereIn('game_id', array_map(static fn (Game $game) => $game['id'], $gamesByDate))
+            ->whereIn('game_id', array_map(static fn ($game) => $game['id'], $gamesByDate))
             ->get()
             ->all();
 
@@ -114,7 +136,6 @@ class GameFinderController extends Controller
                     1;
             }
         }
-
 
         $total = [];
         foreach ($sortedReviews as $key => $review) {
@@ -146,6 +167,20 @@ class GameFinderController extends Controller
         return view('gameFinder.show', [
             'games' => $gamesToReturn,
             'reviews' => $sortedReviews,
+        ]);
+    }
+
+    private function assertValid(): void
+    {
+        /** @var Request $request */
+        $request = request();
+
+        $request->validate([
+            'genre' => ['required'],
+            'category' => ['required'],
+            'type' => ['required'],
+            'dateFrom' => ['integer', 'nullable', sprintf('between:1950,%d', date('Y'))],
+            'dateTo' => ['integer', 'nullable', sprintf('between:1950,%d', date('Y')), new GreaterOrEqualIfExists('dateFrom')],
         ]);
     }
 }
