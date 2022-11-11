@@ -17,9 +17,9 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <tbody class="bg-white divide-y divide-gray-200">
                             <tr>
-                                <x-posts-anchor user="admin" value="title"/>
-                                <x-posts-anchor user="admin" value="comments"/>
-                                <x-posts-anchor user="admin" value="created at"/>
+                                <x-admin-anchor url="admin/posts" value="title"/>
+                                <x-admin-anchor url="admin/posts" value="comments"/>
+                                <x-admin-anchor url="admin/posts" value="created at"/>
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600" />
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600" />
                             </tr>
@@ -62,7 +62,7 @@
                         </table>
                     </div>
                     <div class="py-1">
-                        {{ $posts->links() }}
+                        {{ $posts->appends(request()->input())->links() }}
                     </div>
                 </div>
             </div>

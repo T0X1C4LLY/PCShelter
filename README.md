@@ -126,7 +126,8 @@ Sprawdzić i ewentualnie przepisać SQL na raw jeśli te będą działąć szybc
 Możliwie pozbyć się logiki z widoków </br>
 Naprawiać klasa po klasie: </br>
     <s>app/Enums/ReviewCategory.php
-    app/Http/Controllers/AdminPostController.php </s> </br>
+    app/Http/Controllers/AdminPostController.php
+    app/Http/Controllers/AdminUserController.php </s></br>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 

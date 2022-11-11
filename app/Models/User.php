@@ -54,7 +54,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'id' => 'string'
+        'id' => 'string',
+        'created_at'  => 'date:Y-m-d h:i:s',
     ];
 
 //    public function getUsernameAttribute(string $username): string
@@ -112,7 +113,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
                     return $query
                         ->where('username', 'like', '%' . $searchAsString . '%')
-                        ->orWhere('name', 'like', '%' . $searchAsString . '%');
+                        ->orWhere('users.name', 'like', '%' . $searchAsString . '%');
                 }
             )
         );

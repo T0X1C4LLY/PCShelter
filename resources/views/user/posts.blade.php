@@ -17,9 +17,9 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <x-posts-anchor user="user" value="title"/>
-                                    <x-posts-anchor user="user" value="comments"/>
-                                    <x-posts-anchor user="user" value="created at"/>
+                                    <x-admin-anchor url="user/posts" value="title"/>
+                                    <x-admin-anchor url="user/posts" value="comments"/>
+                                    <x-admin-anchor url="user/posts" value="created at"/>
                                 </tr>
                                 @foreach ($posts as $post)
                                     <tr>

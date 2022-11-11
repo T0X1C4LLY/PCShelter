@@ -15,11 +15,21 @@ class AdminPostController extends Controller
 {
     public function index(): Application|View|Factory
     {
+        $perPage = 25;
+
         /** @var string $by */
         $by = request('by') ?? 'created_at';
 
         /** @var string $order */
         $order = request('order') ?? 'DESC';
+
+        /** @var int $page */
+        $page = request('page') ?? 1;
+
+        /** @var int $total */
+        $total = DB::table('posts')
+            ->selectRaw('count(id)')
+            ->value('count');
 
         $posts = Post::select([
                 'title',
@@ -28,15 +38,17 @@ class AdminPostController extends Controller
                 'posts.created_at',
                 DB::raw('COALESCE(COUNT(comments.id),0) as comments')
             ])
-            ->leftJoin('comments', 'comments.post_id', '=', 'posts.id')
+            ->leftJoin('comments', 'comments.post_id', 'posts.id')
             ->filter(request(['admin_search']))
             ->groupBy(['title', 'slug', 'posts.id'])
             ->orderBy($by, $order)
+            ->skip(($page - 1) * $perPage)
+            ->take($perPage)
             ->get()
             ->toArray();
 
         return view('admin.posts.index', [
-            'posts' => ArrayPagination::paginate($posts, 'posts', 25)
+            'posts' => ArrayPagination::paginate($posts, $total, $page, $perPage)
         ]);
     }
 

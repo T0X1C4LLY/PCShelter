@@ -17,20 +17,10 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <tbody class="bg-white divide-y divide-gray-200">
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-base font-medium text-yellow-600 text-center">
-                                        <a href="/admin/users?sort={{ request()->fullUrlIs("*&sort=DESC") ? 'ASC' : 'DESC' }}&by=username&{{ http_build_query(request()->except(['by', 'sort'])) }}">
-                                            Username
-                                        </a>
-                                    </div>
-                                </td>
+                                <x-admin-anchor url="admin/users" value="username"/>
+                                <x-admin-anchor url="admin/users" value="name"/>
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
-                                    <a href="/admin/users?sort={{ request()->fullUrlIs("*&sort=DESC") ? 'ASC' : 'DESC' }}&by=name&{{ http_build_query(request()->except(['by', 'sort'])) }}">
-                                        Name
-                                    </a>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
-                                    <a href="/admin/users?sort={{ request()->fullUrlIs("*&sort=DESC") ? 'ASC' : 'DESC' }}&by=created_at&{{ http_build_query(request()->except(['by', 'sort'])) }}">
+                                    <a href="/admin/users?order={{ request()->fullUrlIs("*order=DESC") ? 'ASC' : 'DESC' }}&by=created_at&{{ http_build_query(request()->except(['order', 'by'])) }}">
                                         Created at
                                     </a>
                                 </td>
@@ -46,28 +36,28 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="max-w-xs truncate flex items-center">
                                             <div class="text-sm font-medium text-gray-900 truncate">
-                                                    {{ $user->username }}
+                                                    {{ $user['username'] }}
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="max-w-xs truncate flex items-center">
                                             <div class="text-sm font-medium text-gray-900 truncate">
-                                                {{ $user->name }}
+                                                {{ $user['name'] }}
                                             </div>
                                         </div>
                                     </td>
 {{--                                    <td class="px-6 py-4 whitespace-nowrap">--}}
 {{--                                        <div class="flex items-center">--}}
 {{--                                            <div class="text-sm font-medium text-gray-900 truncate">--}}
-{{--                                                {{ $user->email }}--}}
+{{--                                                {{ $user['email'] }}--}}
 {{--                                            </div>--}}
 {{--                                        </div>--}}
 {{--                                    </td>--}}
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="max-w-xs truncate text-center">
                                             <div class="text-sm font-medium text-gray-900">
-                                                {{ $user->created_at }}
+                                                {{ $user['created_at'] }}
                                             </div>
                                         </div>
                                     </td>
@@ -77,18 +67,18 @@
                                                 <x-panel-dropdown>
                                                     <x-slot name="trigger">
                                                         <button class="text-xs font-bold uppercase">
-                                                            {{ $user->getRole() }}
+                                                            {{ $user['role'] }}
                                                         </button>
                                                     </x-slot>
                                                     @foreach ($roles as $role)
-                                                        <form id="perfect-list-destroy" action="/admin/users/{{ $user->id }}/{{ $role->id }}" method="POST">
+                                                        <form id="perfect-list-destroy" action="/admin/users/{{ $user['id'] }}/{{ $role['id'] }}" method="POST">
                                                             @method('PATCH')
                                                             @csrf
                                                             <button type="submit"
-                                                                    class="block w-full text-left px-3 text-sm leading-6 hover:bg-yellow-500 focus:bg-yellow-500 hover:text-white focus:text-white {{ ($user->getRole() == $role->name) ? ' bg-yellow-500 text-white pointer-events-none' : ' text-yellow-500' }}"
-                                                                    {{ ($user->getRole() == $role->name) ? 'disabled' : '' }}
+                                                                    class="block w-full text-left px-3 text-sm leading-6 hover:bg-yellow-500 focus:bg-yellow-500 hover:text-white focus:text-white {{ ($user['role'] === $role['name']) ? ' bg-yellow-500 text-white pointer-events-none' : ' text-yellow-500' }}"
+                                                                    {{ ($user['role'] === $role['name']) ? 'disabled' : '' }}
                                                             >
-                                                                {{ $role->name }}
+                                                                {{ $role['name'] }}
                                                             </button>
                                                         </form>
                                                     @endforeach
@@ -97,7 +87,7 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/admin/users/{{ $user->id }}">
+                                        <form method="POST" action="/admin/users/{{ $user['id'] }}">
                                             @csrf
                                             @method('DELETE')
 
@@ -110,7 +100,7 @@
                         </table>
                     </div>
                     <div class="py-1">
-                        {{ $users->links() }}
+                        {{ $users->appends(request()->input())->links() }}
                     </div>
                 </div>
             </div>
