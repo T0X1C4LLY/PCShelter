@@ -44,7 +44,7 @@ class NewPasswordController extends Controller
         ]);
 
         /** @var string $password */
-        $password = $request->get('password');
+        $password = $request->input('password');
 
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),

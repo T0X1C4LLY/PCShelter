@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use App\Services\Interfaces\Newsletter;
+use App\Services\Interfaces\Creator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
-use Spatie\Permission\Models\Role;
 
 class RegisteredUserController extends Controller
 {
+    public function __construct(public readonly Creator $creator)
+    {
+    }
+
     /**
      * Display the registration view.
      *
@@ -31,11 +32,9 @@ class RegisteredUserController extends Controller
      * Handle an incoming registration request.
      *
      * @param Request $request
-     * @param Newsletter $newsletter
      * @return RedirectResponse
-     *
      */
-    public function store(Request $request, Newsletter $newsletter): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:127'],
@@ -44,30 +43,31 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', 'max:127', Password::defaults()],
         ]);
 
-        /** @var string $password */
-        $password = $request->password;
+        /** @var string $name */
+        $name = $request->input('name');
 
-        $user = User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($password),
-        ]);
+        /** @var string $username */
+        $username = $request->input('username');
+
+        /** @var string $email */
+        $email = $request->input('email');
+
+        /** @var string $password */
+        $password = $request->input('password');
+
+        $userData = [
+            'name' => $name,
+            'username' => $username,
+            'email' => $email,
+            'password' => $password,
+        ];
+
+        $user = $this->creator->creatUser($userData);
 
         Auth::login($user);
         event(new Registered($user));
 
-        $user->assignRole(Role::findByName('user'));
-
-        $users = $newsletter->getAllSubscribers()->members;
-
-        foreach ($users as $email) {
-            if ($email->email_address === $user->email) {
-                $user->givePermissionTo('unsubscribe');
-                $user->givePermissionTo('login_to_steam');
-            }
-        }
-
-        return redirect(RouteServiceProvider::HOME)->with(['success' => 'Please confirm email to finish registration']);
+        return redirect(RouteServiceProvider::HOME)
+            ->with(['success' => 'Please confirm email to finish registration']);
     }
 }

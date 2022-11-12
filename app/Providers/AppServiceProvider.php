@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Other\ArrayPagination;
+use App\Services\Creator;
 use App\Services\HTMLBuilder;
+use App\Services\Interfaces\Creator as CreatorInterface;
 use App\Services\Interfaces\HTMLBuilder as HTMLBuilderInterface;
 use App\Services\Interfaces\Newsletter;
 use App\Services\MailchimpNewsletter;
@@ -32,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         app()->bind(HTMLBuilderInterface::class, HTMLBuilder::class);
+        app()->bind(CreatorInterface::class, Creator::class);
     }
 
     /**
