@@ -98,7 +98,7 @@ class CreatingPostWithInvalidDataTest extends TestCase
         $validData[$key] = $value;
 
         $response = $this->actingAs($this->creator)->postJson('/user/posts', $validData);
-        $response->assertStatus(422);
+        $response->assertRedirect('/');
     }
 
     private function invalidData(): array

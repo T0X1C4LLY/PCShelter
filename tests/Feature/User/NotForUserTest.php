@@ -55,7 +55,7 @@ class NotForUserTest extends TestCase
     {
         $response = $this->actingAs($this->commonUser)->get($url);
 
-        $response->assertStatus(403);
+        $response->assertRedirect('/');
     }
 
     private function notForUserUrlProvider(): array
@@ -83,6 +83,6 @@ class NotForUserTest extends TestCase
             'category_id' => 1,
         ]);
 
-        $response->assertStatus(403);
+        $response->assertRedirect('/');
     }
 }

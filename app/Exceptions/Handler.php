@@ -7,9 +7,7 @@ use Psr\Log\LogLevel;
 use Throwable;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Contracts\Foundation\Application;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class Handler extends ExceptionHandler
@@ -55,8 +53,8 @@ class Handler extends ExceptionHandler
         });
     }
 
-//    public function render($request, Throwable $e): Response|JsonResponse|Redirector|RedirectResponse|Application|SymfonyResponse
-//    {
-//        return redirect('/');
-//    }
+    public function render($request, Throwable $e): Response|JsonResponse|RedirectResponse|SymfonyResponse
+    {
+        return redirect()->route('home');
+    }
 }

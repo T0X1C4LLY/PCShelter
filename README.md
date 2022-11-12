@@ -126,6 +126,9 @@ Sprawdzić i ewentualnie przepisać SQL na raw jeśli te będą działąć szybc
 Możliwie pozbyć się logiki z widoków </br>
 Wyodrębnić logikę z kontrolerów do serwisów </br>
 Naprawiać klasa po klasie: </br>
+    <s>app/Console/Kernel.php </br>
+    app/Enums/ReviewCategory.php </br>
+    app/Exceptions/Handler.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
