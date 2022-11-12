@@ -52,9 +52,4 @@ class Handler extends ExceptionHandler
             return response()->json(['Error' => $e->getMessage()]);
         });
     }
-
-    public function render($request, Throwable $e): Response|JsonResponse|RedirectResponse|SymfonyResponse
-    {
-        return redirect()->route('home');
-    }
 }
