@@ -8,10 +8,6 @@ class InvalidOrderArgument extends \Exception
 {
     public static function byInvalidArgument(string $order, string $by): self
     {
-        return new self(sprintf(
-            'Cannot order %s by %s',
-            $order,
-            $by
-        ));
+        return new self(sprintf('Cannot order %s by %s', $order, $by));
     }
 }

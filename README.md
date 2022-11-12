@@ -129,6 +129,8 @@ Naprawiać klasa po klasie: </br>
     <s>app/Console/Kernel.php </br>
     app/Enums/ReviewCategory.php </br>
     app/Exceptions/Handler.php </br>
+    app/Exceptions/InvalidOrderArgument.php </br>
+    app/Exceptions/InvalidPaginationInfo.php </br>
     app/Facades/ArrayPagination.php </br>
     app/Http/Controllers/Auth/AuthenticatedSessionController.php </br>
     app/Http/Controllers/Auth/ConfirmablePasswordController.php </br>
