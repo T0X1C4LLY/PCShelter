@@ -2,51 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\ArrayPagination;
+use App\Exceptions\InvalidOrderArgument;
+use App\Exceptions\InvalidPaginationInfo;
 use App\Models\Category;
 use App\Models\Post;
+use App\Services\Interfaces\ModelPaginator;
+use App\ValueObjects\AdminPostsOrderBy;
+use App\ValueObjects\PaginationInfo;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class AdminPostController extends Controller
 {
-    public function index(): Application|View|Factory
+    public function __construct(private readonly ModelPaginator $paginator)
+    {
+    }
+
+    public function index(Request $request): Factory|View|Application|RedirectResponse
     {
         $perPage = 25;
 
         /** @var string $by */
-        $by = request('by') ?? 'created_at';
+        $by = $request->input('by') ?? 'created_at';
 
         /** @var string $order */
-        $order = request('order') ?? 'DESC';
+        $order = $request->input('order') ?? 'DESC';
 
         /** @var int $page */
-        $page = request('page') ?? 1;
+        $page = $request->input('page') ?? 1;
 
-        /** @var int $total */
-        $total = DB::scalar('SELECT count(id) FROM posts');
+        /** @var string $search */
+        $search = $request->input('admin_search') ?? '';
 
-        $posts = Post::select([
-                'title',
-                'slug',
-                'posts.id',
-                'posts.created_at',
-                DB::raw('COALESCE(COUNT(comments.id),0) as comments')
-            ])
-            ->leftJoin('comments', 'comments.post_id', 'posts.id')
-            ->filter(request(['admin_search']))
-            ->groupBy(['title', 'slug', 'posts.id'])
-            ->orderBy($by, $order)
-            ->skip(($page - 1) * $perPage)
-            ->take($perPage)
-            ->get()
-            ->toArray();
+        try {
+            $orderBy = new AdminPostsOrderBy($order, $by);
+            $paginationInfo = new PaginationInfo($page, $perPage);
+        } catch (InvalidOrderArgument|InvalidPaginationInfo $e) {
+            return back()->with('failure', $e->getMessage());
+        }
 
         return view('admin.posts.index', [
-            'posts' => ArrayPagination::paginate($posts, $total, $page, $perPage)
+            'posts' => $this->paginator->posts($orderBy, $paginationInfo, $search),
         ]);
     }
 
