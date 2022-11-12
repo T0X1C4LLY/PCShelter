@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\NewsletterInterface;
+use App\Services\Interfaces\Newsletter;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -16,7 +16,7 @@ class NewsletterController extends Controller
     /**
      * @throws ValidationException
      */
-    public function __invoke(NewsletterInterface $newsletter): Redirector|Application|RedirectResponse
+    public function __invoke(Newsletter $newsletter): Redirector|Application|RedirectResponse
     {
         /** @var Request|null $request */
         $request = request();
@@ -47,7 +47,7 @@ class NewsletterController extends Controller
     /**
      * @throws ValidationException
      */
-    public function destroy(NewsletterInterface $newsletter): RedirectResponse
+    public function destroy(Newsletter $newsletter): RedirectResponse
     {
         /** @var Request|null $request */
         $request = request();

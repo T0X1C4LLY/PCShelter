@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
+use App\Services\Interfaces\Newsletter;
 use MailchimpMarketing\ApiClient;
 
-class MailchimpNewsletter implements NewsletterInterface
+class MailchimpNewsletter implements Newsletter
 {
     private readonly mixed $list;
 

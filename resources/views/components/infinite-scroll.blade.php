@@ -9,8 +9,19 @@
         }
     });
     function loadMoreData(pageNumber) {
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let value = params.search;
+
+        let search = '';
+
+        if (value) {
+            search = 'search=' + value + '&';
+        }
+
         $.ajax({
-            url: '?page=' + pageNumber,
+            url: '?' + search +'page=' + pageNumber,
             type: 'get',
             datatype: 'html',
             beforeSend: function() {

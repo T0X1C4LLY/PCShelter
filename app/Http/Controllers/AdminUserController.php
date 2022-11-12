@@ -28,9 +28,7 @@ class AdminUserController extends Controller
         $page = request('page') ?? 1;
 
         /** @var int $total */
-        $total = DB::table('users')
-            ->selectRaw('count(id)')
-            ->value('count');
+        $total = DB::scalar('SELECT count(id) FROM users');
 
         $users = User::select([
                 'users.id',

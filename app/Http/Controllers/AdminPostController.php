@@ -27,9 +27,7 @@ class AdminPostController extends Controller
         $page = request('page') ?? 1;
 
         /** @var int $total */
-        $total = DB::table('posts')
-            ->selectRaw('count(id)')
-            ->value('count');
+        $total = DB::scalar('SELECT count(id) FROM posts');
 
         $posts = Post::select([
                 'title',

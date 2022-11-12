@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Other\ArrayPagination;
+use App\Services\HTMLBuilder;
+use App\Services\Interfaces\HTMLBuilder as HTMLBuilderInterface;
+use App\Services\Interfaces\Newsletter;
 use App\Services\MailchimpNewsletter;
-use App\Services\NewsletterInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
@@ -19,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        app()->bind(NewsletterInterface::class, function () {
+        app()->bind(Newsletter::class, function () {
             $client = new ApiClient();
             $client->setConfig([
                 'apiKey' => config('services.mailchimp.key'),
@@ -28,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
 
             return new MailchimpNewsletter($client);
         });
+
+        app()->bind(HTMLBuilderInterface::class, HTMLBuilder::class);
     }
 
     /**

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use App\Services\NewsletterInterface;
+use App\Services\Interfaces\Newsletter;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,11 +31,11 @@ class RegisteredUserController extends Controller
      * Handle an incoming registration request.
      *
      * @param Request $request
-     * @param NewsletterInterface $newsletter
+     * @param Newsletter $newsletter
      * @return RedirectResponse
      *
      */
-    public function store(Request $request, NewsletterInterface $newsletter): RedirectResponse
+    public function store(Request $request, Newsletter $newsletter): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:127'],
