@@ -51,9 +51,11 @@ class AdminPostController extends Controller
 
     public function edit(Post $post): Factory|View|Application
     {
+        $categories = Category::get(['id', 'name'])->toArray();
+
         return view('admin.posts.edit', [
-            'post' => $post,
-            'categories' => Category::all()
+            'post' => $post->toArray(),
+            'categories' => $categories,
         ]);
     }
 

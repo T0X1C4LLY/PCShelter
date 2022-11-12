@@ -144,6 +144,7 @@ Naprawiać klasa po klasie: </br>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
+Przejść na uuid gdzie się da </br>
 
 ## Pomysły: </br>
 
