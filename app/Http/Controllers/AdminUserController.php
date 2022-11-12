@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Facades\ArrayPagination;
+use App\Exceptions\InvalidOrderArgument;
+use App\Exceptions\InvalidPaginationInfo;
 use App\Models\User;
+use App\Services\Interfaces\ModelPaginator;
+use App\ValueObjects\AdminUsersOrderBy;
+use App\ValueObjects\PaginationInfo;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,7 +18,11 @@ use Spatie\Permission\Models\Role;
 
 class AdminUserController extends Controller
 {
-    public function index(): Application|View|Factory
+    public function __construct(private readonly ModelPaginator $paginator)
+    {
+    }
+
+    public function index(): Factory|View|Application|RedirectResponse
     {
         $perPage = 25;
 
@@ -27,26 +35,12 @@ class AdminUserController extends Controller
         /** @var int $page */
         $page = request('page') ?? 1;
 
-        /** @var int $total */
-        $total = DB::scalar('SELECT count(id) FROM users');
-
-        $users = User::select([
-                'users.id',
-                'username',
-                'users.name',
-                'users.username',
-                'email',
-                'roles.name AS role',
-                'users.created_at'
-            ])
-            ->filter(request(['admin_search']))
-            ->orderBy('users.'.$by, $order)
-            ->join('model_has_roles', 'model_id', 'users.id')
-            ->join('roles', 'roles.id', 'model_has_roles.role_id')
-            ->skip(($page - 1) * $perPage)
-            ->take($perPage)
-            ->get()
-            ->toArray();
+        try {
+            $orderBy = new AdminUsersOrderBy($order, $by);
+            $paginationInfo = new PaginationInfo($page, $perPage);
+        } catch (InvalidOrderArgument|InvalidPaginationInfo $e) {
+            return back()->with('failure', $e->getMessage());
+        }
 
         $roles = Role::select([
                 'id',
@@ -56,7 +50,7 @@ class AdminUserController extends Controller
             ->toArray();
 
         return view('admin.users.index', [
-            'users' => ArrayPagination::paginate($users, $total, $page, $perPage),
+            'users' => $this->paginator->users($orderBy, $paginationInfo),
             'roles' => $roles,
         ]);
     }
@@ -66,7 +60,7 @@ class AdminUserController extends Controller
         /** @var User $loggedUser */
         $loggedUser = auth()->user();
 
-        if ($user->id === $loggedUser->getAuthIdentifier()) {
+        if ($user->getAuthIdentifier() === $loggedUser->getAuthIdentifier()) {
             return back()->with('failure', "You cannot delete Yourself");
         }
 
@@ -75,19 +69,22 @@ class AdminUserController extends Controller
         return back()->with('success', "User deleted successfully");
     }
 
-    public function update(User $user, int $id): RedirectResponse
+    public function update(Request $request, User $user, int $id): RedirectResponse
     {
-        /** @var Request $request */
-        $request = request();
+        /** @var User $loggedUser */
+        $loggedUser = $request->user();
 
-        if (($currentUser = $request->user()) && $currentUser->id === $user->id) {
+        /** @var string $userId */
+        $userId = $user->getAuthIdentifier();
+
+        if ($loggedUser->getAuthIdentifier() === $userId) {
             return back()->with('failure', 'You cannot update Your own role');
         }
 
-        $role = DB::table('model_has_roles')->where('model_id', $user->id);
+        $role = DB::table('model_has_roles')->where('model_id', $userId);
 
         $role->update(['role_id' => $id]);
 
-        return back()->with('success', sprintf('%s\' role updated', $user->username));
+        return back()->with('success', sprintf('%s\'s role updated', $user->username));
     }
 }

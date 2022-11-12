@@ -6,8 +6,10 @@ namespace App\Services;
 
 use App\Facades\ArrayPagination;
 use App\Models\Post;
+use App\Models\User;
 use App\Services\Interfaces\ModelPaginator as ModelPaginatorInterface;
 use App\ValueObjects\AdminPostsOrderBy;
+use App\ValueObjects\AdminUsersOrderBy;
 use App\ValueObjects\PaginationInfo;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
@@ -42,5 +44,31 @@ class ModelPaginator implements ModelPaginatorInterface
             ->toArray();
 
         return ArrayPagination::paginate($posts, $total, $pagination->page, $pagination->perPage);
+    }
+
+    public function users(AdminUsersOrderBy $orderBy, PaginationInfo $pagination): LengthAwarePaginator
+    {
+        /** @var int $total */
+        $total = DB::scalar('SELECT count(id) FROM users');
+
+        $users = User::select([
+            'users.id',
+            'username',
+            'users.name',
+            'users.username',
+            'email',
+            'roles.name AS role',
+            'users.created_at'
+        ])
+            ->filter(request(['admin_search']))
+            ->orderBy('users.'.$orderBy->by, $orderBy->order)
+            ->join('model_has_roles', 'model_id', 'users.id')
+            ->join('roles', 'roles.id', 'model_has_roles.role_id')
+            ->skip(($pagination->page - 1) * $pagination->perPage)
+            ->take($pagination->perPage)
+            ->get()
+            ->toArray();
+
+        return ArrayPagination::paginate($users, $total, $pagination->page, $pagination->perPage);
     }
 }
