@@ -16,7 +16,7 @@ class PasswordResetLinkController extends Controller
      *
      * @return View
      */
-    public function create()
+    public function create(): View
     {
         return view('auth.forgot-password');
     }
@@ -29,28 +29,27 @@ class PasswordResetLinkController extends Controller
      *
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $loginField = filter_var(
-            $request->input('login'),
-            FILTER_VALIDATE_EMAIL
-        )
-            ? 'email'
-            : 'username';
-
         /** @var string $login */
         $login = $request->input('login');
+
+        $loginField = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
         $request->merge([$loginField => strtolower($login)]);
         $request->validate([
             'email' => ['required_without:username', 'email', 'exists:users,email'],
             'username' => ['required_without:email', 'string', 'exists:users,username'],
         ]);
+
         $status = Password::sendResetLink(
             $request->only($loginField)
         );
-        if ($status == Password::RESET_LINK_SENT) {
+
+        if ($status === Password::RESET_LINK_SENT) {
             return back()->with('status', __($status));
         }
+
         throw ValidationException::withMessages([
             $loginField => [trans($status)],
         ]);
