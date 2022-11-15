@@ -129,8 +129,9 @@ Naprawiać klasa po klasie: </br>
     <s>app/Console/Kernel.php </br>
     app/Enums/ReviewCategory.php </br>
     app/Exceptions/Handler.php </br>
-    app/Exceptions/InvalidOrderArgument.php </br>
-    app/Exceptions/InvalidPaginationInfo.php </br>
+    app/Exceptions/InvalidOrderArgumentException.php </br>
+    app/Exceptions/InvalidPaginationInfoException.php </br>
+    app/Exceptions/SteamResponseException.php </br>
     app/Facades/ArrayPagination.php </br>
     app/Http/Controllers/Auth/AuthenticatedSessionController.php </br>
     app/Http/Controllers/Auth/ConfirmablePasswordController.php </br>
@@ -141,11 +142,14 @@ Naprawiać klasa po klasie: </br>
     app/Http/Controllers/Auth/RegisteredUserController.php </br>
     app/Http/Controllers/Auth/VerifyEmailController.php </br>
     app/Http/Controllers/AdminPostController.php </br>
-    app/Http/Controllers/AdminUserController.php </br></s>
+    app/Http/Controllers/AdminUserController.php </br>
+    app/Http/Controllers/Controller.php </br>
+    app/Http/Controllers/GameController.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
 Przejść na uuid gdzie się da </br>
+Skorzystać z Dusk dla lepszych testów </br>
 
 ## Pomysły: </br>
 

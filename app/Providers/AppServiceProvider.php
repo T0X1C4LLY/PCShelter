@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Other\ArrayPagination;
+use App\Other\SteamInfo;
 use App\Services\Creator;
 use App\Services\HTMLBuilder;
 use App\Services\Interfaces\Creator as CreatorInterface;
@@ -60,6 +61,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('ArrayPagination', function () {
             return new ArrayPagination();
+        });
+
+        $this->app->bind('SteamInfo', function () {
+            return new SteamInfo();
         });
     }
 }

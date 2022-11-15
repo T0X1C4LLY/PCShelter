@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\InvalidOrderArgument;
-use App\Exceptions\InvalidPaginationInfo;
+use App\Exceptions\InvalidOrderArgumentException;
+use App\Exceptions\InvalidPaginationInfoException;
 use App\Models\User;
 use App\Services\Interfaces\ModelPaginator;
 use App\ValueObjects\AdminUsersOrderBy;
@@ -38,7 +38,7 @@ class AdminUserController extends Controller
         try {
             $orderBy = new AdminUsersOrderBy($order, $by);
             $paginationInfo = new PaginationInfo($page, $perPage);
-        } catch (InvalidOrderArgument|InvalidPaginationInfo $e) {
+        } catch (InvalidOrderArgumentException|InvalidPaginationInfoException $e) {
             return back()->with('failure', $e->getMessage());
         }
 

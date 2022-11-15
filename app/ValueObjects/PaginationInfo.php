@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ValueObjects;
 
-use App\Exceptions\InvalidPaginationInfo;
+use App\Exceptions\InvalidPaginationInfoException;
 
 class PaginationInfo
 {
@@ -12,14 +12,14 @@ class PaginationInfo
     public readonly int $perPage;
 
     /**
-     * @throws InvalidPaginationInfo
+     * @throws InvalidPaginationInfoException
      */
     public function __construct(
         int $page,
         int $perPage,
     ) {
         if ($page <= 0 || $perPage <= 0) {
-            throw InvalidPaginationInfo::byInvalidArgument();
+            throw InvalidPaginationInfoException::byInvalidArgument();
         }
 
         $this->page = $page;

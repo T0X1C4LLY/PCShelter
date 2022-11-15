@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
-class InvalidOrderArgument extends \Exception
+class InvalidOrderArgumentException extends \Exception
 {
     public static function byInvalidArgument(string $order, string $by): self
     {

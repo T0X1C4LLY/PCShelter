@@ -209,7 +209,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'ArrayPagination'=> \App\Facades\ArrayPagination::class
+        'ArrayPagination'=> \App\Facades\ArrayPagination::class,
+        'SteamInfo'=> \App\Facades\SteamInfo::class,
     ])->toArray(),
 
 ];

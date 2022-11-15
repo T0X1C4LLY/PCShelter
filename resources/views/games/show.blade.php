@@ -44,9 +44,9 @@
                             @endforeach
                         </div>
                         <div class="text-yellow-100 p-1 text-xs pl-2 border-t-2 border-gray-600">
-                            @if($reviews['allReviews'] !== 0)
-                                <strong>{{ ucfirst($reviews['best']['name']) }}</strong>: {{ $reviews['best']['score'] }}/10 </br>
-                                <strong>General reviews</strong>: {{ $reviews['general'] }}/10 based on {{ $reviews['allReviews'] }} reviews</br>
+                            @if($game['reviews']['allReviews'] !== 0)
+                                <strong>{{ ucfirst($game['reviews']['best']['name']) }}</strong>: {{ $game['reviews']['best']['score'] }}/10 </br>
+                                <strong>General reviews</strong>: {{ $game['reviews']['general'] }}/10 based on {{ $game['reviews']['allReviews'] }} reviews</br>
                             @else
                                 Not yet rated
                             @endif

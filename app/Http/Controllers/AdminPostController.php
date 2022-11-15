@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\InvalidOrderArgument;
-use App\Exceptions\InvalidPaginationInfo;
+use App\Exceptions\InvalidOrderArgumentException;
+use App\Exceptions\InvalidPaginationInfoException;
 use App\Models\Category;
 use App\Models\Post;
 use App\Services\Interfaces\ModelPaginator;
@@ -40,7 +40,7 @@ class AdminPostController extends Controller
         try {
             $orderBy = new AdminPostsOrderBy($order, $by);
             $paginationInfo = new PaginationInfo($page, $perPage);
-        } catch (InvalidOrderArgument|InvalidPaginationInfo $e) {
+        } catch (InvalidOrderArgumentException|InvalidPaginationInfoException $e) {
             return back()->with('failure', $e->getMessage());
         }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Exceptions;
 
-class InvalidPaginationInfo extends \Exception
+class InvalidPaginationInfoException extends \Exception
 {
     public static function byInvalidArgument(): self
     {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Facades\ArrayPagination;
+use App\Models\Game;
 use App\Models\Post;
 use App\Models\User;
 use App\Services\Interfaces\ModelPaginator as ModelPaginatorInterface;
@@ -70,5 +71,25 @@ class ModelPaginator implements ModelPaginatorInterface
             ->toArray();
 
         return ArrayPagination::paginate($users, $total, $pagination->page, $pagination->perPage);
+    }
+
+    public function games(PaginationInfo $pagination, string $search): LengthAwarePaginator
+    {
+        /** @var int $total */
+        $total = DB::scalar('SELECT count(id) FROM games');
+
+        $games = Game::select([
+            'steam_appid',
+            'header_image',
+            'name',
+        ])
+            ->filter(['search' => $search])
+            ->orderBy('name')
+            ->skip(($pagination->page - 1) * $pagination->perPage)
+            ->take($pagination->perPage)
+            ->get()
+            ->toArray();
+
+        return ArrayPagination::paginate($games, $total, $pagination->page, $pagination->perPage);
     }
 }
