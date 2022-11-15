@@ -22,18 +22,18 @@ class AdminUserController extends Controller
     {
     }
 
-    public function index(): Factory|View|Application|RedirectResponse
+    public function index(Request $request): Factory|View|Application|RedirectResponse
     {
         $perPage = 25;
 
         /** @var string $by */
-        $by = request('by') ?? 'created_at';
+        $by = $request->input('by', 'created_at');
 
         /** @var string $order */
-        $order = request('order') ?? 'DESC';
+        $order = $request->input('order', 'DESC');
 
         /** @var int $page */
-        $page = request('page') ?? 1;
+        $page = $request->input('page', 1);
 
         try {
             $orderBy = new AdminUsersOrderBy($order, $by);

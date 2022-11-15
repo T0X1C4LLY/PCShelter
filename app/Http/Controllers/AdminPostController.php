@@ -26,16 +26,16 @@ class AdminPostController extends Controller
         $perPage = 25;
 
         /** @var string $by */
-        $by = $request->input('by') ?? 'created_at';
+        $by = $request->input('by', 'created_at');
 
         /** @var string $order */
-        $order = $request->input('order') ?? 'DESC';
+        $order = $request->input('order', 'DESC');
 
         /** @var int $page */
-        $page = $request->input('page') ?? 1;
+        $page = $request->input('page', 1);
 
         /** @var string $search */
-        $search = $request->input('admin_search') ?? '';
+        $search = $request->input('admin_search', '');
 
         try {
             $orderBy = new AdminPostsOrderBy($order, $by);

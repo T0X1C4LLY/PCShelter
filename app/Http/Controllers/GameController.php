@@ -26,8 +26,8 @@ class GameController extends Controller
     public function index(Request $request): View|Factory|Redirector|string|RedirectResponse|Application
     {
         /** @var int $page */
-        $page = request('page') ?? 1;
-        $search = $request->input('search') ?? '';
+        $page = $request->input('page', 1);
+        $search = $request->input('search', '');
         $perPage = 9;
 
         $isSteamId = filter_var(
