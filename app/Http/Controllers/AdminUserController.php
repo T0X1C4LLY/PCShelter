@@ -55,10 +55,10 @@ class AdminUserController extends Controller
         ]);
     }
 
-    public function destroy(User $user): RedirectResponse
+    public function destroy(Request $request, User $user): RedirectResponse
     {
         /** @var User $loggedUser */
-        $loggedUser = auth()->user();
+        $loggedUser = $request->user();
 
         if ($user->getAuthIdentifier() === $loggedUser->getAuthIdentifier()) {
             return back()->with('failure', "You cannot delete Yourself");

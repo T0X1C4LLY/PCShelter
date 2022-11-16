@@ -146,7 +146,8 @@ Naprawiać klasa po klasie: </br>
     app/Http/Controllers/AdminUserController.php </br>
     app/Http/Controllers/Controller.php </br>
     app/Http/Controllers/GameController.php </br>
-    app/Http/Controllers/GameFinderController.php </br></s>
+    app/Http/Controllers/GameFinderController.php </br>
+    app/Http/Controllers/NewsletterController.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
