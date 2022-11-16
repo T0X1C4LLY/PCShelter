@@ -9,24 +9,18 @@ use Illuminate\Http\Request;
 
 class PostCommentsController extends Controller
 {
-    public function store(Post $post): RedirectResponse
+    public function store(Request $request, Post $post): RedirectResponse
     {
-        /** @var Request $request */
-        $request = request();
+        $request->validate(['body' => ['required']]);
 
-        $request->validate([
-            'body' => ['required']
+        /** @var User $user */
+        $user = $request->user();
+
+        $post->comments()->create([
+            'user_id' => $user->id,
+            'body' => $request->input('body')
         ]);
 
-        $user = $request->user();
-        if ($user instanceof User) {
-            $post->comments()->create([
-                'user_id' => $user->id,
-                'body' => request('body')
-            ]);
-            return back(201)->with('success', 'You comment has been successfully posted');
-        }
-
-        return back()->with('failure', 'Something went wrong, please try again');
+        return back(201)->with('success', 'Your comment has been successfully posted');
     }
 }
