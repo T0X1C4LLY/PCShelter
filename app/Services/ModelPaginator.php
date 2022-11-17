@@ -14,6 +14,7 @@ use App\ValueObjects\AdminUsersOrderBy;
 use App\ValueObjects\PaginationInfo;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ModelPaginator implements ModelPaginatorInterface
 {
@@ -90,6 +91,49 @@ class ModelPaginator implements ModelPaginatorInterface
             ->get()
             ->toArray();
 
-        return ArrayPagination::paginate($games, $total, $pagination->page, $pagination->perPage);
+        return ArrayPagination::paginate($games, $total, $pagination->page, $pagination->perPage)->onEachSide(1);
+    }
+
+    public function postsToShow(PaginationInfo $pagination, ?string $search, ?string $category, ?string $author): LengthAwarePaginator
+    {
+        /** @var int $total */
+        $total = DB::scalar('
+            SELECT count(p.id)
+            FROM posts p
+            JOIN categories c ON p.category_id = c.id
+            JOIN users u ON u.id = p.user_id
+            WHERE
+                (title LIKE :search OR
+                body LIKE :search) AND
+                u.username LIKE :author AND
+                c.name LIKE :category
+        ', [
+            'search' => '%'.$search.'%',
+            'category' => $category ?: '%',
+            'author' => $author ?: '%'
+        ]);
+
+        $posts =  Post::select([
+            'posts.id',
+            'user_id',
+            'category_id',
+            'slug',
+            'title',
+            'thumbnail',
+            'excerpt',
+            'body',
+            'posts.created_at',
+            'username',
+            'name',
+        ])
+            ->join('users', 'users.id', 'posts.user_id')
+            ->filter(['search' => $search, 'category' => $category, 'author' => $author])
+            ->orderBy('posts.created_at', 'DESC')
+            ->skip(($pagination->page - 1) * $pagination->perPage)
+            ->take($pagination->perPage)
+            ->get()
+            ->toArray();
+
+        return ArrayPagination::paginate($posts, $total, $pagination->page, $pagination->perPage);
     }
 }

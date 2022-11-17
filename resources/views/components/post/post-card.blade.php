@@ -11,7 +11,7 @@
                 <x-post.post-card-header :post="$post"/>
 
                 <div class="text-sm mt-4 space-y-4">
-                    {!! $post->excerpt !!}
+                    {!! $post['excerpt'] !!}
                 </div>
             </div>
             <x-post.post-card-footer :post="$post"/>

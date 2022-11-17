@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -126,5 +127,10 @@ class Post extends Model
     public function author(): BelongsTo
     { // Laravel zakłada, że klucz obcy będzie nazywał się user_id - nazwaMetody_id
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getCreatedAtAttribute(string $created_at): Carbon
+    { //Accessor
+        return new Carbon($created_at);// Carbon::createFromFormat('Y-m-d h:i:s',$created_at);
     }
 }

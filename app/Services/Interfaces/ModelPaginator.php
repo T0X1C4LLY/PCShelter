@@ -14,4 +14,6 @@ interface ModelPaginator
     public function users(AdminUsersOrderBy $orderBy, PaginationInfo $pagination): LengthAwarePaginator;
 
     public function games(PaginationInfo $pagination, string $search): LengthAwarePaginator;
+
+    public function postsToShow(PaginationInfo $pagination, string $search, string $category, string $author): LengthAwarePaginator;
 }
