@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Game;
 use App\Models\User;
 use App\Steam\Library;
 use Closure;
@@ -60,14 +61,25 @@ class OwnTheGame
         $inLibrary = $library->isInLibrary($name);
 
         if (!$inLibrary) {
-            return back()->with(['failure' => 'You can not review a game that You do not own']);
+            return back()->with(['failure' => 'You cannot review a game that You do not own']);
         }
 
         $game = $library->getByName($name);
 
-        if (!$game->wasEverPlayed()) {
-            return back()->with(['failure' => 'You can not review a game that You do not ever played']);
-        }
+//        if (!$game->wasEverPlayed()) {
+//            return back()->with(['failure' => 'You cannot review a game that You do not ever played']);
+//        }
+
+        /** @var Game $gameInDb */
+        $gameInDb = Game::where('name', $request->input('name'))
+            ->first(['name', 'id']);
+
+        /** @var string $userUuid */
+        $userUuid = $user->getAuthIdentifier();
+
+//        if ($gameInDb->wasReviewedBy($userUuid)) {
+//            return back()->with(['failure' => 'You can only review a game once']);
+//        }
 
         $request->request->add(['current_time_played' => $game->playtimeForever]);
 

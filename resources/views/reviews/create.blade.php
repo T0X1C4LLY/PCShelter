@@ -2,10 +2,10 @@
     <div class="text-yellow-300 max-w-screen-xl mx-auto border-2 rounded-xl bg-gray-800">
         <div class="px-3 py-2 text-sm">
             <div class="text-center text-4xl flex flex-col pb-2">
-                <h1> {{ $name }} </h1>
+                <h1> {{ $game['name'] }} </h1>
             </div>
         </div>
-        <form method="POST" action="/add-review?name={{ $name }}" enctype="multipart/form-data" class="text-center pb-2">
+        <form method="POST" action="/add-review?name={{ $game['name'] }}" enctype="multipart/form-data" class="text-center pb-2">
             @csrf
             <div class=" grid grid-cols-2">
                 <x-reviews.form-radio name="music">
@@ -72,7 +72,12 @@
             <input id="game_id"
                    name="game_id"
                    type="hidden"
-                   value="{{ $id }}"
+                   value="{{ $game['id'] }}"
+            >
+            <input id="steam_appid"
+                   name="steam_appid"
+                   type="hidden"
+                   value="{{ $game['steam_appid'] }}"
             >
             <x-form.button>Add Review</x-form.button>
         </form>

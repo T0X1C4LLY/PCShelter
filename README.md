@@ -149,13 +149,15 @@ Naprawiać klasa po klasie: </br>
     app/Http/Controllers/GameFinderController.php </br>
     app/Http/Controllers/NewsletterController.php </br>
     app/Http/Controllers/PostCommentsController.php </br>
-    app/Http/Controllers/PostController.php </br></s>
+    app/Http/Controllers/PostController.php </br>
+    app/Http/Controllers/ReviewController.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
 Przejść na uuid gdzie się da </br>
 Skorzystać z Dusk dla lepszych testów </br>
 Naprawić wyszukiwanie postów - nie da się filtrować po autorze kategorii i search jednocześnie </br>
+Odebrać możliwość dodawania kilku recenzji przez tego samego użytkownika </br>
 
 ## Pomysły: </br>
 

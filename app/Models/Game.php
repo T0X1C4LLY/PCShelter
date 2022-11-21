@@ -93,6 +93,13 @@ class Game extends Model
         ];
     }
 
+    public function wasReviewedBy(string $userId): bool
+    {
+        $review = Review::where([['game_id', $this->id], ['user_id', $userId]])->get('id');
+
+        return $review->count() > 0;
+    }
+
     public function scopeFilter(Builder $query, array $filters): void
     {
         $query->when(

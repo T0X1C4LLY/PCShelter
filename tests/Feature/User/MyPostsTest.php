@@ -79,7 +79,7 @@ class MyPostsTest extends TestCase
     {
         $response = $this->actingAs($this->creator)->get('/user/posts');
 
-        $response->assertSeeInOrder(['Title', 'Comments', 'Created at', $this->creatorPost->title, $this->creatorsComments, $this->creatorPost->createdAt]);
+        $response->assertSeeInOrder(['Title', 'Comments', 'Created at', $this->creatorPost->title, $this->creatorsComments]);
         $response->assertStatus(200);
     }
 }

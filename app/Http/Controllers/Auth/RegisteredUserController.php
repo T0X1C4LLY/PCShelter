@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
+use Spatie\Permission\Models\Permission;
 
 class RegisteredUserController extends Controller
 {
@@ -63,6 +64,7 @@ class RegisteredUserController extends Controller
         ];
 
         $user = $this->creator->creatUser($userData);
+        $user->givePermissionTo(Permission::findByName('login_to_steam'));
 
         Auth::login($user);
         event(new Registered($user));

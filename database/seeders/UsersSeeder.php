@@ -24,6 +24,9 @@ class UsersSeeder extends Seeder
             'username' => 'admin',
             'password' => Hash::make('admin'),
             'email' => 'admin@admin.com',
+            'steamUsername' => 'T0X1C4LLY',
+            'avatar' => 'https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg',
+            'steamId' => 76561198395363470,
         ]);
 
         $user = User::factory()->create([
@@ -39,7 +42,6 @@ class UsersSeeder extends Seeder
         ]);
 
         $admin->assignRole(Role::findByName('admin'));
-        $admin->givePermissionTo(Permission::findByName('login_to_steam'));
         $user->assignRole(Role::findByName('user'));
         $creator->assignRole(Role::findByName('creator'));
 
@@ -50,12 +52,14 @@ class UsersSeeder extends Seeder
             /** @var Model $temp */
             $temp = User::factory()->create();
             $temp->assignRole(Role::findByName('user'));
+            $temp->givePermissionTo(Permission::findByName('login_to_steam'));
         }
 
         for ($i = 0; $i < $quantityOfCreators; $i++) {
             /** @var Model $temp */
             $temp = User::factory()->create();
             $temp->assignRole(Role::findByName('creator'));
+            $temp->givePermissionTo(Permission::findByName('login_to_steam'));
         }
     }
 }

@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
@@ -21,6 +22,7 @@ class RegistrationTest extends TestCase
     public function test_new_users_can_register()
     {
         Role::create(['name' => 'user']);
+        Permission::create(['name' => 'login_to_steam']);
 
         $response = $this->post('/register', [
             'username' => 'usertest',
