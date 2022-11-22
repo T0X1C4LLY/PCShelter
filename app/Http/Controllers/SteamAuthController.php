@@ -2,89 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Invisnik\LaravelSteamAuth\SteamAuth;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Invisnik\LaravelSteamAuth\SteamInfo;
 
 class SteamAuthController extends Controller
 {
-    /**
-     * The SteamAuth instance.
-     *
-     * @var SteamAuth
-     */
-    protected $steam;
-
-    /**
-     * The redirect URL.
-     *
-     * @var string
-     */
-    protected $redirectURL = '/';
-
-    /**
-     * AuthController constructor.
-     *
-     * @param SteamAuth $steam
-     */
-    public function __construct(SteamAuth $steam)
-    {
-        $this->steam = $steam;
+    public function __construct(
+        private readonly SteamAuth $steam,
+        private readonly string $redirectUrl = '/',
+    ) {
     }
 
-    /**
-     * Redirect the user to the authentication page
-     *
-     * @return RedirectResponse|Redirector
-     */
-    public function redirectToSteam()
+    public function redirectToSteam(): RedirectResponse
     {
         return $this->steam->redirect();
     }
 
     /**
-     * Get user info and log in
-     *
-     * @return RedirectResponse|Redirector
+     * @throws GuzzleException
      */
-    public function handle()
+    public function handle(): Redirector|Application|RedirectResponse
     {
-        if ($this->steam->validate()) {
-            $info = $this->steam->getUserInfo();
-
-            $user = $this->findOrNewUser($info);
-
-            Auth::login($user, true);
-
-            return redirect($this->redirectURL); // redirect to site
+        if (!$this->steam->validate()) {
+            return $this->redirectToSteam();
         }
-        return $this->redirectToSteam();
-    }
 
-    /**
-     * Getting user by info or created if not exists
-     */
-    protected function findOrNewUser(SteamInfo $info): User
-    {
+        $info = $this->steam->getUserInfo();
+
         /** @var User $user */
         $user = auth()->user();
 
-        /** @phpstan-ignore-next-line  */
-        $user->steamId = $info->steamID64;
-        /** @phpstan-ignore-next-line  */
-        $user->avatar = $info->avatarfull;
-        /** @phpstan-ignore-next-line  */
-        $user->steamUsername = $info->personaname;
+        $user->updateAfterSteamLogin($info);
 
-        $user->save();
-
-        $user->givePermissionTo('delete_steam_data');
-        $user->revokePermissionTo("login_to_steam");
-        $user->givePermissionTo('add_review');
-
-        return $user;
+        return redirect($this->redirectUrl);
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Invisnik\LaravelSteamAuth\SteamInfo;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
@@ -117,5 +118,26 @@ class User extends Authenticatable implements MustVerifyEmail
                 }
             )
         );
+    }
+
+    public function updateAfterSteamLogin(SteamInfo $info): void
+    {
+        /** @var int $steamId */
+        $steamId = $info->get('steamID64');
+
+        /** @var string $avatar */
+        $avatar = $info->get('avatarfull');
+
+        /** @var string $steamUsername */
+        $steamUsername = $info->get('personaname');
+
+        $this->steamId = $steamId;
+        $this->avatar = $avatar;
+        $this->steamUsername = $steamUsername;
+
+        $this->save();
+        $this->givePermissionTo('delete_steam_data');
+        $this->revokePermissionTo("login_to_steam");
+        $this->givePermissionTo('add_review');
     }
 }
