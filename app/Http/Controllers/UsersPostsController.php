@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,29 +16,31 @@ use Illuminate\Validation\Rule;
 
 class UsersPostsController extends Controller
 {
-    public function index(): Factory|View|Application
+    public function index(Request $request): Factory|View|Application
     {
         /** @var string $by */
-        $by = request('by') ?? 'created_at';
+        $by = $request->input('by', 'created_at');
 
         /** @var string $sort */
-        $sort = request('sort') ?? 'DESC';
+        $sort = $request->input('sort', 'DESC');
 
-        $user = auth()->user();
+        /** @var User $user */
+        $user = $request->user();
 
-        if ($user) {
-            return view('user.posts', [
-                'posts' => Post::select(['slug', 'title', 'posts.created_at', DB::raw('COALESCE(COUNT(comments.id),0) as comments')])
-                    ->leftJoin('comments', 'comments.post_id', '=', 'posts.id')
-                    ->filterForCreator(['search' => request(['search']), 'id' => $user->id])
-                    ->groupBy(['title', 'slug', 'posts.created_at'])
-                    ->orderBy($by, $sort)
-                    ->paginate(25)
-                    ->onEachSide(1),
-            ]);
-        }
-
-        abort(404);
+        return view('user.posts', [
+            'posts' => Post::select([
+                    'slug',
+                    'title',
+                    'posts.created_at',
+                    DB::raw('COALESCE(COUNT(comments.id),0) as comments'),
+                ])
+                ->leftJoin('comments', 'comments.post_id', 'posts.id')
+                ->filterForCreator(['search' => request(['search']), 'id' => $user->id])
+                ->groupBy(['title', 'slug', 'posts.created_at'])
+                ->orderBy($by, $sort)
+                ->paginate(25)
+                ->onEachSide(1),
+        ]);
     }
 
     public function create(): Application|View|Factory
@@ -45,52 +48,41 @@ class UsersPostsController extends Controller
         return view('user.create');
     }
 
-    public function store(): Redirector|Application|RedirectResponse
+    public function store(Request $request): Redirector|Application|RedirectResponse
     {
-//        $attributes = $this->validatePost();
-//        $attributes['user_id'] = auth()->id();
-//        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        /** @var UploadedFile $file */
+        $file = $request->file('thumbnail');
 
-        /** @var Request|null $request */
-        $request = request();
+        /** @var User $user */
+        $user = $request->user();
 
-        if (!is_null($request)) {
-            /** @var UploadedFile $file */
-            $file = $request->file('thumbnail');
-            $attributes = array_merge($this->validatePost(), [
-                'user_id' => auth()->id(),
-                'thumbnail' => $file->store('thumbnails'),
-            ]);
-            Post::create($attributes);
-            return redirect('/')->with('success', 'Your post has been successfully posted');
-        }
-        return back()->with('failure', 'Something went wrong, please try again');
+        $attributes = array_merge($this->validatePost($request), [
+            'user_id' => $user->id,
+            'thumbnail' => $file->store('thumbnails'),
+        ]);
+        Post::create($attributes);
+
+        return redirect('/')->with('success', 'Your post has been successfully posted');
     }
 
-    public function update(Post $post): RedirectResponse
+    public function update(Request $request, Post $post): RedirectResponse
     {
-        $attributes = $this->validatePost($post);
+        $attributes = $this->validatePost($request, $post);
 
-        /** @var Request|null $request */
-        $request = request();
+        $file = $request->file('thumbnail');
 
-        if (!is_null($request)) {
-            $file = $request->file('thumbnail');
-            if (isset($attributes['thumbnail']) && $file instanceof UploadedFile) {
-                $attributes['thumbnail'] = $file->store('thumbnails');
-            }
-            $post->update($attributes);
+        if (isset($attributes['thumbnail']) && $file instanceof UploadedFile) {
+            $attributes['thumbnail'] = $file->store('thumbnails');
         }
+
+        $post->update($attributes);
 
         return back()->with('success', 'Post Updated');
     }
 
-    protected function validatePost(?Post $post = null): array
+    protected function validatePost(Request $request, ?Post $post = null): array
     {
         $post ??= new Post();
-
-        /** @var Request $request */
-        $request = request();
 
         return $request->validate([
             'title' => ['required'],
