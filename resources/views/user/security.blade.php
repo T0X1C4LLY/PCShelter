@@ -1,8 +1,8 @@
 <x-main-layout>
     <x-user-setting heading="Security">
-        <x-dashboard.account-form property="name"/>
-        <x-dashboard.account-form property="username"/>
-        <x-dashboard.account-form property="email" type="email"/>
+        <x-dashboard.account-form property="name" :user="$user"/>
+        <x-dashboard.account-form property="username" :user="$user"/>
+        <x-dashboard.account-form property="email" :user="$user" type="email"/>
 
         <div class="text-yellow-200 px-3 py-2 text-xl border border-white rounded-xl my-1">
             <form method="POST" action="/user/change/password" class="text-sm w-full flex">

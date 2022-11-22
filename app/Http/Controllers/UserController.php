@@ -20,155 +20,112 @@ class UserController extends Controller
 {
     public function index(): Factory|View|Application
     {
+        /** @var User $user */
+        $user = User::select(['username', 'email', 'email_verified_at', 'created_at'])
+            ->where('id', auth()->id())
+            ->first();
+
         return view('user.index', [
-            'user' => User::query()->select()->where('id', '=', auth()->id())->get(),
-            'posts' => Post::query()->select()->where('user_id', '=', auth()->id())->get(),
-            'comments' => Comment::query()->select()->where('user_id', '=', auth()->id())->get(),
+            'user' => $user->toArray(),
+            'posts' => Post::where('user_id', auth()->id())->count(),
+            'comments' => Comment::where('user_id', auth()->id())->count(),
         ]);
     }
 
     public function security(): Factory|View|Application
     {
+        /** @var User $user */
+        $user = User::select(['name', 'username', 'email'])->where('id', auth()->id())->first();
+
         return view('user.security', [
-            'user' => User::query()->select()->where('id', '=', auth()->id())->get(),
+            'user' => $user->toArray(),
         ]);
     }
 
-    public function updateUsername(): RedirectResponse
+    public function updateUsername(Request $request): RedirectResponse
     {
-        $this->validateUsernameUpdateRequest();
-
-        $user = auth()->user();
-
-        if ($user) {
-            /** @var string $username */
-            $username = request()->username;
-            $user->username = $username;
-
-            $user->save();
-
-            return back()->with('success', "Your username has been changed successfully");
-        }
-
-        return back()->with('failure', "Something went wrong");
-    }
-
-    public function updateName(): RedirectResponse
-    {
-        $this->validateNameUpdateRequest();
-
-        $user = auth()->user();
-
-        if ($user) {
-            /** @var string $name */
-            $name = request()->name;
-            $user->name = $name;
-
-            $user->save();
-
-            return back()->with('success', "Your name has been changed successfully");
-        }
-
-        return back()->with('failure', "Something went wrong");
-    }
-
-    public function updateEmail(): RedirectResponse
-    {
-        $this->validateEmailUpdateRequest();
-
-        $user = auth()->user();
-
-        if ($user) {
-            /** @var string $email */
-            $email = request()->email;
-            $user->email = $email;
-            $user->email_verified_at = null;
-
-            $user->save();
-
-            event(new Registered($user));
-
-            return back()->with('success', "Your email has been changed successfully, please confirm it");
-        }
-
-        return back()->with('failure', "Something went wrong");
-    }
-
-    public function updatePassword(): RedirectResponse
-    {
-        $this->validatePasswordUpdateRequest();
-
-        $user = auth()->user();
-
-        if ($user) {
-            /** @var string $password */
-            $password = request()->password;
-            $user->password = Hash::make($password);
-
-            $user->save();
-
-            return back()->with('success', "Your password has been changed successfully");
-        }
-
-        return back()->with('failure', "Something went wrong");
-    }
-
-    public function deleteAccount(): RedirectResponse
-    {
-        $user = auth()->user();
-
-        if ($user) {
-            Auth::guard('web')->logout();
-
-            request()->session()->invalidate();
-
-            request()->session()->regenerateToken();
-
-            $user->delete();
-
-            return back()->with('success', "Your account has been deleted");
-        }
-
-        return back()->with('failure', "Something went wrong");
-    }
-
-    protected function validateUsernameUpdateRequest(): array
-    {
-        /** @var Request $request */
-        $request = request();
-
-        return $request->validate([
+        $request->validate([
             'username' => ['required','min:6', 'max:127', Rule::unique('users', 'username')]
         ]);
+
+        /** @var User $user */
+        $user = $request->user();
+
+        /** @var string $username */
+        $username = $request->input('username');
+        $user->username = $username;
+
+        $user->save();
+
+        return back()->with('success', "Your username has been changed successfully");
     }
 
-    protected function validateEmailUpdateRequest(): array
+    public function updateName(Request $request): RedirectResponse
     {
-        /** @var Request $request */
-        $request = request();
+        $request->validate(['name' => ['required', 'min:6', 'max:127']]);
 
-        return $request->validate([
+        /** @var User $user */
+        $user = $request->user();
+
+        /** @var string $name */
+        $name = $request->input('name');
+        $user->name = $name;
+
+        $user->save();
+
+        return back()->with('success', "Your name has been changed successfully");
+    }
+
+    public function updateEmail(Request $request): RedirectResponse
+    {
+        $request->validate([
             'email' => ['required', 'email', 'max:127', Rule::unique('users', 'email')]
         ]);
+
+        /** @var User $user */
+        $user = $request->user();
+
+        /** @var string $email */
+        $email = request()->email;
+        $user->email = $email;
+        $user->email_verified_at = null;
+
+        $user->save();
+
+        event(new Registered($user));
+
+        return back()->with('success', "Your email has been changed successfully, please confirm it");
     }
 
-    protected function validateNameUpdateRequest(): array
+    public function updatePassword(Request $request): RedirectResponse
     {
-        /** @var Request $request */
-        $request = request();
+        $request->validate(['password' => ['required', 'confirmed', 'max:127', Password::defaults()],]);
 
-        return $request->validate([
-            'name' => ['required', 'min:6', 'max:127']
-        ]);
+        /** @var User $user */
+        $user = $request->user();
+
+        /** @var string $password */
+        $password = request()->password;
+        $user->password = Hash::make($password);
+
+        $user->save();
+
+        return back()->with('success', "Your password has been changed successfully");
     }
 
-    protected function validatePasswordUpdateRequest(): array
+    public function deleteAccount(Request $request): RedirectResponse
     {
-        /** @var Request $request */
-        $request = request();
+        /** @var User $user */
+        $user = $request->user();
 
-        return $request->validate([
-            'password' => ['required', 'confirmed', 'max:127', Password::defaults()],
-        ]);
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        $user->delete();
+
+        return back()->with('success', "Your account has been deleted");
     }
 }

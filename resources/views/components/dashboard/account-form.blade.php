@@ -1,4 +1,4 @@
-@props(['property', 'type' => 'text'])
+@props(['property', 'user', 'type' => 'text'])
 
 <div class="text-yellow-200 px-3 py-2 text-xl border border-white rounded-xl my-1 min-w-max">
     <form method="POST" action="/user/change/{{ $property }}" class="text-sm w-full flex">
@@ -7,7 +7,7 @@
             <input id="{{ $property }}"
                    name="{{ $property }}"
                    type="{{ $type }}"
-                   placeholder="{{ auth()->user()->$property ?? ''}}"
+                   placeholder="{{ $user[$property] ?? ''}}"
                    class="py-1 pl-2 focus-within:outline-none text-yellow-600 bg-gray-600 rounded-full text-2xl w-full truncate"
             >
         </div>
