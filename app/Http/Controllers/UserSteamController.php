@@ -20,14 +20,7 @@ class UserSteamController extends Controller
         /** @var User $user */
         $user = auth()->user();
 
-        $user->update([
-            'steamUsername' => null,
-            'avatar' => null,
-            'steamId' => null,
-        ]);
-
-        $user->revokePermissionTo('delete_steam_data');
-        $user->givePermissionTo("login_to_steam");
+        $user->updateAfterSteamLogout();
 
         return back()->with('success', "Your steam data has been removed");
     }

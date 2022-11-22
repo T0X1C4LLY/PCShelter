@@ -140,4 +140,16 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->revokePermissionTo("login_to_steam");
         $this->givePermissionTo('add_review');
     }
+
+    public function updateAfterSteamLogout(): void
+    {
+        $this->update([
+            'steamUsername' => null,
+            'avatar' => null,
+            'steamId' => null,
+        ]);
+
+        $this->revokePermissionTo('delete_steam_data');
+        $this->givePermissionTo("login_to_steam");
+    }
 }
