@@ -155,7 +155,18 @@ Naprawiać klasa po klasie: </br>
     app/Http/Controllers/UserController.php </br>
     app/Http/Controllers/UsersCommentsController.php </br>
     app/Http/Controllers/UsersPostsController.php </br>
-    app/Http/Controllers/UserSteamController.php </br></s>
+    app/Http/Controllers/UserSteamController.php </br>
+    app/Http/Middleware/Authenticate.php </br>
+    app/Http/Middleware/EncryptCookies.php </br>
+    app/Http/Middleware/OwnTheGame.php </br>
+    app/Http/Middleware/PreventRequestsDuringMaintenance.php </br>
+    app/Http/Middleware/RedirectIfAuthenticated.php </br>
+    app/Http/Middleware/TrimStrings.php </br>
+    app/Http/Middleware/TrustHosts.php </br>
+    app/Http/Middleware/TrustProxies.php </br>
+    app/Http/Middleware/VerifyCsrfToken.php </br>
+    app/Http/Requests/Auth/LoginRequest.php </br>
+    app/Http/Kernel.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>

@@ -26,49 +26,31 @@ class OwnTheGame
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
         /** @var string|null $name */
-        $name = request('name');
+        $name = $request->input('name');
 
         if (!$name) {
             throw new Exception('title not found in url query');
         }
 
         /** @var User $user */
-        $user = auth()->user();
-
+        $user = $request->user();
         $userId = $user->steamId;
 
         if (!$userId) {
             return back()->with(['failure' => 'You must login to Your Steam Account to review a game']);
         }
 
-        $key = getenv('STEAM_API_KEY');
-        $response = file_get_contents(
-            'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key='.
-            $key.
-            '&include_played_free_games=1&include_appinfo=1&format=json&steamid='.
-            $userId
-        );
+        $library = $this->getUserLibrary($userId);
 
-        if (!$response) {
-            throw new Exception('Response from steam was empty');
-        }
-
-        /** @var array $gamesArray */
-        $gamesArray = json_decode($response, true, 512, JSON_THROW_ON_ERROR);
-
-        $library = Library::fromArray($gamesArray['response']);
-
-        $inLibrary = $library->isInLibrary($name);
-
-        if (!$inLibrary) {
+        if (!$library->isInLibrary($name)) {
             return back()->with(['failure' => 'You cannot review a game that You do not own']);
         }
 
         $game = $library->getByName($name);
 
-//        if (!$game->wasEverPlayed()) {
-//            return back()->with(['failure' => 'You cannot review a game that You do not ever played']);
-//        }
+        if (!$game->wasEverPlayed()) {
+            return back()->with(['failure' => 'You can only review a game that You played at least 1 hour']);
+        }
 
         /** @var Game $gameInDb */
         $gameInDb = Game::where('name', $request->input('name'))
@@ -77,12 +59,32 @@ class OwnTheGame
         /** @var string $userUuid */
         $userUuid = $user->getAuthIdentifier();
 
-//        if ($gameInDb->wasReviewedBy($userUuid)) {
-//            return back()->with(['failure' => 'You can only review a game once']);
-//        }
+        if ($gameInDb->wasReviewedBy($userUuid)) {
+            return back()->with(['failure' => 'You can only review a game once']);
+        }
 
         $request->request->add(['current_time_played' => $game->playtimeForever]);
 
         return $next($request);
+    }
+
+    /**
+     * @throws JsonException
+     * @throws Exception
+     */
+    private function getUserLibrary(int $userId): Library
+    {
+        $key = getenv('STEAM_USER_GAMES_URL');
+
+        $response = file_get_contents($key.$userId);
+
+        if (!$response) {
+            throw new Exception('Response from steam was empty');
+        }
+
+        /** @var array $gamesArray */
+        $gamesArray = json_decode($response, true, 512, JSON_THROW_ON_ERROR);
+
+        return Library::fromArray($gamesArray['response']);
     }
 }
