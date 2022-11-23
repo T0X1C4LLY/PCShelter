@@ -172,7 +172,9 @@ Naprawiać klasa po klasie: </br>
     app/Models/Game.php </br>
     app/Models/GameCategory.php </br>
     app/Models/Genre.php </br>
-    app/Models/Post.php </br></s>
+    app/Models/Post.php </br>
+    app/Models/Review.php </br>
+    app/Models/User.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
@@ -206,3 +208,4 @@ protected $with = ['category', 'author']; //to pozwoli za każdym razem wczytać
 public function getRouteKeyName(): string {return 'slug';} //to jest potrzebne, żeby znaleźć rekord z bazy po slug-u gdy w Route mamy {post} a nie {post:slug} </br>
 public function comments(): HasMany{ return $this->hasMany(Comment::class);} // Laravel zakłada, że klucz obcy będzie nazywał się user_id - nazwaMetody_id </br>
 public function getCreatedAtAttribute(string $created_at): Carbon //Accessor </br>
+public function setPasswordAttribute(string $password): void //Mutator: set + nazwa_atrybutu + Attribute() </br>
