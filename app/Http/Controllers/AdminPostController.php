@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Services\Interfaces\ModelPaginator;
 use App\ValueObjects\AdminPostsOrderBy;
-use App\ValueObjects\PaginationInfo;
+use App\ValueObjects\Page;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -39,7 +39,7 @@ class AdminPostController extends Controller
 
         try {
             $orderBy = new AdminPostsOrderBy($order, $by);
-            $paginationInfo = new PaginationInfo($page, $perPage);
+            $paginationInfo = new Page($page, $perPage);
         } catch (InvalidOrderArgumentException|InvalidPaginationInfoException $e) {
             return back()->with('failure', $e->getMessage());
         }

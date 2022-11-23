@@ -7,7 +7,7 @@ use App\Exceptions\SteamResponseException;
 use App\Facades\SteamInfo;
 use App\Services\Interfaces\HTMLBuilder;
 use App\Services\Interfaces\ModelPaginator;
-use App\ValueObjects\PaginationInfo;
+use App\ValueObjects\Page;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -40,7 +40,7 @@ class GameController extends Controller
         }
 
         try {
-            $paginationInfo = new PaginationInfo($page, $perPage);
+            $paginationInfo = new Page($page, $perPage);
         } catch (InvalidPaginationInfoException $e) {
             return back()->with('failure', $e->getMessage());
         }

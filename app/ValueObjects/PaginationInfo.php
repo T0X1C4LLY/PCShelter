@@ -8,21 +8,21 @@ use App\Exceptions\InvalidPaginationInfoException;
 
 class PaginationInfo
 {
-    public readonly int $page;
-    public readonly int $perPage;
+    public readonly Page $page;
+    public readonly int $total;
 
     /**
      * @throws InvalidPaginationInfoException
      */
     public function __construct(
-        int $page,
-        int $perPage,
+        Page $page,
+        int $total,
     ) {
-        if ($page <= 0 || $perPage <= 0) {
+        if ($total < 0) {
             throw InvalidPaginationInfoException::byInvalidArgument();
         }
 
         $this->page = $page;
-        $this->perPage = $perPage;
+        $this->total = $total;
     }
 }

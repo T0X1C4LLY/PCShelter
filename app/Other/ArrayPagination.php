@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace App\Other;
 
+use App\ValueObjects\PaginationInfo;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class ArrayPagination
 {
-    public function paginate(array $arrayItems, int $total, int $page, int $perPage): LengthAwarePaginator
+    public function paginate(array $items, PaginationInfo $pagination): LengthAwarePaginator
     {
-        $items = Collection::make($arrayItems);
+        $collection = Collection::make($items);
 
         $paginator = new LengthAwarePaginator(
-            $items,
-            $total,
-            $perPage,
-            $page
+            $collection,
+            $pagination->total,
+            $pagination->page->perPage,
+            $pagination->page->perPage
         );
         $paginator->setPath(url()->current());
         $paginator->onEachSide(1);

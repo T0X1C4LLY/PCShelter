@@ -174,7 +174,8 @@ Naprawiać klasa po klasie: </br>
     app/Models/Genre.php </br>
     app/Models/Post.php </br>
     app/Models/Review.php </br>
-    app/Models/User.php </br></s>
+    app/Models/User.php </br>
+    app/Other/ArrayPagination.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>

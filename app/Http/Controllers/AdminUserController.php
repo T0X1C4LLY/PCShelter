@@ -7,7 +7,7 @@ use App\Exceptions\InvalidPaginationInfoException;
 use App\Models\User;
 use App\Services\Interfaces\ModelPaginator;
 use App\ValueObjects\AdminUsersOrderBy;
-use App\ValueObjects\PaginationInfo;
+use App\ValueObjects\Page;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -37,7 +37,7 @@ class AdminUserController extends Controller
 
         try {
             $orderBy = new AdminUsersOrderBy($order, $by);
-            $paginationInfo = new PaginationInfo($page, $perPage);
+            $paginationInfo = new Page($page, $perPage);
         } catch (InvalidOrderArgumentException|InvalidPaginationInfoException $e) {
             return back()->with('failure', $e->getMessage());
         }

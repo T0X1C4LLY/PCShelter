@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\InvalidPaginationInfoException;
 use App\Models\Post;
 use App\Services\Interfaces\ModelPaginator;
-use App\ValueObjects\PaginationInfo;
+use App\ValueObjects\Page;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -35,7 +35,7 @@ class PostController extends Controller
         $author = $request->input('author');
 
         try {
-            $paginationInfo = new PaginationInfo($page, $perPage);
+            $paginationInfo = new Page($page, $perPage);
         } catch (InvalidPaginationInfoException $e) {
             return back()->with('failure', $e->getMessage());
         }
