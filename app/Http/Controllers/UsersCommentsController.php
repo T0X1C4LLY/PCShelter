@@ -23,7 +23,9 @@ class UsersCommentsController extends Controller
         $user = $request->user();
 
         return view('user.comments', [
-            'comments' => Comment::filter(['search' => request(['search']), 'id' => $user->id])
+            'comments' => Comment::select(['comments.body', 'comments.created_at', 'posts.slug'])
+                ->filter(['search' => request(['search']), 'id' => $user->id])
+                ->join('posts', 'comments.post_id', 'posts.id')
                 ->orderBy($by, $sort)
                 ->paginate(25)
                 ->onEachSide(1),

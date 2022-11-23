@@ -166,7 +166,9 @@ Naprawiać klasa po klasie: </br>
     app/Http/Middleware/TrustProxies.php </br>
     app/Http/Middleware/VerifyCsrfToken.php </br>
     app/Http/Requests/Auth/LoginRequest.php </br>
-    app/Http/Kernel.php </br></s>
+    app/Http/Kernel.php </br>
+    app/Models/Category.php </br>
+    app/Models/Comment.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>

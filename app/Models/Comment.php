@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,19 +18,6 @@ class Comment extends Model
         return $this->belongsTo(Post::class, 'post_id');
     }
 
-    /**
-     * @throws Exception
-     */
-    public function getPostSlug(): string
-    {
-        $post = Post::where('id', $this->post_id)->first();
-        if ($post) {
-            return $post->slug;
-        }
-
-        throw new Exception('Expected Post, null appeared');
-    }
-
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -46,7 +32,8 @@ class Comment extends Model
                 function (Builder $query) use ($search): Builder {
                     /** @var string $searchAsString */
                     $searchAsString = $search;
-                    return $query->where('body', 'like', '%' . $searchAsString . '%');
+
+                    return $query->where('comments.body', 'like', '%' . $searchAsString . '%');
                 }
             )
         );
@@ -59,7 +46,10 @@ class Comment extends Model
 
                 return $query->whereHas(
                     'author',
-                    fn (Builder $query): Builder => $query->where('user_id', strtolower($authorAsString)),
+                    fn (Builder $query): Builder => $query->where(
+                        'comments.user_id',
+                        strtolower($authorAsString)
+                    ),
                 );
             }
         );
