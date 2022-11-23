@@ -168,7 +168,11 @@ Naprawiać klasa po klasie: </br>
     app/Http/Requests/Auth/LoginRequest.php </br>
     app/Http/Kernel.php </br>
     app/Models/Category.php </br>
-    app/Models/Comment.php </br></s>
+    app/Models/Comment.php </br>
+    app/Models/Game.php </br>
+    app/Models/GameCategory.php </br>
+    app/Models/Genre.php </br>
+    app/Models/Post.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
@@ -196,3 +200,9 @@ Dawać ostrzeżenie administratorowi przed usunięciem postu/użytkownika? </br>
 Pamiętać o tym, żeby ujednolicić zapis do bazy - trzymać się lowercase'ów i dbać o case sensitive </br>
 Zmienne do widoków można przesyłać z kontrollerów np. return view('admin.posts.index', ['posts' => Post::paginate(50),]) </br>
 index, show, create, store, edit, update, destroy  - 7 restful actions </br>
+protected $guarded = ['id']; //wszytsko jest fillable oprócz id </br>
+protected $fillable = ['title', 'excerpt', 'body']; // pozwala tworzyć nowe obiekty z poziomu tinkera w następujący sposób: php artisan tinker     Post::create(['title' => 'cos', 'excerpt' => 'cos]) </br>
+protected $with = ['category', 'author']; //to pozwoli za każdym razem wczytać te 2 dane przy zapytaniach SQl - przydatne bo rozwiazuje problem n+1 ale nie zawsze musimy chcieć te dane pobrać także używać z rozsądkiem - alternatywa jest w web.php 'posts' => $author->posts->load(['category', 'author']) </br>
+public function getRouteKeyName(): string {return 'slug';} //to jest potrzebne, żeby znaleźć rekord z bazy po slug-u gdy w Route mamy {post} a nie {post:slug} </br>
+public function comments(): HasMany{ return $this->hasMany(Comment::class);} // Laravel zakłada, że klucz obcy będzie nazywał się user_id - nazwaMetody_id </br>
+public function getCreatedAtAttribute(string $created_at): Carbon //Accessor </br>

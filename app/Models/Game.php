@@ -30,9 +30,7 @@ class Game extends Model
     public function reviewResults(): array
     {
         $keys = ReviewCategory::values();
-
         $reviews = $this->reviews()->get()->toArray();
-
         $reviewResults = [];
 
         foreach ($keys as $key) {
@@ -42,7 +40,7 @@ class Game extends Model
         if (count($reviews) === 0) {
             return [
                 'reviews' => $reviewResults,
-                'all' => count($reviews)
+                'all' => 0,
             ];
         }
 
@@ -80,7 +78,6 @@ class Game extends Model
     public function getBestAndGeneralReviews(): array
     {
         $reviews = $this->reviewResults();
-
         $best = array_search(max($reviews['reviews']), $reviews['reviews'], true);
 
         return [
@@ -95,9 +92,13 @@ class Game extends Model
 
     public function wasReviewedBy(string $userId): bool
     {
-        $review = Review::where([['game_id', $this->id], ['user_id', $userId]])->get('id');
+        $reviews = Review::where([
+                ['game_id', $this->id],
+                ['user_id', $userId],
+            ])
+            ->get('id');
 
-        return $review->count() > 0;
+        return $reviews->count() > 0;
     }
 
     public function scopeFilter(Builder $query, array $filters): void
@@ -105,14 +106,14 @@ class Game extends Model
         $query->when(
             $filters['search'] ?? false,
             fn (Builder $query, mixed $search): Builder =>
-            $query->where(
-                function (Builder $query) use ($search): Builder {
-                    /** @var string $searchAsString */
-                    $searchAsString = $search;
+                $query->where(
+                    function (Builder $query) use ($search): Builder {
+                        /** @var string $searchAsString */
+                        $searchAsString = $search;
 
-                    return $query->where('name', 'ilike', '%' . $searchAsString . '%');
-                }
-            )
+                        return $query->where('name', 'ilike', '%' . $searchAsString . '%');
+                    }
+                )
         );
     }
 
@@ -128,6 +129,7 @@ class Game extends Model
                     for ($i = 1, $iMax = count($search); $i < $iMax; $i++) {
                         $query->orWhereJsonContains('genres', $search[$i]);
                     }
+
                     return $query;
                 }
             )
@@ -143,6 +145,7 @@ class Game extends Model
                     for ($i = 1, $iMax = count($search); $i < $iMax; $i++) {
                         $query->orWhereJsonContains('categories', $search[$i]);
                     }
+
                     return $query;
                 }
             )
