@@ -26,14 +26,20 @@ class HTMLBuilder implements HTMLBuilderInterface
          * } $game
          */
         foreach ($games as $game) {
-            $html .= '
+            $html .= sprintf(
+                '
                     <div class="px-2 py-2 transform transition duration-500 hover:scale-105">
-                        <a href="/games/'.$game['steam_appid'].'">
-                            <img src="'.$game['header_image'].'" alt="" title="'.$game['name'].'" class="w-full h-full"/>
+                        <a href="/games/%s">
+                            <img src="%s" alt="" title="%s" class="w-full h-full"/>
                         </a>
                     </div>
-                ';
+                ',
+                $game['steam_appid'],
+                $game['header_image'],
+                $game['name']
+            );
         }
+
         return $html;
     }
 }

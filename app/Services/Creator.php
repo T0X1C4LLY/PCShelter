@@ -40,11 +40,11 @@ class Creator implements CreatorInterface
 
         $users = $this->newsletter->getAllSubscribers()->members;
 
-        foreach ($users as $email) {
-            if ($email->email_address === $user->email) {
-                $user->givePermissionTo('unsubscribe');
-                $user->givePermissionTo('login_to_steam');
-            }
+        $key = array_search($user->email, array_column($users, 'email_address'), true);
+
+        if ($key !== false) {
+            $users[$key]->givePermissionTo('unsubscribe');
+            $users[$key]->givePermissionTo('login_to_steam');
         }
 
         return $user;
