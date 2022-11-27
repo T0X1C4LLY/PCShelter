@@ -9,11 +9,11 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface ModelPaginator
 {
-    public function posts(AdminPostsOrderBy $orderBy, Page $page, string $search): LengthAwarePaginator;
+    public function posts(AdminPostsOrderBy $orderBy, Page $page, ?string $search): LengthAwarePaginator;
 
-    public function users(AdminUsersOrderBy $orderBy, Page $page): LengthAwarePaginator;
+    public function users(AdminUsersOrderBy $orderBy, Page $page, ?string $search): LengthAwarePaginator;
 
-    public function games(Page $page, string $search): LengthAwarePaginator;
+    public function getPaginatedGames(Page $page, string $search): array;
 
     public function postsToShow(Page $page, string $search, string $category, string $author): LengthAwarePaginator;
 }

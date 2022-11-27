@@ -35,6 +35,9 @@ class AdminUserController extends Controller
         /** @var int $page */
         $page = $request->input('page', 1);
 
+        /** @var string|null $search */
+        $search = $request->input('admin_search');
+
         try {
             $orderBy = new AdminUsersOrderBy($order, $by);
             $paginationInfo = new Page($page, $perPage);
@@ -50,7 +53,7 @@ class AdminUserController extends Controller
             ->toArray();
 
         return view('admin.users.index', [
-            'users' => $this->paginator->users($orderBy, $paginationInfo),
+            'users' => $this->paginator->users($orderBy, $paginationInfo, $search),
             'roles' => $roles,
         ]);
     }

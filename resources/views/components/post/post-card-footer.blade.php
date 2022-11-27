@@ -5,7 +5,7 @@
         <img src="https://i.pravatar.cc/75?img={{ $post['username'] }}" alt="avatar" class="rounded-xl">
         <div class="ml-3">
             <h5 class="font-bold text-yellow-500">
-                <a href="/?author={{ $post['username'] }}">
+                <a href="/?author={{ $post['username'] }}&{{ http_build_query(request()->all()) }}">
                     {{ $post['name'] }}
                 </a>
             </h5>

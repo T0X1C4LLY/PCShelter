@@ -25,13 +25,13 @@ class PostController extends Controller
         /** @var int $page */
         $page = $request->input('page', 1);
 
-        /** @var string $search */
+        /** @var string|null $search */
         $search = $request->input('search');
 
-        /** @var string $category */
+        /** @var string|null $category */
         $category = $request->input('category');
 
-        /** @var string $author */
+        /** @var string|null $author */
         $author = $request->input('author');
 
         try {

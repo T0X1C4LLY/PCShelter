@@ -46,9 +46,9 @@ class GameController extends Controller
         }
 
         /** @var string $search */
-        $gamesPaginated = $this->paginator->games($paginationInfo, $search);
+        $gamesPaginated = $this->paginator->getPaginatedGames($paginationInfo, $search);
 
-        return $request->ajax() ? $this->builder->createGameDivs($gamesPaginated->items()) : view('games.index');
+        return $request->ajax() ? $this->builder->createGameDivs($gamesPaginated) : view('games.index');
     }
 
     public function show(int $steamGameId): Factory|View|Application|RedirectResponse

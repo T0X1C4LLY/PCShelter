@@ -18,7 +18,7 @@ class ArrayPagination
             $collection,
             $pagination->total,
             $pagination->page->perPage,
-            $pagination->page->perPage
+            $pagination->page->pageNumber,
         );
         $paginator->setPath(url()->current());
         $paginator->onEachSide(1);

@@ -22,16 +22,15 @@ class ModelPaginator implements ModelPaginatorInterface
     /**
      * @throws InvalidPaginationInfoException
      */
-    public function posts(AdminPostsOrderBy $orderBy, Page $page, string $search): LengthAwarePaginator
+    public function posts(AdminPostsOrderBy $orderBy, Page $page, ?string $search): LengthAwarePaginator
     {
-        /** @var int $total */
-        $total = DB::scalar('
-            SELECT count(id)
-            FROM posts
-            WHERE title ILIKE :search
-        ', [
-            'search' => '%'.$search.'%'
-        ]);
+        $total = DB::table('posts')->selectRaw('count(id)');
+
+        if ($search) {
+            $total->where('title', 'ilike', '%'.$search.'%');
+        }
+
+        $total = $total->value('count(id)');
 
         $posts = Post::select([
                 'title',
@@ -49,16 +48,22 @@ class ModelPaginator implements ModelPaginatorInterface
             ->get()
             ->toArray();
 
+        /** @var int $total */
         return ArrayPagination::paginate($posts, new PaginationInfo($page, $total));
     }
 
     /**
      * @throws InvalidPaginationInfoException
      */
-    public function users(AdminUsersOrderBy $orderBy, Page $page): LengthAwarePaginator
+    public function users(AdminUsersOrderBy $orderBy, Page $page, ?string $search): LengthAwarePaginator
     {
-        /** @var int $total */
-        $total = DB::scalar('SELECT count(id) FROM users');
+        $total = DB::table('users')->selectRaw('count(id)');
+
+        if ($search) {
+            $total->where('username', 'ilike', '%'.$search.'%');
+        }
+
+        $total = $total->value('count(id)');
 
         $users = User::select([
                 'users.id',
@@ -78,18 +83,13 @@ class ModelPaginator implements ModelPaginatorInterface
             ->get()
             ->toArray();
 
+        /** @var int $total */
         return ArrayPagination::paginate($users, new PaginationInfo($page, $total));
     }
 
-    /**
-     * @throws InvalidPaginationInfoException
-     */
-    public function games(Page $page, string $search): LengthAwarePaginator
+    public function getPaginatedGames(Page $page, string $search): array
     {
-        /** @var int $total */
-        $total = DB::scalar('SELECT count(id) FROM games');
-
-        $games = Game::select([
+        return Game::select([
                 'steam_appid',
                 'header_image',
                 'name',
@@ -100,8 +100,6 @@ class ModelPaginator implements ModelPaginatorInterface
             ->take($page->perPage)
             ->get()
             ->toArray();
-
-        return ArrayPagination::paginate($games, new PaginationInfo($page, $total));
     }
 
     /**
@@ -109,22 +107,24 @@ class ModelPaginator implements ModelPaginatorInterface
      */
     public function postsToShow(Page $page, ?string $search, ?string $category, ?string $author): LengthAwarePaginator
     {
-        /** @var int $total */
-        $total = DB::scalar('
-            SELECT count(p.id)
-            FROM posts p
-            JOIN categories c ON p.category_id = c.id
-            JOIN users u ON u.id = p.user_id
-            WHERE
-                (title LIKE :search OR
-                body LIKE :search) AND
-                u.username LIKE :author AND
-                c.name LIKE :category
-        ', [
-            'search' => '%'.$search.'%',
-            'category' => $category ?: '%',
-            'author' => $author ?: '%'
-        ]);
+        $total = DB::table('posts')
+            ->selectRaw('count(posts.id) as quantity')
+            ->join('categories', 'categories.id', 'posts.category_id')
+            ->join('users', 'users.id', 'posts.user_id');
+
+        if ($search) {
+            $total->whereRaw('title LIKE ? OR body LIKE ?', [$search, $search]);
+        }
+
+        if ($author) {
+            $total->where('users.username', $author);
+        }
+
+        if ($category) {
+            $total->where('categories.slug', $category);
+        }
+
+        $total = $total->value('quantity');
 
         $posts =  Post::select([
                 'posts.id',
@@ -147,6 +147,7 @@ class ModelPaginator implements ModelPaginatorInterface
             ->get()
             ->toArray();
 
+        /** @var int $total */
         return ArrayPagination::paginate($posts, new PaginationInfo($page, $total));
     }
 }

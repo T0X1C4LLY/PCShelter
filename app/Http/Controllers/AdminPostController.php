@@ -34,8 +34,8 @@ class AdminPostController extends Controller
         /** @var int $page */
         $page = $request->input('page', 1);
 
-        /** @var string $search */
-        $search = $request->input('admin_search', '');
+        /** @var string|null $search */
+        $search = $request->input('admin_search');
 
         try {
             $orderBy = new AdminPostsOrderBy($order, $by);

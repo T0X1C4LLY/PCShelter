@@ -189,7 +189,9 @@ Naprawiać klasa po klasie: </br>
     app/Services/Interfaces/Newsletter.php </br>
     app/Services/Interfaces/Search.php </br>
     app/Services/Creator.php </br>
-    app/Services/HTMLBuilder.php </br></s>
+    app/Services/HTMLBuilder.php </br>
+    app/Services/MailchimpNewsletter.php </br>
+    app/Services/ModelPaginator.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
