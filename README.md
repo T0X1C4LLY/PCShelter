@@ -191,7 +191,8 @@ Naprawiać klasa po klasie: </br>
     app/Services/Creator.php </br>
     app/Services/HTMLBuilder.php </br>
     app/Services/MailchimpNewsletter.php </br>
-    app/Services/ModelPaginator.php </br></s>
+    app/Services/ModelPaginator.php </br>
+    app/Services/GameFinder.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
@@ -199,6 +200,7 @@ Przejść na uuid gdzie się da </br>
 Skorzystać z Dusk dla lepszych testów </br>
 Naprawić wyszukiwanie postów - nie da się filtrować po autorze kategorii i search jednocześnie </br>
 Odebrać możliwość dodawania kilku recenzji przez tego samego użytkownika </br>
+Dodać logikę niedodawania recenzji do gier które jeszcze nie wyszły </br>
 
 ## Pomysły: </br>
 

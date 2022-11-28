@@ -3,13 +3,11 @@
 namespace App\Services\Interfaces;
 
 use App\ValueObjects\DateRange;
+use App\ValueObjects\FinderParams;
 
 interface Search
 {
     /**
-     * @param string[] $genres
-     * @param string[] $categories
-     * @param string[] $types
      * @return array{
      *     id: string,
      *     steam_appid: int,
@@ -26,5 +24,5 @@ interface Search
      *     }>,
      * }[]
      */
-    public function findGames(array $genres, array $categories, array $types, DateRange $range): array;
+    public function findGames(FinderParams $params, DateRange $range): array;
 }

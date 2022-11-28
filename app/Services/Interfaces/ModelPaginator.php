@@ -15,5 +15,5 @@ interface ModelPaginator
 
     public function getPaginatedGames(Page $page, string $search): array;
 
-    public function postsToShow(Page $page, string $search, string $category, string $author): LengthAwarePaginator;
+    public function postsToShow(Page $page, ?string $search, ?string $category, ?string $author): LengthAwarePaginator;
 }

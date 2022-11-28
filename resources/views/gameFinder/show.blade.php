@@ -16,7 +16,7 @@
                     </div>
                     <div class="my-auto space-y-2">
                         @foreach ($game['reviews'] as $key => $value)
-                            <p>{{ $key }}: {{ ($value['total']) }}/10</p>
+                            <p>{{ $key }}: {{ ($value) }}/10</p>
                         @endforeach
                     </div>
                 @endforeach

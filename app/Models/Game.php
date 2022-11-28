@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Enums\ReviewCategory;
 use App\Traits\TraitUuid;
+use App\ValueObjects\DateRange;
+use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -150,5 +152,37 @@ class Game extends Model
                 }
             )
         );
+    }
+
+    public function isInDateRange(DateRange $range): bool
+    {
+        if (!$this->isReleased()) {
+            return false;
+        }
+
+        /** @var array{coming_soon: bool, date: string} $date */
+        $date = $this['release_date'];
+
+        /** @var DateTimeImmutable $releaseDate */
+        $releaseDate = DateTimeImmutable::createFromFormat('d M, Y', $date['date']);
+        $releaseDate = $releaseDate->modify('January 1 00:00:00');
+
+        if (!$range->isInRange($releaseDate)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private function isReleased(): bool
+    {
+        /** @var array{coming_soon: bool, date: string} $date */
+        $date = $this['release_date'];
+
+        if ($date['coming_soon']) {
+            return false;
+        }
+
+        return true;
     }
 }
