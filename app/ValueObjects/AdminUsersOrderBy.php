@@ -4,29 +4,19 @@ declare(strict_types=1);
 
 namespace App\ValueObjects;
 
-use App\Exceptions\InvalidOrderArgumentException;
+use App\Enums\AdminUsersOrderByTypes;
+use App\Enums\SortOrder;
 
 class AdminUsersOrderBy
 {
-    public readonly string $order;
-    public readonly string $by;
+    public readonly SortOrder $order;
+    public readonly AdminUsersOrderByTypes $by;
 
-    /**
-     * @throws InvalidOrderArgumentException
-     */
     public function __construct(
         string $order,
         string $by,
     ) {
-        if ($order !== 'ASC' && $order !== 'DESC') {
-            throw InvalidOrderArgumentException::byInvalidArgument($order, $by);
-        }
-
-        if ($by !== 'username' && $by !== 'name' && $by !== 'created_at') {
-            throw InvalidOrderArgumentException::byInvalidArgument($order, $by);
-        }
-
-        $this->order = $order;
-        $this->by = $by;
+        $this->order = SortOrder::from($order);
+        $this->by = AdminUsersOrderByTypes::from($by);
     }
 }

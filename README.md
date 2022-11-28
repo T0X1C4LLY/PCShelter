@@ -127,7 +127,10 @@ Możliwie pozbyć się logiki z widoków </br>
 Wyodrębnić logikę z kontrolerów do serwisów </br>
 Naprawiać klasa po klasie: </br>
     <s>app/Console/Kernel.php </br>
+    app/Enums/AdminPostsOrderByTypes.php </br>
+    app/Enums/AdminUsersOrderByTypes.php </br>
     app/Enums/ReviewCategory.php </br>
+    app/Enums/SortOrder.php </br>
     app/Exceptions/Handler.php </br>
     app/Exceptions/InvalidDataRangeException.php </br>
     app/Exceptions/InvalidOrderArgumentException.php </br>
@@ -192,7 +195,16 @@ Naprawiać klasa po klasie: </br>
     app/Services/HTMLBuilder.php </br>
     app/Services/MailchimpNewsletter.php </br>
     app/Services/ModelPaginator.php </br>
-    app/Services/GameFinder.php </br></s>
+    app/Services/GameFinder.php </br>
+    app/Services/HTMLBuilder.php </br>
+    app/Services/MailchimpNewsletter.php </br>
+    app/Services/ModelPaginator.php </br>
+    app/Steam/Library.php </br>
+    app/Steam/MyGame.php </br>
+    app/Traits/EnumValuesTrait.php </br>
+    app/Traits/TraitUuid.php </br>
+    app/ValueObjects/AdminPostsOrderBy.php </br>
+    app/ValueObjects/AdminUsersOrderBy.php </br></s>
 Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>

@@ -42,7 +42,7 @@ class ModelPaginator implements ModelPaginatorInterface
             ->leftJoin('comments', 'comments.post_id', 'posts.id')
             ->filter(['admin_search' => $search])
             ->groupBy(['title', 'slug', 'posts.id'])
-            ->orderBy($orderBy->by, $orderBy->order)
+            ->orderBy($orderBy->by->value, $orderBy->order->value)
             ->skip($page->skip())
             ->take($page->perPage)
             ->get()
@@ -75,7 +75,7 @@ class ModelPaginator implements ModelPaginatorInterface
                 'users.created_at'
             ])
             ->filter(request(['admin_search']))
-            ->orderBy('users.'.$orderBy->by, $orderBy->order)
+            ->orderBy('users.'.$orderBy->by->value, $orderBy->order->value)
             ->join('model_has_roles', 'model_id', 'users.id')
             ->join('roles', 'roles.id', 'model_has_roles.role_id')
             ->skip($page->skip())
@@ -140,7 +140,11 @@ class ModelPaginator implements ModelPaginatorInterface
                 'name',
             ])
             ->join('users', 'users.id', 'posts.user_id')
-            ->filter(['search' => $search, 'category' => $category, 'author' => $author])
+            ->filter([
+                'search' => $search,
+                'category' => $category,
+                'author' => $author,
+            ])
             ->orderBy('posts.created_at', 'DESC')
             ->skip($page->skip())
             ->take($page->perPage)

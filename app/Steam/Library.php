@@ -27,13 +27,7 @@ class Library implements JsonSerializable
 
     public function isInLibrary(string $gameName): bool
     {
-        foreach ($this->games as $game) {
-            if ($game->name === $gameName) {
-                return true;
-            }
-        }
-
-        return false;
+        return in_array($gameName, array_column($this->games, 'name'), true);
     }
 
     /**

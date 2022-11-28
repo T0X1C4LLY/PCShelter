@@ -21,7 +21,7 @@ class MailchimpNewsletter implements Newsletter
         /** @phpstan-ignore-next-line */
         return $this->client->lists->addListMember($list, [
             'email_address' => $email,
-            'status' => 'subscribed'
+            'status' => 'subscribed',
         ]);
     }
 
