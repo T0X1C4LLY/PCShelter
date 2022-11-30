@@ -10,6 +10,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="/images/favicon1.png">
+
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -72,18 +73,25 @@
                         </x-slot>
 
                         @can('enter_dashboard')
-                            <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
+                            <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">
+                                Dashboard
+                            </x-dropdown-item>
                         @endcan
                         @can('create_post')
-                            <x-dropdown-item href="/user/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
+                            <x-dropdown-item href="/user/posts/create" :active="request()->is('admin/posts/create')">
+                                New Post
+                            </x-dropdown-item>
                         @endcan
-                        <x-dropdown-item href="/user/account" :active="request()->is('user/account')">My Account</x-dropdown-item>
-                        <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
+                        <x-dropdown-item href="/user/account" :active="request()->is('user/account')">
+                            My Account
+                        </x-dropdown-item>
+                        <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">
+                            Log Out
+                        </x-dropdown-item>
                         <form id="logout-form" method="POST" action="/logout" class="hidden">
                             @csrf
                         </form>
                     </x-dropdown>
-
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
@@ -104,7 +112,6 @@
             <footer id="newsletter"
                     class="bg-gray-800 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16"
             >
-                {{--        <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">--}}
                 <h5 class="text-3xl text-white">
                     Stay in touch with newsletter the latest posts
                 </h5>
@@ -156,9 +163,6 @@
             </footer>
         @endif
     </section>
-{{--        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">--}}
-{{--            {{ $slot }}--}}
-{{--        </div>--}}
     <x-flash/>
     </body>
 </html>

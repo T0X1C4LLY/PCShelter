@@ -35,7 +35,6 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm font-medium text-gray-900 max-w-lg truncate">
-{{--                                                <a href="/posts/{{ (DB::table('posts')->where('id', $comment->post_id)->get(['slug']))[0]->slug }}">--}}
                                                 <a href="/posts/{{ $comment->slug }}">
                                                     {{ $comment->body }}
                                                 </a>

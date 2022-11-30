@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\InvalidPaginationInfoException;
+use App\Models\Category;
 use App\Models\Post;
 use App\Services\Interfaces\ModelPaginator;
 use App\ValueObjects\Page;
@@ -40,10 +41,23 @@ class PostController extends Controller
             return back()->with('failure', $e->getMessage());
         }
 
+        $currentCategory = null;
+
+        /** @var array{name: string, slug: string}[] $categories */
+        $categories = Category::all(['name', 'slug'])->toArray();
+
+        foreach ($categories as $cat) {
+            if ($request->fullUrlIs("*?category={$cat['slug']}*")) {
+                $currentCategory = $cat;
+            }
+        }
+
         return view('posts.index', [
             'posts' => $this->paginator
                 ->postsToShow($paginationInfo, $search, $category, $author)
                 ->withQueryString(),
+            'categories' => $categories,
+            'currentCategory' => $currentCategory,
         ]);
     }
 

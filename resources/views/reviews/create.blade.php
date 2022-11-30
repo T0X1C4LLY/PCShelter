@@ -5,7 +5,11 @@
                 <h1> {{ $game['name'] }} </h1>
             </div>
         </div>
-        <form method="POST" action="/add-review?name={{ $game['name'] }}" enctype="multipart/form-data" class="text-center pb-2">
+        <form method="POST"
+              action="/add-review?name={{ $game['name'] }}"
+              enctype="multipart/form-data"
+              class="text-center pb-2"
+        >
             @csrf
             <div class=" grid grid-cols-2">
                 <x-reviews.form-radio name="music">

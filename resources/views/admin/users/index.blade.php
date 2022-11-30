@@ -19,11 +19,7 @@
                             <tr>
                                 <x-admin-anchor url="admin/users" value="username"/>
                                 <x-admin-anchor url="admin/users" value="name"/>
-                                <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
-                                    <a href="/admin/users?order={{ request()->fullUrlIs("*order=DESC") ? 'ASC' : 'DESC' }}&by=created_at&{{ http_build_query(request()->except(['order', 'by'])) }}">
-                                        Created at
-                                    </a>
-                                </td>
+                                <x-admin-anchor url="admin/users" value="created at"/>
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-base font-medium text-yellow-600">
                                         Role
                                 </td>

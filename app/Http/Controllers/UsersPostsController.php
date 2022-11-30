@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
@@ -45,7 +46,9 @@ class UsersPostsController extends Controller
 
     public function create(): Application|View|Factory
     {
-        return view('user.create');
+        $categories = Category::all(['id', 'name'])->toArray();
+
+        return view('user.create', ['categories' => $categories]);
     }
 
     public function store(Request $request): Redirector|Application|RedirectResponse

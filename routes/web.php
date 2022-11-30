@@ -9,7 +9,6 @@ use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SteamAuthController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SteamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersCommentsController;
 use App\Http\Controllers\UsersPostsController;
@@ -31,17 +30,21 @@ Route::get('/logo', static function () {
     return response()->file('/var/www/html/public/storage/public/logo.png');
 });
 
-Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('/', [PostController::class, 'index'])
+    ->name('home');
 
-Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store'])->middleware('can:add_comment');
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store'])
+    ->middleware('can:add_comment');
 
 Route::post('subscribe', NewsletterController::class);
 
-Route::get('games', [GameController::class, 'index'])->name('games');
+Route::get('games', [GameController::class, 'index'])
+    ->name('games');
 Route::get('games/{steam_appid}', [GameController::class, 'show']);
 
-Route::get('game-finder', [GameFinderController::class, 'index'])->name('game-finder');
+Route::get('game-finder', [GameFinderController::class, 'index'])
+    ->name('game-finder');
 Route::post('game-finder', [GameFinderController::class, 'show']);
 
 Route::middleware('can:enter_dashboard')->group(function () {
@@ -63,21 +66,32 @@ Route::middleware('auth')->group(function () {
     Route::post('user/change/password', [UserController::class, 'updatePassword']);
     Route::post('user/change/delete', [UserController::class, 'deleteAccount']);
 
-    Route::get('user/posts', [UsersPostsController::class, 'index'])->middleware('can:watch_own_posts');
-    Route::post('user/posts', [UsersPostsController::class, 'store'])->middleware('can:create_post');
-    Route::get('user/posts/create', [UsersPostsController::class, 'create'])->middleware('can:create_post');
+    Route::get('user/posts', [UsersPostsController::class, 'index'])
+        ->middleware('can:watch_own_posts');
+    Route::post('user/posts', [UsersPostsController::class, 'store'])
+        ->middleware('can:create_post');
+    Route::get('user/posts/create', [UsersPostsController::class, 'create'])
+        ->middleware('can:create_post');
     Route::patch('user/posts/{post:id}', [UsersPostsController::class, 'update']);
     Route::get('user/comments', [UsersCommentsController::class, 'index']);
     Route::get('user/newsletter', [NewsletterController::class, 'index']);
     Route::get('user/steam', [UserSteamController::class, 'index']);
+
     Route::delete('steam', [UserSteamController::class, 'destroy']);
+
     Route::post('unsubscribe', [NewsletterController::class, 'destroy']);
 
-    Route::get('auth/steam', [SteamAuthController::class, 'redirectToSteam'])->name('auth.steam')->middleware('can:login_to_steam');
-    Route::get('auth/steam/handle', [SteamAuthController::class, 'handle'])->name('auth.steam.handle')->middleware('can:login_to_steam');
+    Route::get('auth/steam', [SteamAuthController::class, 'redirectToSteam'])
+        ->name('auth.steam')
+        ->middleware('can:login_to_steam');
+    Route::get('auth/steam/handle', [SteamAuthController::class, 'handle'])
+        ->name('auth.steam.handle')
+        ->middleware('can:login_to_steam');
 
-    Route::get('add-review/{steamAppid}', [ReviewController::class, 'create'])->middleware('own_the_game');
-    Route::post('add-review', [ReviewController::class, 'store'])->middleware('own_the_game');
+    Route::get('add-review/{steamAppid}', [ReviewController::class, 'create'])
+        ->middleware('own_the_game');
+    Route::post('add-review', [ReviewController::class, 'store'])
+        ->middleware('own_the_game');
 });
 
 require __DIR__.'/auth.php';

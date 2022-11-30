@@ -125,8 +125,8 @@ Wyodrębnić logikę do prywatnych metod / zastanowić się gdzie możnaby ją p
 Sprawdzić i ewentualnie przepisać SQL na raw jeśli te będą działąć szybciej </br>
 Możliwie pozbyć się logiki z widoków </br>
 Wyodrębnić logikę z kontrolerów do serwisów </br>
-Naprawiać klasa po klasie: </br>
-    <s>app/Console/Kernel.php </br>
+<s>Naprawiać klasa po klasie: </br>
+    app/Console/Kernel.php </br>
     app/Enums/AdminPostsOrderByTypes.php </br>
     app/Enums/AdminUsersOrderByTypes.php </br>
     app/Enums/ReviewCategory.php </br>
@@ -226,9 +226,9 @@ Naprawiać klasa po klasie: </br>
     database/seeders/ReviewsSeeder.php </br>
     database/seeders/UsersSeeder.php </br></s>
 <s>Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków </s></br>
-users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
+<s>users/index.blade chyba powinien mieć użyte post-anchor.blade </s></br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
-Przejść na uuid gdzie się da </br>
+<s>Przejść na uuid gdzie się da </s></br>
 Skorzystać z Dusk dla lepszych testów </br>
 <s>Naprawić wyszukiwanie postów - nie da się filtrować po autorze kategorii i search jednocześnie </s></br>
 <s>Odebrać możliwość dodawania kilku recenzji przez tego samego użytkownika </s></br>

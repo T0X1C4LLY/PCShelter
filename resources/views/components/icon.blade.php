@@ -1,7 +1,6 @@
 @props(['name'])
 
 @if ($name === 'down-arrow')
-
     <svg {{ $attributes(['class' => 'transform -rotate-90']) }}
          width="22"
          height="22"

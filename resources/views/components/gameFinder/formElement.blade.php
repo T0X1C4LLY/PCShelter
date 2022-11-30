@@ -7,7 +7,8 @@
         </div>
         <div class="w-2/3 mx-2" id="{{ $name }}Div">
             <select name="{{ $name }}[]" id="{{ $name }}"
-                    class="w-full text-yellow-500 my-2 bg-gray-500 rounded-xl py-1 px-3 appearance-none cursor-pointer">
+                    class="w-full text-yellow-500 my-2 bg-gray-500 rounded-xl py-1 px-3 appearance-none cursor-pointer"
+            >
                 @if ($isAllEnable)
                     <option value="all">All</option>
                 @endif

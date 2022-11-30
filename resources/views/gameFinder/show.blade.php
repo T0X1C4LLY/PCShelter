@@ -11,12 +11,18 @@
                     </div>
                     <div class="px-2 pt-2 transform transition duration-500 hover:scale-105 {{ $loop->last ? 'pb-5' : 'pb-2' }}">
                         <a href='/games/{{ $game['steam_appid'] }}' >
-                            <img src="{{ $game['header_image'] }}" alt="" title="{{ $game['name'] }}" class="w-full h-full"/>
+                            <img src="{{ $game['header_image'] }}"
+                                 alt=""
+                                 title="{{ $game['name'] }}"
+                                 class="w-full h-full"
+                            />
                         </a>
                     </div>
                     <div class="my-auto space-y-2">
                         @foreach ($game['reviews'] as $key => $value)
-                            <p>{{ $key }}: {{ ($value) }}/10</p>
+                            <p>
+                                {{ $key }}: {{ ($value) }}/10
+                            </p>
                         @endforeach
                     </div>
                 @endforeach
