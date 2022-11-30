@@ -33,7 +33,7 @@ class ReviewController extends Controller
         $steamAppid = $request->input('steam_appid');
 
         /** @var Game $game */
-        $game = Game::where('steam_appid', $steamAppid);
+        $game = Game::where('steam_appid', $steamAppid)->first();
 
         if (!$game->isReleased()) {
             return redirect(sprintf('/games/%s', $steamAppid))

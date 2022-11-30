@@ -34,4 +34,15 @@ class PostControllerTest extends TestCase
 
         $response->assertSee(array_map(static fn (Post $post) => $post->title, $this->posts));
     }
+
+    public function test_paige_with_post_can_be_rendered(): void
+    {
+        $this->preparePosts();
+
+        $post = Post::first();
+
+        $response = $this->get('/posts/'.$post->slug);
+
+        $response->assertSeeInOrder(['Back to Posts', $post->title]);
+    }
 }

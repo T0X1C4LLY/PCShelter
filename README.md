@@ -82,7 +82,7 @@ Fake Thumbnails: https://picsum.photos/
 <s>Chyba będzie trzeba przenieść możliwość tworzenia artykułów do panelu użytkownika, żeby creator'zy też mogli tworzyć</s> </br>
 <s>Naprawić sekcję security bo pola zwiększają się gdy błąd jest zbyt długi - może wywalić to do failure?</s> </br>
 <s>Dodać możliwość aktualizacji roli użytkownika w sekcji admina</s> </br>
-Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w panelu administratora </br>
+<s>Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w panelu administratora </s></br>
 <s>Dodać ustawianie roli dla użytkownika przy tworzeniu konta</s> </br>
 <s>Przy wyszukiwaniu trzeba zadabać o case sensitive</s> </br>
 <s>Zamienić zapytania do bazki wewnątrz blade'ów na relacje (model relationships)</s> </br>
@@ -112,19 +112,19 @@ Trzeba się zastanowić jakie dane o użytkowniku powinienem móc widzieć w pan
 <s>Dodać dopisywanie nowych kategorii i gatunków tak jak robię to z grami</s> </br>
 <s>Dodać dopisywanie danych do json'a z grami za każdym razem jak jakieś trafi do bazki</s> </br>
 <s>Poprawić wyszukiwarkę gier</s> </br>
-Strona nie ładuje się gdy nie ma postów - naprawić </br>
+<s>Strona nie ładuje się gdy nie ma postów - naprawić </s></br>
 <s>Dodać datę wydania gry do bazy/pliku</s> </br>
 <s>Dołożyć walidację formularza do wyszukiwarki gier</s> </br>
 <s>Dołożyć znaczniki od/do na dacie w wyszukiwarce gier</s> </br>
 <s>W GameFinderController i Game mam takie same tablice, może wyodrębnić do Enuma lub env</s> </br>
-Zamienić latające obiekty na arraye </br>
+<s>Zamienić latające obiekty na arraye </s></br>
 Pokryć kod testami </br>
-Zaktualizować libki </br>
-Naprawić błędy larastana / spróbować psalmu </br>
-Wyodrębnić logikę do prywatnych metod / zastanowić się gdzie możnaby ją przenieść </br>
-Sprawdzić i ewentualnie przepisać SQL na raw jeśli te będą działąć szybciej </br>
-Możliwie pozbyć się logiki z widoków </br>
-Wyodrębnić logikę z kontrolerów do serwisów </br>
+<s>Zaktualizować libki </s></br>
+<s>Naprawić błędy larastana / spróbować psalmu </s></br>
+<s>Wyodrębnić logikę do prywatnych metod / zastanowić się gdzie możnaby ją przenieść </s></br>
+<s>Sprawdzić i ewentualnie przepisać SQL na raw jeśli te będą działąć szybciej </s></br>
+<s>Możliwie pozbyć się logiki z widoków </s></br>
+<s>Wyodrębnić logikę z kontrolerów do serwisów </s></br>
 <s>Naprawiać klasa po klasie: </br>
     app/Console/Kernel.php </br>
     app/Enums/AdminPostsOrderByTypes.php </br>
@@ -249,6 +249,7 @@ Szukanie na podstawie nazwy autora </br>
 <s>Dodać możliwość resetowania hasła z poziomu panelu użytkownika</s> </br>
 <s>Może w sekcji admina dodać dodatkowe pola do edycji artykułów</s> </br>
 Dawać ostrzeżenie administratorowi przed usunięciem postu/użytkownika? </br>
+Odkomentować testy w ReviewController po tym jak zagram w PAYDAY </br>
 
 ## Uwagi: </br>
 Pamiętać o tym, żeby ujednolicić zapis do bazy - trzymać się lowercase'ów i dbać o case sensitive </br>

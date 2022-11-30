@@ -26,9 +26,12 @@ class AllUsersTest extends TestCase
         $this->prepareUsers();
     }
 
+    /**
+     * @throws \JsonException
+     */
     public function prepareUsers(): void
     {
-        $file = file_get_contents("/var/www/html/database/assets/rolesAndPermissions.json", );
+        $file = file_get_contents(base_path()."/database/assets/rolesAndPermissions.json");
         $rolesAndPermissions = json_decode($file, true, 512, JSON_THROW_ON_ERROR);
 
         $permissions = $rolesAndPermissions['permissions'];
@@ -55,7 +58,7 @@ class AllUsersTest extends TestCase
         $this->user->assignRole('user');
     }
 
-    public function test_user_can_be_deleted()
+    public function test_user_can_be_deleted(): void
     {
         $responseBefore = $this->actingAs($this->admin)->get('/admin/users');
         $responseBefore->assertSee($this->user->username);
@@ -71,7 +74,7 @@ class AllUsersTest extends TestCase
         $this->assertNull($userAfter);
     }
 
-    public function test_admin_can_not_delete_itself()
+    public function test_admin_cannot_delete_itself(): void
     {
         $responseBefore = $this->actingAs($this->admin)->get('/admin/users');
         $responseBefore->assertSee($this->admin->username);
@@ -87,7 +90,7 @@ class AllUsersTest extends TestCase
         $this->assertNotNull($adminAfter);
     }
 
-    public function test_admin_can_change_user_role()
+    public function test_admin_can_change_user_role(): void
     {
         $this->assertTrue($this->user->hasRole('user'));
         $this->assertFalse($this->user->hasRole('creator'));
@@ -98,5 +101,18 @@ class AllUsersTest extends TestCase
         $userAfter = User::where('id', $this->user->id)->first();
         $this->assertTrue($userAfter->hasRole('creator'));
         $this->assertFalse($userAfter->hasRole('user'));
+    }
+
+    public function test_admin_cannot_change_user_role_itself(): void
+    {
+        $this->assertTrue($this->admin->hasRole('admin'));
+        $this->assertFalse($this->admin->hasRole('creator'));
+
+        $response = $this->actingAs($this->admin)->patch('admin/users/' . $this->admin->id . '/' . Role::findByName('creator')->id);
+        $response->assertStatus(302);
+
+        $adminAfter = User::where('id', $this->admin->id)->first();
+        $this->assertTrue($adminAfter->hasRole('admin'));
+        $this->assertFalse($adminAfter->hasRole('creator'));
     }
 }

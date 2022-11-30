@@ -34,9 +34,12 @@ class AllPostsTest extends TestCase
         $this->preparePosts();
     }
 
-    public function prepareUsers(): void
+    /**
+     * @throws \JsonException
+     */
+    private function prepareUsers(): void
     {
-        $file = file_get_contents("/var/www/html/database/assets/rolesAndPermissions.json", );
+        $file = file_get_contents(base_path()."/database/assets/rolesAndPermissions.json");
         $rolesAndPermissions = json_decode($file, true, 512, JSON_THROW_ON_ERROR);
 
         $permissions = $rolesAndPermissions['permissions'];
@@ -74,7 +77,7 @@ class AllPostsTest extends TestCase
         $this->category = Category::factory()->create();
     }
 
-    public function test_dashboard_screen_with_all_posts_can_be_rendered()
+    public function test_dashboard_screen_with_all_posts_can_be_rendered(): void
     {
         $this->preparePosts();
 
@@ -85,7 +88,7 @@ class AllPostsTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_edit_post_screen_can_be_rendered()
+    public function test_edit_post_screen_can_be_rendered(): void
     {
         $response = $this->actingAs($this->admin)->get('/admin/posts/' . $this->post->id . '/edit');
 

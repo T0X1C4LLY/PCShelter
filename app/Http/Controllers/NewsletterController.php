@@ -18,9 +18,9 @@ class NewsletterController extends Controller
         $request->validate(['email' => ['required', 'email']]);
 
         try {
-            /** @var string $requestKey */
-            $requestKey = $request->input('email');
-            $newsletter->subscribe($requestKey);
+            /** @var string $email */
+            $email = $request->input('email');
+            $newsletter->subscribe($email);
 
             /** @var User $user */
             $user = $request->user();
