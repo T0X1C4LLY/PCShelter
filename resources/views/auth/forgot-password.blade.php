@@ -3,16 +3,12 @@
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
 
-    <!-- Session Status -->
     <x-breeze.auth-session-status class="mb-4" :status="session('status')" />
-
-    <!-- Validation Errors -->
     <x-breeze.auth-validation-errors class="mb-4" :errors="$errors" />
 
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
 
-        <!-- Email Address -->
         <div>
             <x-breeze.label for="login" :value="__('Email\Username')" />
 

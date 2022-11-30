@@ -1,14 +1,12 @@
 <x-breeze.breeze-layout>
-    <!-- Validation Errors -->
+
     <x-breeze.auth-validation-errors class="mb-4" :errors="$errors" />
 
     <form method="POST" action="{{ route('password.update') }}">
         @csrf
 
-        <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-        <!-- Email Address -->
         <div>
             <x-breeze.label for="email" :value="__('Email')" />
 
@@ -21,7 +19,6 @@
             />
         </div>
 
-        <!-- Password -->
         <div class="mt-4">
             <x-breeze.label for="password" :value="__('Password')" />
 
@@ -34,7 +31,6 @@
             />
         </div>
 
-        <!-- Confirm Password -->
         <div class="mt-4">
             <x-breeze.label for="password_confirmation" :value="__('Confirm Password')" />
 

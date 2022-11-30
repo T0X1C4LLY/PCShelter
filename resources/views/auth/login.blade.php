@@ -1,14 +1,11 @@
 <x-breeze.breeze-layout>
-    <!-- Session Status -->
-    <x-breeze.auth-session-status class="mb-4" :status="session('status')" />
 
-    <!-- Validation Errors -->
+    <x-breeze.auth-session-status class="mb-4" :status="session('status')" />
     <x-breeze.auth-validation-errors class="mb-4" :errors="$errors" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <!-- Email Address -->
         <div>
             <x-breeze.label for="login" :value="__('Email\Username')" />
 
@@ -22,7 +19,6 @@
             />
         </div>
 
-        <!-- Password -->
         <div class="mt-4">
             <x-breeze.label for="password" :value="__('Password')" />
 
@@ -34,7 +30,6 @@
             />
         </div>
 
-        <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me"
