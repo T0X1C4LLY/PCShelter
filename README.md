@@ -24,6 +24,7 @@ AlpineJS </br>
 Mailhog </br>
 pgSQL </br>
 Mailchimp </br>
+phpDocumentor </br>
 
 Logo : https://www.freelogodesign.org/ </br>
 Fake Avatars: https://pravatar.cc/ </br>
@@ -264,3 +265,5 @@ public function getCreatedAtAttribute(string $created_at): Carbon //Accessor </b
 public function setPasswordAttribute(string $password): void //Mutator: set + nazwa_atrybutu + Attribute() </br>
 
 base64:xy1zvTVmoDM/580N5K3cHKI0EA0YGn20XTNDQteXu+M=
+
+http://localhost/docs/index.html

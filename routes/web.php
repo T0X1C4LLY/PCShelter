@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersCommentsController;
 use App\Http\Controllers\UsersPostsController;
 use App\Http\Controllers\UserSteamController;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/logo', static function () {
-    return response()->file('/var/www/html/public/storage/public/logo.png');
+    return response()->file(base_path().'/public/storage/public/logo.png');
 });
 
 Route::get('/', [PostController::class, 'index'])
