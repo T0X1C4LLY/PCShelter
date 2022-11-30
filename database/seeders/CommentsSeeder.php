@@ -14,7 +14,7 @@ class CommentsSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         Comment::truncate();
 
@@ -22,8 +22,8 @@ class CommentsSeeder extends Seeder
 
         for ($i = 0; $i < $quantityOfComments; $i++) {
             Comment::factory()->create([
-                'user_id' => (User::role('creator')->inRandomOrder()->first())->id,
-                'post_id' => (Post::inRandomOrder()->first())->id,
+                'user_id' => User::role('creator')->inRandomOrder()->first()->id,
+                'post_id' => Post::inRandomOrder()->first()->id,
             ]);
         }
     }

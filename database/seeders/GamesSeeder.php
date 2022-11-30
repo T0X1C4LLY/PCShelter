@@ -13,11 +13,11 @@ class GamesSeeder extends Seeder
      * @return void
      * @throws \JsonException
      */
-    public function run()
+    public function run(): void
     {
         Game::truncate();
 
-        $gamesFile = file_get_contents("/var/www/html/database/assets/games.json");
+        $gamesFile = file_get_contents(base_path()."/database/assets/games.json");
 
         /** @var array{
          *     id: string,

@@ -204,15 +204,36 @@ Naprawiać klasa po klasie: </br>
     app/Traits/EnumValuesTrait.php </br>
     app/Traits/TraitUuid.php </br>
     app/ValueObjects/AdminPostsOrderBy.php </br>
-    app/ValueObjects/AdminUsersOrderBy.php </br></s>
-Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków</br>
+    app/ValueObjects/AdminUsersOrderBy.php </br>
+    app/ValueObjects/DateRange.php </br>
+    app/ValueObjects/FinderParams.php </br>
+    app/ValueObjects/Page.php </br>
+    app/ValueObjects/PaginationInfo.php </br>
+    app/View/Components/AppLayout.php </br>
+    app/View/Components/GuestLayout.php </br>
+    database/factories/CategoryFactory.php </br>
+    database/factories/CommentFactory.php </br>
+    database/factories/PostFactory.php </br>
+    database/factories/UserFactory.php </br>
+    database/seeders/CategoriesSeeder.php </br>
+    database/seeders/CommentsSeeder.php </br>
+    database/seeders/DatabaseSeeder.php </br>
+    database/seeders/GameCategoriesSeeder.php </br>
+    database/seeders/GamesSeeder.php </br>
+    database/seeders/GenresSeeder.php </br>
+    database/seeders/PermissionsAndRolesSeeder.php </br>
+    database/seeders/PostsSeeder.php </br>
+    database/seeders/ReviewsSeeder.php </br>
+    database/seeders/UsersSeeder.php </br></s>
+<s>Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków </s></br>
 users/index.blade chyba powinien mieć użyte post-anchor.blade </br>
 Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
 Przejść na uuid gdzie się da </br>
 Skorzystać z Dusk dla lepszych testów </br>
-Naprawić wyszukiwanie postów - nie da się filtrować po autorze kategorii i search jednocześnie </br>
-Odebrać możliwość dodawania kilku recenzji przez tego samego użytkownika </br>
+<s>Naprawić wyszukiwanie postów - nie da się filtrować po autorze kategorii i search jednocześnie </s></br>
+<s>Odebrać możliwość dodawania kilku recenzji przez tego samego użytkownika </s></br>
 Dodać logikę niedodawania recenzji do gier które jeszcze nie wyszły </br>
+Usunąć dane ze steam w UsersSeeder </br>
 
 ## Pomysły: </br>
 

@@ -14,7 +14,7 @@ class PostsSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         Post::truncate();
 
@@ -22,8 +22,8 @@ class PostsSeeder extends Seeder
 
         for ($i = 0; $i < $quantityOfPosts; $i++) {
             Post::factory()->create([
-                'user_id' => (User::role('creator')->inRandomOrder()->first())->id,
-                'category_id' => (Category::inRandomOrder()->first())->id,
+                'user_id' => User::role('creator')->inRandomOrder()->first()->id,
+                'category_id' => Category::inRandomOrder()->first()->id,
             ]);
         }
     }

@@ -13,7 +13,7 @@ class GameCategoriesSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         GameCategory::truncate();
 

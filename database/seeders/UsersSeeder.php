@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         User::truncate();
 
@@ -48,18 +48,20 @@ class UsersSeeder extends Seeder
         $quantityOfCommonUsers = 34;
         $quantityOfCreators = 15;
 
+        $loginToSteamPermission  =Permission::findByName('login_to_steam');
+
         for ($i = 0; $i < $quantityOfCommonUsers; $i++) {
             /** @var Model $temp */
             $temp = User::factory()->create();
             $temp->assignRole(Role::findByName('user'));
-            $temp->givePermissionTo(Permission::findByName('login_to_steam'));
+            $temp->givePermissionTo($loginToSteamPermission);
         }
 
         for ($i = 0; $i < $quantityOfCreators; $i++) {
             /** @var Model $temp */
             $temp = User::factory()->create();
             $temp->assignRole(Role::findByName('creator'));
-            $temp->givePermissionTo(Permission::findByName('login_to_steam'));
+            $temp->givePermissionTo($loginToSteamPermission);
         }
     }
 }

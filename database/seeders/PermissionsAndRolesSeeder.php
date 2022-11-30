@@ -15,14 +15,19 @@ class PermissionsAndRolesSeeder extends Seeder
      * @return void
      * @throws \JsonException
      */
-    public function run()
+    public function run(): void
     {
         Permission::truncate();
         Role::truncate();
 
-        $rolesAndPermissionsFile = file_get_contents("/var/www/html/database/assets/rolesAndPermissions.json");
+        $rolesAndPermissionsFile = file_get_contents(base_path()."/database/assets/rolesAndPermissions.json");
 
-        $rolesAndPermissions = json_decode($rolesAndPermissionsFile, true, 512, JSON_THROW_ON_ERROR);
+        $rolesAndPermissions = json_decode(
+            $rolesAndPermissionsFile,
+            true,
+            512,
+            JSON_THROW_ON_ERROR
+        );
 
         $permissions = $rolesAndPermissions['permissions'];
         $roles = $rolesAndPermissions['roles'];
