@@ -14,8 +14,7 @@ class PageTest extends TestCase
     public function test_Page_can_be_created(
         int $pageNumber,
         int $perPage,
-    ): void
-    {
+    ): void {
         static::assertNotNull(new Page($pageNumber, $perPage));
     }
 
@@ -38,8 +37,7 @@ class PageTest extends TestCase
     public function test_InvalidPaginationInfoException_will_be_thrown(
         int $pageNumber,
         int $perPage,
-    ): void
-    {
+    ): void {
         $this->expectException(InvalidPaginationInfoException::class);
 
         new Page($pageNumber, $perPage);

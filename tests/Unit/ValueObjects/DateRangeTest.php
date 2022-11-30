@@ -14,8 +14,7 @@ class DateRangeTest extends TestCase
         ?string $to,
         DateTimeImmutable $expectedFrom,
         DateTimeImmutable $expectedTo,
-    ): void
-    {
+    ): void {
         $dateRange = new DateRange($from, $to);
 
         self::assertEquals($dateRange->from, $expectedFrom);

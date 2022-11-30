@@ -15,8 +15,7 @@ class PaginationInfoTest extends TestCase
     public function test_PaginationInfo_can_be_created(
         Page $page,
         int $total,
-    ): void
-    {
+    ): void {
         static::assertNotNull(new PaginationInfo($page, $total));
     }
 
@@ -24,13 +23,13 @@ class PaginationInfoTest extends TestCase
     {
         return [
             [
-                new Page(1 ,1), 2
+                new Page(1, 1), 2
             ],
             [
-                new Page(1 ,1), 3
+                new Page(1, 1), 3
             ],
             [
-                new Page(1 ,1), 90
+                new Page(1, 1), 90
             ],
         ];
     }
@@ -39,8 +38,7 @@ class PaginationInfoTest extends TestCase
     public function test_InvalidPaginationInfoException_will_be_thrown(
         Page $page,
         int $total,
-    ): void
-    {
+    ): void {
         $this->expectException(InvalidPaginationInfoException::class);
 
         new PaginationInfo($page, $total);
@@ -50,10 +48,10 @@ class PaginationInfoTest extends TestCase
     {
         return [
             [
-                new Page(1 ,1), -1
+                new Page(1, 1), -1
             ],
             [
-                new Page(1 ,1), -100
+                new Page(1, 1), -100
             ],
         ];
     }

@@ -167,11 +167,7 @@ class Game extends Model
         $releaseDate = DateTimeImmutable::createFromFormat('d M, Y', $date['date']);
         $releaseDate = $releaseDate->modify('January 1 00:00:00');
 
-        if (!$range->isInRange($releaseDate)) {
-            return false;
-        }
-
-        return true;
+        return $range->isInRange($releaseDate);
     }
 
     public function isReleased(): bool

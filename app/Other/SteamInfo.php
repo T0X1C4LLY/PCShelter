@@ -49,7 +49,7 @@ class SteamInfo
     /**
      * @throws \JsonException
      */
-    public function addGame(array $data): Game
+    private function addGame(array $data): Game
     {
         $genres = array_column($data['genres'], 'description');
         $categories = array_column($data['categories'], 'description');
@@ -71,7 +71,7 @@ class SteamInfo
      * @throws SteamResponseException
      * @throws \JsonException
      */
-    public function getDataFromSteam(int $gameId): array
+    private function getDataFromSteam(int $gameId): array
     {
         /** @var string $data */
         $data = file_get_contents(env('STEAM_URL').$gameId);
@@ -89,7 +89,7 @@ class SteamInfo
         return $gameData;
     }
 
-    public function getSteamDataAsArray(array $gameData): array
+    private function getSteamDataAsArray(array $gameData): array
     {
         $info = [];
 
@@ -104,7 +104,7 @@ class SteamInfo
         return $info;
     }
 
-    public function replaceSteamUrl(string $text): string
+    private function replaceSteamUrl(string $text): string
     {
         /** @var string $changedText */
         $changedText =  preg_replace(
@@ -116,7 +116,7 @@ class SteamInfo
         return $changedText;
     }
 
-    public function deleteGameTitle(string $text): string
+    private function deleteGameTitle(string $text): string
     {
         /** @var string $changedText */
         $changedText = preg_replace(
@@ -128,7 +128,7 @@ class SteamInfo
         return $changedText;
     }
 
-    public function setReleaseDate(array $date): string
+    private function setReleaseDate(array $date): string
     {
         return $date['coming_soon'] ? 'Coming Soon' : $date['date'];
     }

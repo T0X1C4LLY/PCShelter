@@ -13,8 +13,7 @@ class FinderParamsTest extends TestCase
         array $categories,
         array $types,
         array $filters
-    ): void
-    {
+    ): void {
         $finderParams = new FinderParams($genres, $categories, $types);
 
         self::assertSame($filters, $finderParams->filters);
