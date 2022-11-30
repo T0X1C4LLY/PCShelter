@@ -232,8 +232,9 @@ Pokryć kod testami </br>
 Skorzystać z Dusk dla lepszych testów </br>
 <s>Naprawić wyszukiwanie postów - nie da się filtrować po autorze kategorii i search jednocześnie </s></br>
 <s>Odebrać możliwość dodawania kilku recenzji przez tego samego użytkownika </s></br>
-</s>Dodać logikę niedodawania recenzji do gier które jeszcze nie wyszły </s></br>
-Usunąć dane ze steam w UsersSeeder </br>
+<s>Dodać logikę niedodawania recenzji do gier które jeszcze nie wyszły </s></br>
+<s>Usunąć dane ze steam w UsersSeeder </s></br>
+<s>Odkomentować testy w ReviewController po tym jak zagram w PAYDAY </s></br>
 
 ## Pomysły: </br>
 
@@ -249,7 +250,6 @@ Szukanie na podstawie nazwy autora </br>
 <s>Dodać możliwość resetowania hasła z poziomu panelu użytkownika</s> </br>
 <s>Może w sekcji admina dodać dodatkowe pola do edycji artykułów</s> </br>
 Dawać ostrzeżenie administratorowi przed usunięciem postu/użytkownika? </br>
-Odkomentować testy w ReviewController po tym jak zagram w PAYDAY </br>
 
 ## Uwagi: </br>
 Pamiętać o tym, żeby ujednolicić zapis do bazy - trzymać się lowercase'ów i dbać o case sensitive </br>

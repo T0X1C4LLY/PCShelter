@@ -24,9 +24,6 @@ class UsersSeeder extends Seeder
             'username' => 'admin',
             'password' => Hash::make('admin'),
             'email' => 'admin@admin.com',
-            'steamUsername' => 'T0X1C4LLY',
-            'avatar' => 'https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg',
-            'steamId' => 76561198395363470,
         ]);
 
         $user = User::factory()->create([
