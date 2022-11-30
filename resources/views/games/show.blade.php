@@ -52,21 +52,23 @@
                             @endif
                         </div>
                     </div>
-                    <div class="text-green-500 p-1 text-xl text-center border-t-2 border-gray-600">
-                        <form method="GET" action="/add-review/{{ $game['steam_appid'] }}" class="pt-2">
-                            @csrf
-                            <input id="name"
-                                   name="name"
-                                   type="hidden"
-                                   value="{{ $game['name'] }}"
-                            >
-                            <button type="submit"
-                                    class="transition-colors duration-300 bg-yellow-500 hover:bg-yellow-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
-                            >
-                                Add Review
-                            </button>
-                        </form>
-                    </div>
+                    @if($game['release_date'] !== 'Coming Soon')
+                        <div class="text-green-500 p-1 text-xl text-center border-t-2 border-gray-600">
+                            <form method="GET" action="/add-review/{{ $game['steam_appid'] }}" class="pt-2">
+                                @csrf
+                                <input id="name"
+                                       name="name"
+                                       type="hidden"
+                                       value="{{ $game['name'] }}"
+                                >
+                                <button type="submit"
+                                        class="transition-colors duration-300 bg-yellow-500 hover:bg-yellow-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
+                                >
+                                    Add Review
+                                </button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

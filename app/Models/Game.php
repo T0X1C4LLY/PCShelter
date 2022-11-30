@@ -174,7 +174,7 @@ class Game extends Model
         return true;
     }
 
-    private function isReleased(): bool
+    public function isReleased(): bool
     {
         /** @var array{coming_soon: bool, date: string} $date */
         $date = $this['release_date'];

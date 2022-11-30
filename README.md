@@ -232,7 +232,7 @@ Skorzystać z composer require https://github.com/beyondcode/laravel-credentials
 Skorzystać z Dusk dla lepszych testów </br>
 <s>Naprawić wyszukiwanie postów - nie da się filtrować po autorze kategorii i search jednocześnie </s></br>
 <s>Odebrać możliwość dodawania kilku recenzji przez tego samego użytkownika </s></br>
-Dodać logikę niedodawania recenzji do gier które jeszcze nie wyszły </br>
+</s>Dodać logikę niedodawania recenzji do gier które jeszcze nie wyszły </s></br>
 Usunąć dane ze steam w UsersSeeder </br>
 
 ## Pomysły: </br>

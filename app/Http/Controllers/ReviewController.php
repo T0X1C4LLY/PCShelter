@@ -29,15 +29,23 @@ class ReviewController extends Controller
     {
         $review = $request->except(['_token', 'name', 'steam_appid']);
 
+        /** @var string $steamAppid */
+        $steamAppid = $request->input('steam_appid');
+
+        /** @var Game $game */
+        $game = Game::where('steam_appid', $steamAppid);
+
+        if (!$game->isReleased()) {
+            return redirect(sprintf('/games/%s', $steamAppid))
+                ->with(['failure' => 'Cannot review a game that was not released yet']);
+        }
+
         /** @var User $user */
         $user = $request->user();
 
         $review['user_id'] = $user->id;
 
         Review::factory()->create($review);
-
-        /** @var string $steamAppid */
-        $steamAppid = $request->input('steam_appid');
 
         return redirect(sprintf('/games/%s', $steamAppid))
             ->with(['success' => 'Review added successfully']);
