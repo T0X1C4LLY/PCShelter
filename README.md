@@ -227,7 +227,7 @@ Wyodrębnić logikę z kontrolerów do serwisów </br>
     database/seeders/UsersSeeder.php </br></s>
 <s>Dorzucić trochę gier do pliku seedującego i pozbyć się logiki dopisywania do pliku gier/kategorii/gatunków </s></br>
 <s>users/index.blade chyba powinien mieć użyte post-anchor.blade </s></br>
-Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key</br>
+<s>Skorzystać z composer require https://github.com/beyondcode/laravel-credentials i wrzucić tam API Key </s></br>
 <s>Przejść na uuid gdzie się da </s></br>
 Skorzystać z Dusk dla lepszych testów </br>
 <s>Naprawić wyszukiwanie postów - nie da się filtrować po autorze kategorii i search jednocześnie </s></br>
@@ -261,3 +261,5 @@ public function getRouteKeyName(): string {return 'slug';} //to jest potrzebne, 
 public function comments(): HasMany{ return $this->hasMany(Comment::class);} // Laravel zakłada, że klucz obcy będzie nazywał się user_id - nazwaMetody_id </br>
 public function getCreatedAtAttribute(string $created_at): Carbon //Accessor </br>
 public function setPasswordAttribute(string $password): void //Mutator: set + nazwa_atrybutu + Attribute() </br>
+
+base64:xy1zvTVmoDM/580N5K3cHKI0EA0YGn20XTNDQteXu+M=

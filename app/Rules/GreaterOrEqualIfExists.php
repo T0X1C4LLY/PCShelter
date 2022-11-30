@@ -33,10 +33,10 @@ class GreaterOrEqualIfExists implements DataAwareRule, InvokableRule
         if ($this->data[$this->fieldName] && $this->data[$this->fieldName] > $value) {
             $fail(
                 sprintf(
-                'The %s must be greater than %s.',
-                Str::headline($attribute),
-                Str::headline($this->fieldName)
-            )
+                    'The %s must be greater than %s.',
+                    Str::headline($attribute),
+                    Str::headline($this->fieldName)
+                )
             );
         }
     }
