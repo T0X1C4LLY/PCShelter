@@ -21,7 +21,7 @@ class NewsletterControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = User::factory()->create(['email' => 'test@wp.pl']);
+        $this->user = User::factory()->create(['email' => 'tester@wp.pl']);
 
         $this->seed(PermissionsAndRolesSeeder::class);
     }

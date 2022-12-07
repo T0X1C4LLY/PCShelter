@@ -267,3 +267,5 @@ public function setPasswordAttribute(string $password): void //Mutator: set + na
 base64:xy1zvTVmoDM/580N5K3cHKI0EA0YGn20XTNDQteXu+M=
 
 http://localhost/docs/index.html
+
+72,9% testów
