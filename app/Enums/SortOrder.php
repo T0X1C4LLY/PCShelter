@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-use App\Traits\EnumValuesTrait;
+use App\Traits\IsEnum;
 
 enum SortOrder: string
 {
-    use EnumValuesTrait;
+    use IsEnum;
 
     case ASCENDING = 'ASC';
     case DESCENDING = 'DESC';

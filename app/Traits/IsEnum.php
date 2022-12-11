@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-trait EnumValuesTrait
+trait IsEnum
 {
     public static function values(): array
     {

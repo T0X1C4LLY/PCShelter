@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ReviewCategory;
-use App\Traits\TraitUuid;
+use App\Traits\HasUuid;
 use App\ValueObjects\DateRange;
 use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Game extends Model
 {
     use HasFactory;
-    use TraitUuid;
+    use HasUuid;
 
     public $timestamps = false;
 

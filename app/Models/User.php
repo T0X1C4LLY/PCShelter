@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\TraitUuid;
+`use App\Traits\HasUuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use Notifiable;
     use HasRoles;
-    use TraitUuid;
+    use HasUuid;
 
     /**
      * The attributes that are mass assignable.

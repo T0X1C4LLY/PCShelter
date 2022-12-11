@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-use App\Traits\EnumValuesTrait;
+use App\Traits\IsEnum;
 
 enum AdminUsersOrderByTypes: string
 {
-    use EnumValuesTrait;
+    use IsEnum;
 
     case USERNAME = 'username';
     case NAME = 'name';

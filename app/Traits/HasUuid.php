@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Str;
 
-trait TraitUuid
+trait HasUuid
 {
     /**
      * Override the boot function from Laravel so that
