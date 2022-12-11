@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Other\ArrayPagination;
-use App\Other\SteamInfo;
+use App\FacadeImplementation\ArrayPagination;
+use App\FacadeImplementation\SteamInfo;
 use App\Services\Creator;
 use App\Services\HTMLBuilder;
 use App\Services\Interfaces\Creator as CreatorInterface;

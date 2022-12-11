@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Other;
+namespace App\FacadeImplementation;
 
 use App\ValueObjects\PaginationInfo;
 use Illuminate\Pagination\LengthAwarePaginator;

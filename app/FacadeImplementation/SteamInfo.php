@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Other;
+namespace App\FacadeImplementation;
 
 use App\Exceptions\SteamResponseException;
 use App\Models\Game;
