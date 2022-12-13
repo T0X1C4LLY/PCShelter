@@ -18,7 +18,7 @@ class GameFinder implements SearchInterface
 
         $gameIds = array_map(static fn ($game) => $game['id'], $games);
 
-        $reviews = $this->getSortedReviews($params->types, $gameIds);
+        $reviews = $this->getGroupedReviews($params->types, $gameIds);
 
         return $this->sortGamesByBest($reviews, $games);
     }
@@ -47,7 +47,7 @@ class GameFinder implements SearchInterface
         return $gamesByDate;
     }
 
-    private function getSortedReviews(array $types, array $gameIds): array
+    private function getGroupedReviews(array $types, array $gameIds): array
     {
         $types[] = 'game_id';
 
@@ -55,7 +55,7 @@ class GameFinder implements SearchInterface
             ->whereIn('game_id', $gameIds)
             ->get();
 
-        $sortedReviews = [];
+        $groupedReviews = [];
 
         foreach ($reviews as $review) {
             $categories = $review->toArray();
@@ -64,11 +64,11 @@ class GameFinder implements SearchInterface
                 if ($key === 'game_id') {
                     break;
                 }
-                $sortedReviews[$gameId][$key][] = $value;
+                $groupedReviews[$gameId][$key][] = $value;
             }
         }
 
-        return $sortedReviews;
+        return $groupedReviews;
     }
 
     private function sortGamesByBest(array $reviews, array $games): array
