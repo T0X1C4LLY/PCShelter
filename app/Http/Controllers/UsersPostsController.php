@@ -83,7 +83,7 @@ class UsersPostsController extends Controller
         return back()->with('success', 'Post Updated');
     }
 
-    protected function validatePost(Request $request, ?Post $post = null): array
+    private function validatePost(Request $request, ?Post $post = null): array
     {
         $post ??= new Post();
 

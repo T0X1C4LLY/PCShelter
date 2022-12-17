@@ -13,7 +13,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersCommentsController;
 use App\Http\Controllers\UsersPostsController;
 use App\Http\Controllers\UserSteamController;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 /*
