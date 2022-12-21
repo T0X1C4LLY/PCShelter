@@ -1,5 +1,5 @@
 <x-main-layout>
-    <x-setting heading="Manage Posts">
+    <x-setting heading="Manage Users">
         <div class="inline-flex bg-gray-100 rounded-xl px-3 py-2 float-right">
             <form class="w-full" method="GET" action="/admin/users">
                 <input type="text"
