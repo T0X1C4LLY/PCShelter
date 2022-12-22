@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index(): Factory|View|Application
     {
         /** @var User $user */
-        $user = User::select(['username', 'email', 'email_verified_at', 'created_at'])
+        $user = User::select(['username', 'email', 'name', 'email_verified_at', 'created_at'])
             ->where('id', auth()->id())
             ->first();
 

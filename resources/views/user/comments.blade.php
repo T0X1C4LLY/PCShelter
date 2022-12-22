@@ -1,5 +1,5 @@
 <x-main-layout>
-    <x-user-setting heading="My Posts">
+    <x-user-setting heading="My Comments">
         <div class="inline-flex bg-gray-100 rounded-xl px-3 py-2 float-right">
             <form class="w-full" method="GET" action="{{ http_build_query(request()) }}">
                 <input type="text"

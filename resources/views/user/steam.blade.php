@@ -1,5 +1,5 @@
 <x-main-layout>
-    <x-user-setting heading="Newsletter">
+    <x-user-setting heading="Steam">
         <div class="w-full text-center items-center">
             @can('login_to_steam')
                 <div class="mb-2 text-yellow-500">
