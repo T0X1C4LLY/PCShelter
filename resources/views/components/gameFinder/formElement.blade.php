@@ -21,9 +21,9 @@
     <div class="w-min mx-auto">
         <button type="button" onclick="add('{{ $name }}')" id="add{{ ucfirst($name) }}">
             <svg width="25" height="26" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" fill="red"/>
-                <rect width="9" height="1" x="3.3" y="7.5" style="stroke-width:1;stroke:rgb(255,0,0)"/>
-                <rect width="1" height="9" x="7.5" y="3.3" style="stroke-width:1;stroke:rgb(255,0,0)"/>
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" fill="green"/>
+                <rect width="9" height="1" x="3.3" y="7.5" style="stroke-width:1;stroke:rgb(0,255,0)"/>
+                <rect width="1" height="9" x="7.5" y="3.3" style="stroke-width:1;stroke:rgb(0,255,0)"/>
             </svg>
         </button>
         <button type="button" onclick="sub('{{ $name }}')" id="sub{{ ucfirst($name) }}" style="visibility: hidden">
