@@ -36,4 +36,4 @@ Fake Thumbnails: https://picsum.photos/
 
 ## Decrypting env file
 
-`php artisan env:decrypt --key=base64:r+N35aaIGBDsCMbxwXbtiB3OIs5qIpW8KPbTphiKhKw=`
+`php artisan env:decrypt --key=base64:4y6kaBITc+aE/aZGEf/RFl/mElhHD1USOijAT6juCCs=`
