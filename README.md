@@ -33,3 +33,7 @@ Fake Thumbnails: https://picsum.photos/
 ## Installation
 
 `make install`
+
+## Decrypting env file
+
+`php artisan env:decrypt base64:r+N35aaIGBDsCMbxwXbtiB3OIs5qIpW8KPbTphiKhKw=`
