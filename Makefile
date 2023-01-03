@@ -14,7 +14,7 @@ build:
 composer:
 	$(sail) composer install -o
 
-install: docker up build composer
+install: docker up build composer preparedb
 
 down:
 	$(sail) down
