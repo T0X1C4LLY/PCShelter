@@ -42,10 +42,14 @@ class UsersSeeder extends Seeder
         $user->assignRole(Role::findByName('user'));
         $creator->assignRole(Role::findByName('creator'));
 
+        $loginToSteamPermission = Permission::findByName('login_to_steam');
+
+        $admin->givePermissionTo($loginToSteamPermission);
+        $user->givePermissionTo($loginToSteamPermission);
+        $creator->givePermissionTo($loginToSteamPermission);
+
         $quantityOfCommonUsers = 34;
         $quantityOfCreators = 15;
-
-        $loginToSteamPermission  =Permission::findByName('login_to_steam');
 
         for ($i = 0; $i < $quantityOfCommonUsers; $i++) {
             /** @var Model $temp */
